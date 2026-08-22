@@ -1,0 +1,18 @@
+{
+  "demo": "D2 中断恢复演示",
+  "interrupted_at_utc": "2026-08-22T16:03:10Z",
+  "file": "vault/03_输出库/正式成果/2026-08-22-游戏市场动态研判-服务型转型与厂商格局.md",
+  "sha256_at_interrupt": "bc45cfcba755c1128c1a92deecb6de7f2393909018adc0eec84c31d54b8deefa",
+  "bytes_at_interrupt": 3398,
+  "last_complete_section": "## 发现 / ### 发现1",
+  "missing_sections": [
+    "### 发现2",
+    "### 发现3",
+    "## 建议",
+    "## 风险与局限",
+    "## relations",
+    "status: draft→done 自检表"
+  ],
+  "simulated_failure": "agent 执行体在产出写入一半后终止（模拟进程中断）；两次写入之间无任何对该文件的其他写操作，以两段 sha256 与字节数差为证",
+  "resume_protocol": "读取本标记 → 校验现文件 sha256 与记录一致 → 以 edit 续写缺失小节（不新建副本）→ 复验唯一性与新 hash → 记入 D-中断恢复演示.md"
+}

@@ -1,0 +1,87 @@
+
+
+  _    _            _
+ | |  | |          (_)
+ | |__| | ___  _ __ _ ___  ___  _ __
+ |  __  |/ _ \| '__| |_  / / _ \| '_ \
+ | |  | | (_) | |  | |/ / | (_) | | | |
+ |_|  |_|\___/|_|  |_/___| \___/|_| |_|
+
+  AI-Driven Information Aggregation System
+    
+🌅 Horizon - Starting aggregation...
+
+📅 Fetching content since: 2026-08-21 09:21:40
+
+🔍 Fetching from GitHub...
+   Found 0 items from GitHub
+🔍 Fetching from RSS Feeds...
+🔍 Fetching from Reddit...
+   Found 0 items from Reddit
+🔍 Fetching from Telegram...
+   Found 0 items from Telegram
+[08/22/26 23:21:55] WARNING  Error fetching RSS feed 黄金运行-坏源测试:         
+   Found 43 items from RSS Feeds
+      • Eurogamer: 14
+      • GamesIndustry.biz: 6
+      • Rock Paper Shotgun: 8
+      • Simon Willison: 4
+      • 少数派: 2
+      • 机核gcores: 5
+      • 游戏陀螺: 4
+📥 Fetched 43 items from all sources
+
+🤖 Analyzing content with AI...
+
+🤖 Analyzed 43 items with AI
+
+⭐️ Selected 24 items with profile filters
+
+   dedup: keep [13] “We’re going to take things slow": South of Midnight devs 
+now own the rights to all their games again, after quitting Xbox, and are 
+working on a new game
+          drop [15] Compulsion Games officially separates from Xbox – "The team 
+told me we would rather eat rocks and drink gasoline than be split up"
+   dedup: keep [19] Take-Two's legal action to find GTA 6 leaker begins, as it 
+subpoenas Microsoft and Discord for any data "sufficient to identify the users 
+person"
+          drop [21] GTA 6 leaker hunt is on, as Rockstar owners Take-Two file 
+subpoenas asking Microsoft and Discord for records
+🧹 Removed 2 topic duplicates → 22 unique items
+
+      • rss/Eurogamer: 4
+      • rss/GamesIndustry.biz: 3
+      • rss/Rock Paper Shotgun: 6
+      • rss/Simon Willison: 4
+      • rss/机核gcores: 1
+      • rss/游戏陀螺: 4
+
+📚 Enriching with background knowledge...
+[08/22/26 23:22:15] WARNING  Impersonate 'safari_16.5' does not exist, using    
+                             'random'                                           
+[08/22/26 23:22:36] ERROR    Error enriching item                               
+                             rss:www.youxituoluo.com_rss:be2c7f7226e1790e:      
+                             Invalid enrichment artifact                        
+
+   Enriched 21/22 items
+   Skipped 1 items after enrichment failed: 
+rss:www.youxituoluo.com_rss:be2c7f7226e1790e
+
+💾 Saved ZH summary to: 
+/Users/chenzixun/Documents/自进化知识库/vault/04_系统维护/运行记录/黄金运行-2026
+-08-22/horizon-run/data/summaries/horizon-2026-08-22-zh.md
+
+⚠️ Failed to copy ZH summary to docs/: [Errno 1] Operation not permitted: 
+'/Users/chenzixun/horizon/docs/_posts/2026-08-22-summary-zh.md'
+
+💾 Saved EN summary to: 
+/Users/chenzixun/Documents/自进化知识库/vault/04_系统维护/运行记录/黄金运行-2026
+-08-22/horizon-run/data/summaries/horizon-2026-08-22-en.md
+
+⚠️ Failed to copy EN summary to docs/: [Errno 1] Operation not permitted: 
+'/Users/chenzixun/horizon/docs/_posts/2026-08-22-summary-en.md'
+
+✅ Horizon completed successfully!
+
+🧮 Token usage this run: 176004 tokens (input: 153457, output: 22547)
+   • deepseek: 176004 tokens (in: 153457, out: 22547)

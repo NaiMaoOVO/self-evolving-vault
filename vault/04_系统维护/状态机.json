@@ -1,0 +1,14 @@
+{
+ "schema": 1,
+ "state": "idle",
+ "paused": false,
+ "updated_at": "2026-08-22T10:49:29+08:00",
+ "install": {
+  "backups_done": true,
+  "backup_dir": "/Users/chenzixun/Documents/自进化知识库/vault/04_系统维护/运行记录/状态机-备份-2026-08-22-sm-20260821T201733Z-a2e0"
+ },
+ "run": null,
+ "last_success": null,
+ "pending_backfill": null,
+ "history": []
+}

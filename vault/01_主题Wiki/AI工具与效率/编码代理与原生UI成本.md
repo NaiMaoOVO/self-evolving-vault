@@ -4,12 +4,14 @@ type: knowledge
 status: stable
 created: 2026-08-22
 updated: 2026-08-22
-source: "[[00_资源库/外部知识/2026-08-21-停止制作-TUI编码代理让原生-UI-成本骤降|停止制作TUI卡]]"
+source: "[[00_资源库/外部知识/2026-08-21-停止制作-TUI编码代理让原生-UI-成本骤降|停止制作TUI卡]], [[00_资源库/外部知识/2026-08-21-Bun-14-稳定版发布新增-BunWebView-浏览器自动化-API|Bun1.4卡]]"
 confidence: medium
 sensitivity: 公开
 ---
 
 # 编码代理与原生UI成本
+
+> 更新注记：2026-08-22（第07章轮次1：追加 Bun 1.4 WebView 证据）
 
 ## 适用条件
 
@@ -20,6 +22,7 @@ sensitivity: 公开
 
 - Thomas Ptacek（2026-08-20 博客《Stop Making TUIs》）主张：编码代理已把"可用的 GUI"的开发成本降到几乎为零，即使最小的个人工具也应构建真正的原生 UI 而非 TUI；建议把废弃的 CLI 工具转成原生应用。（来源：[[00_资源库/外部知识/2026-08-21-停止制作-TUI编码代理让原生-UI-成本骤降|停止制作TUI卡]]）
 - Simon Willison 呼应：其 2026 年 3 月通过 vibe-coding 构建的 macOS 任务栏应用（带宽、GPU 监控）至今每日使用；他自述"尚未习惯为其他项目做原生 UI，但已经没有借口了"。（来源：同上）
+- Bun 1.4（2026-08-20 稳定版）内置 Bun.WebView API：经 macOS WebKit 或 Chrome DevTools 协议控制本地 Chromium，为浏览器自动化提供一等支持；Willison 用 Claude Code for web 构建原型 JSON API，实测完整 Chrome 处理复杂网页需 192MB-256MB 容器内存。（来源：[[00_资源库/外部知识/2026-08-21-Bun-14-稳定版发布新增-BunWebView-浏览器自动化-API|Bun1.4卡]]）
 
 ## 判断
 
@@ -33,6 +36,7 @@ sensitivity: 公开
 ## 证据链接
 
 - [[00_资源库/外部知识/2026-08-21-停止制作-TUI编码代理让原生-UI-成本骤降|停止制作TUI卡]]（rss，原始 URL：simonwillison.net/2026/Aug/21/stop-making-tuis/）
+- [[00_资源库/外部知识/2026-08-21-Bun-14-稳定版发布新增-BunWebView-浏览器自动化-API|Bun1.4卡]]（rss，原始 URL：simonwillison.net/2026/Aug/20/bun-webview-json-api/）
 
 ## 冲突并列
 
@@ -49,7 +53,8 @@ sensitivity: 公开
 
 ## relations
 
-- 来源：[[00_资源库/外部知识/2026-08-21-停止制作-TUI编码代理让原生-UI-成本骤降|停止制作TUI卡]]
+- 来源：[[00_资源库/外部知识/2026-08-21-停止制作-TUI编码代理让原生-UI-成本骤降|停止制作TUI卡]] · [[00_资源库/外部知识/2026-08-21-Bun-14-稳定版发布新增-BunWebView-浏览器自动化-API|Bun1.4卡]]
+- 关联：[[01_主题Wiki/AI工具与效率/编码代理与软件工业流程趋势|编码代理与软件工业流程趋势]]（职业/流程侧印证）
 - 主题：[[01_主题Wiki/AI工具与效率/编码代理与原生UI成本|AI工具与效率]]
 - 项目：无
 - 用途：工具形态选型参考

@@ -241,7 +241,7 @@ def load_existing_ids(cards_dir: Path) -> set[str]:
         head = f.read_text(encoding="utf-8", errors="replace")[:2000]
         m = re.search(r"^id:\s*(\S+)", head, re.MULTILINE)
         if m:
-            ids.add(m.group(1))
+            ids.add(m.group(1).strip("\"'"))
     return ids
 
 

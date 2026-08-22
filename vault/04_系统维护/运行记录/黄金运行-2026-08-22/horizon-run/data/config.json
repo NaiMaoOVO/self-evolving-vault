@@ -1,0 +1,141 @@
+{
+  "ai": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0.3,
+    "max_tokens": 4096,
+    "throttle_sec": 0,
+    "analysis_concurrency": 4,
+    "enrichment_concurrency": 4,
+    "languages": [
+      "zh",
+      "en"
+    ]
+  },
+  "processing": {
+    "profiles_dir": "profiles",
+    "default_profile": "tech-news",
+    "profile_settings": {
+      "tech-news": {
+        "threshold": 4.0,
+        "topic_dedup": true
+      }
+    }
+  },
+  "display": {
+    "icon_style": "emoji"
+  },
+  "sources": {
+    "github": [
+      {
+        "type": "repo_releases",
+        "owner": "garrytan",
+        "repo": "gbrain",
+        "enabled": false,
+        "category": "ai-memory",
+        "profile": "tech-news"
+      },
+      {
+        "type": "repo_releases",
+        "owner": "Thysrael",
+        "repo": "Horizon",
+        "enabled": false,
+        "category": "ai-memory",
+        "profile": "tech-news"
+      }
+    ],
+    "hackernews": {
+      "enabled": false,
+      "fetch_top_stories": 20,
+      "min_score": 100,
+      "category": "tech",
+      "profile": "tech-news"
+    },
+    "rss": [
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "ai-blog",
+        "profile": "tech-news"
+      },
+      {
+        "name": "少数派",
+        "url": "https://sspai.com/feed",
+        "enabled": true,
+        "category": "tech-cn",
+        "profile": "tech-news"
+      },
+      {
+        "name": "阮一峰的网络日志",
+        "url": "https://www.ruanyifeng.com/blog/atom.xml",
+        "enabled": true,
+        "category": "tech-cn",
+        "profile": "tech-news"
+      },
+      {
+        "name": "机核gcores",
+        "url": "https://www.gcores.com/rss",
+        "enabled": true,
+        "category": "game-industry",
+        "profile": "tech-news"
+      },
+      {
+        "name": "GamesIndustry.biz",
+        "url": "https://www.gamesindustry.biz/feed",
+        "enabled": true,
+        "category": "game-industry",
+        "profile": "tech-news"
+      },
+      {
+        "name": "游戏陀螺",
+        "url": "https://www.youxituoluo.com/rss",
+        "enabled": true,
+        "category": "game-industry",
+        "profile": "tech-news"
+      },
+      {
+        "name": "GameLook",
+        "url": "http://www.gamelook.com.cn/feed/",
+        "enabled": true,
+        "category": "game-industry",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Eurogamer",
+        "url": "https://www.eurogamer.net/feed",
+        "enabled": true,
+        "category": "game-industry",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Rock Paper Shotgun",
+        "url": "https://www.rockpapershotgun.com/feed",
+        "enabled": true,
+        "category": "game-industry",
+        "profile": "tech-news"
+      },
+      {
+        "name": "黄金运行-坏源测试",
+        "url": "https://nonexistent-goldenrun.invalid/feed.xml",
+        "enabled": true,
+        "category": "test-bad-source",
+        "profile": "tech-news"
+      }
+    ]
+  },
+  "collection": {
+    "time_window_hours": 24
+  },
+  "digest": {
+    "max_items": null,
+    "profile_order": [
+      "tech-news"
+    ]
+  },
+  "webhook": {
+    "enabled": false
+  }
+}
