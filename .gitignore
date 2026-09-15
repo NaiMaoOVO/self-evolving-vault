@@ -16,3 +16,10 @@ vault/04_系统维护/运行记录/黄金运行-2026-08-22/gbrain-home/
 vault/.obsidian/workspace.json
 vault/.obsidian/graph.json
 vault/未命名.base
+
+# —— Obsidian 插件二进制（公开仓库体积控制）——
+# 配置与插件清单入库（换机可复现「装了什么」）；插件本体 1MB+ 不入库，可从社区商店重装。
+vault/.obsidian/plugins/*/main.js
+vault/.obsidian/plugins/*/styles.css
+vault/.obsidian/plugins/*/data.json
+vault/.obsidian/plugins/*/versions.json

@@ -90,10 +90,21 @@ def find_in_vault(vault: Path, link_target: str):
 
 
 WIKILINK_RE = re.compile(r"\[\[([^\]]+?)\]\]")
+# 2026-09-15：代码中的 wikilink 是示例/字面量，不构成真实引用，比对前须剔除，
+# 否则模板与文档里的 `[[示例]]` 会被误报为断链。
+_INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
+_FENCE_RE = re.compile(r"^```.*?^```", re.S | re.M)
+
+
+def strip_code(text: str) -> str:
+    """剔除围栏代码块与行内代码（替换为等长空白以保留位置）。"""
+    text = _FENCE_RE.sub(lambda m: " " * len(m.group(0)), text)
+    return _INLINE_CODE_RE.sub(lambda m: " " * len(m.group(0)), text)
 
 
 def extract_wikilinks(text: str):
-    return [m.group(1) for m in WIKILINK_RE.finditer(text)]
+    """提取真实 wikilink（已剔除代码块与行内代码中的示例）。"""
+    return [m.group(1) for m in WIKILINK_RE.finditer(strip_code(text))]
 
 
 class R:
@@ -128,7 +139,7 @@ def check_01_resource_no_overwrite(vault: Path) -> R:
     try:
         out = subprocess.run(
             ["git", "diff", "--name-status", "HEAD", "--", "vault/00_资源库"],
-            cwd=str(repo), capture_output=True, text=True, timeout=15,
+            cwd=str(repo), capture_output=True, text=True, timeout=60,
         )
     except Exception as e:
         return R(1, "资源层零覆盖", "N/A", f"git 调用失败：{e}")
@@ -194,7 +205,9 @@ def check_03_source_exists(vault: Path) -> R:
     for p in iter_md(wiki):
         text = read_text(p) or ""
         for link in extract_wikilinks(text):
-            target = link.split("|", 1)[0].strip()
+            # 表格内 Obsidian 要求把 | 写成 \|，此处先还原再切 alias/锚点
+            link = link.replace("\\|", "|")
+            target = link.split("|", 1)[0].strip().rstrip("\\").strip()
             if not target or target.startswith("#"):
                 continue
             target = target.split("#", 1)[0].strip()
@@ -370,10 +383,25 @@ def probe_gbrain_cli():
         blob = (out.stdout + out.stderr).strip()
         head = " | ".join(blob.splitlines()[:3])[:300]
         ev.append(f"gbrain status (exit={out.returncode}): {head}")
-        lock_markers = ("pglite", "cannot open", "already open", "lock")
-        if any(m in blob.lower() for m in lock_markers):
+        low = blob.lower()
+        # 2026-09-15 修正：原逻辑用 ("pglite","lock") 等宽泛关键词，
+        # 会把 status 正常输出里的 "Locks:" 标题误判为「持锁」，导致 CLI 被错误标为不可用。
+        # 正确做法：只在出现真实错误信号时才判定不可用。
+        err_markers = (
+            "timed out waiting for pglite lock",
+            "cannot open",
+            "already open",
+            "database is locked",
+            "another instance",
+        )
+        if any(m in low for m in err_markers):
             return False, "\n    ".join(ev)
-        return True, "\n    ".join(ev)
+        # 明确显示无锁 → 可用
+        if "locks:" in low and "(none active)" in low:
+            return True, "\n    ".join(ev)
+        if out.returncode == 0:
+            return True, "\n    ".join(ev)
+        return False, "\n    ".join(ev)
     except Exception as e:  # noqa: BLE001
         ev.append(f"gbrain status 调用失败: {e}")
         return False, "\n    ".join(ev)
@@ -388,7 +416,8 @@ def check_10_gbrain_consistency(vault: Path) -> R:
     """
     msgs = []
     # 维度1：页面数（静态对比）
-    actual = sum(1 for _ in iter_md(vault))
+    # 排除 README 目录占位文件：gbrain 不收录（实测），计入会与脑内页数永久对不上。
+    actual = sum(1 for p in iter_md(vault) if p.name.upper() != "README.MD")
     state_md = vault / "04_系统维护" / "状态.md"
     vmc = bp = None
     if state_md.exists():
@@ -403,16 +432,27 @@ def check_10_gbrain_consistency(vault: Path) -> R:
     if vmc is None or bp is None:
         page_status = "WARN"
         msgs.append("页面数: 状态.md 缺少 vault_md_count/brain_pages，无法比对")
-    elif vmc != bp:
-        page_status = "FAIL"
-        msgs.append(f"页面数: vault_md_count({vmc}) ≠ brain_pages({bp})")
     else:
-        diff = abs(actual - vmc)
-        if diff > 2:
-            page_status = "WARN"
-            msgs.append(f"页面数: 状态计数({vmc}) 与实际({actual}) 差异 {diff}（待刷新）")
+        # 2026-09-15 修正：vault_md_count 与 brain_pages 语义不同，
+        # 前者是磁盘 md 数、后者是脑内页数（含历史探针残留），二者本就不必相等。
+        # 原逻辑 `vmc != bp → FAIL` 是错的判据，已改为分别与磁盘实测比对。
+        # 收窄理由：原容差 ±2 曾掩盖一张真实未入库的新卡（静默漂移）。
+        if vmc != actual:
+            page_status = "FAIL"
+            msgs.append(f"页面数: 状态.md vault_md_count({vmc}) ≠ 磁盘实测({actual}) "
+                        f"——计数陈旧，必须刷新（差异 {abs(vmc - actual)}）")
         else:
-            msgs.append(f"页面数: 一致（差异 {diff}）")
+            msgs.append(f"页面数: vault_md_count 与磁盘实测一致（{actual}）")
+        bdiff = abs(actual - bp)
+        # 2026-09-15：历史探针残留已清理，磁盘与脑内应完全对齐。
+        # 容差归零：任何差额都意味着 check_16/check_17 有未处理项。
+        known_residue = 0
+        if bdiff <= known_residue:
+            msgs.append(f"页面数: brain_pages({bp}) 与磁盘({actual}) 完全对齐")
+        else:
+            page_status = "WARN" if page_status != "FAIL" else page_status
+            msgs.append(f"页面数: brain_pages({bp}) 与磁盘({actual}) 差 {bdiff}，"
+                        f"预期为 0 —— 请核查第 16 项（未入库）与第 17 项（孤儿页）")
     # 维度2/3：索引与 embedding（需 CLI；锁拒绝 → N/A + 证据）
     ok, ev = probe_gbrain_cli()
     if ok:
@@ -610,6 +650,119 @@ def check_15_user_goal_over_technical(vault: Path) -> R:
              f"{len(oks)} 个正式成果均含用户目标/用户确认证据")
 
 
+def check_16_unimported_new_notes(vault: Path) -> R:
+    """⑯未入库新卡检测：vault 中存在但 gbrain 中没有的笔记（真正的静默漂移）。
+
+    背景：2026-09-15 发现一张真实新卡（马原复习计划）从未 import，
+    而 check_10 的 ±2 容差把它盖成了 PASS。本检查直接做 brain↔disk 集合差，
+    专门捕捉「磁盘有、脑中无」的笔记。
+
+    gbrain CLI 不可用（MCP 持锁）时 → N/A，附证据，绝不伪造结论。
+    """
+    ok, ev = probe_gbrain_cli()
+    if not ok:
+        return R(16, "未入库新卡检测", "N/A",
+                 "gbrain CLI 不可用（serve/MCP 持 PGLite 锁），无法执行集合差比对；证据:\n    " + ev)
+
+    import subprocess as _sp
+    try:
+        out = _sp.run(["gbrain", "list", "--limit", "5000"],
+                      capture_output=True, text=True, timeout=60)
+    except Exception as e:  # noqa: BLE001
+        return R(16, "未入库新卡检测", "N/A", f"gbrain list 调用失败：{e}")
+    if out.returncode != 0:
+        return R(16, "未入库新卡检测", "N/A",
+                 f"gbrain list 退出码 {out.returncode}：{(out.stderr or '')[:200]}")
+
+    brain = set()
+    for line in (out.stdout or "").splitlines():
+        line = line.strip()
+        if not line or "UPGRADE_AVAILABLE" in line or line.startswith("gbrain 0."):
+            continue
+        if line.startswith("[") and "truncated" in line:
+            continue
+        slug = line.split("\t")[0].strip()
+        if slug and not slug.startswith("["):
+            brain.add(slug.lower())
+
+    # 磁盘上的 md（相对路径，去 .md，小写）
+    # 排除 README：目录占位文件，gbrain 不收录（实测），非漂移，不应计入集合差。
+    disk = {}
+    for p in iter_md(vault):
+        rel = str(p.relative_to(vault))[:-3]
+        if p.name.upper() == "README.MD":
+            continue
+        disk[rel.lower()] = rel
+
+    missing = sorted(disk[k] for k in set(disk) - brain)
+    # README 类目录占位文件不是知识内容，不计入漂移
+    missing = [m for m in missing if not m.endswith("/README") and not m.endswith("\\README")]
+
+    if missing:
+        return R(16, "未入库新卡检测", "WARN",
+                 f"{len(missing)} 张笔记存在于 vault 但未入库 gbrain（brain 检索不到）：\n    "
+                 + "\n    ".join(missing[:15])
+                 + ("\n    …（更多见 gbrain import 后复验）" if len(missing) > 15 else "")
+                 + "\n    处理：`gbrain import <vault> --no-embed`")
+    return R(16, "未入库新卡检测", "PASS",
+             f"vault {len(disk)} 张笔记全部可在 gbrain 中检索到（集合差为空）")
+
+
+def check_17_orphan_brain_pages(vault: Path) -> R:
+    """⑰脑内孤儿页检测：gbrain 中存在但磁盘上已无对应文件的页（套装 check_16 的镜像）。
+
+    背景：2026-09-15 清理掉 4 张历史测试探针残留页（测试-冲突陈述/同义语义/增量/精确关键词），
+    这类「disk 无、brain 有」的残留会持续污染检索排序，但此前无任何检查项覆盖。
+
+    实测要点（2026-09-15）：
+      - `gbrain delete <slug>` 对「文件已从磁盘移除」的页有效，且**重导不会复活**；
+      - 但对「文件仍在磁盘」的页无效 —— 重新 import 会复活。
+    因此本检查只报「磁盘已无对应文件」的孤儿页；文件仍在盘上的页（如仍在用模板）
+    不算孤儿，其检索噪音属已知限制（见运行记录）。
+
+    gbrain CLI 不可用（MCP 持锁）时 → N/A，附证据。
+    """
+    ok, ev = probe_gbrain_cli()
+    if not ok:
+        return R(17, "脑内孤儿页检测", "N/A",
+                 "gbrain CLI 不可用（serve/MCP 持 PGLite 锁），无法执行集合差比对；证据:\n    " + ev)
+
+    import subprocess as _sp
+    try:
+        out = _sp.run(["gbrain", "list", "--limit", "5000"],
+                      capture_output=True, text=True, timeout=60)
+    except Exception as e:  # noqa: BLE001
+        return R(17, "脑内孤儿页检测", "N/A", f"gbrain list 调用失败：{e}")
+    if out.returncode != 0:
+        return R(17, "脑内孤儿页检测", "N/A",
+                 f"gbrain list 退出码 {out.returncode}：{(out.stderr or '')[:200]}")
+
+    brain = {}
+    for line in (out.stdout or "").splitlines():
+        line = line.strip()
+        if not line or "UPGRADE_AVAILABLE" in line or line.startswith("gbrain 0."):
+            continue
+        if line.startswith("[") and "truncated" in line:
+            continue
+        parts = line.split("\t")
+        slug = parts[0].strip()
+        if slug and not slug.startswith("["):
+            brain[slug.lower()] = (slug, parts[1].strip() if len(parts) > 1 else "?")
+
+    disk = set()
+    for p in iter_md(vault):
+        disk.add(str(p.relative_to(vault))[:-3].lower())
+
+    orphans = sorted(brain[k] for k in set(brain) - disk)
+    if orphans:
+        detail = "\n    ".join(f"{s}  [type={t}]" for s, t in orphans[:15])
+        return R(17, "脑内孤儿页检测", "WARN",
+                 f"{len(orphans)} 张页存在于 gbrain 但磁盘已无对应文件（检索噪音源）：\n    {detail}\n"
+                 f"    处理：`gbrain delete <slug>`（软删除 72h 可恢复；对已移除文件有效且重导不复活）")
+    return R(17, "脑内孤儿页检测", "PASS",
+             f"gbrain {len(brain)} 页均有磁盘文件对应（孤儿页 0）")
+
+
 CHECKS = [
     check_01_resource_no_overwrite,
     check_02_secret_scan,
@@ -626,6 +779,8 @@ CHECKS = [
     check_13_pause_on_repeat_reject,
     check_14_profile_staleness_audit,
     check_15_user_goal_over_technical,
+    check_16_unimported_new_notes,
+    check_17_orphan_brain_pages,
 ]
 
 
@@ -637,7 +792,7 @@ def run_all(vault: Path):
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="quality_gate.py", description="第09章 质量闸门检查器")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    c = sub.add_parser("check", help="对 vault 跑 15 项检查（覆盖教材 14 条闸门）")
+    c = sub.add_parser("check", help="对 vault 跑 16 项检查（覆盖教材 14 条闸门 + 未入库新卡检测）")
     c.add_argument("--vault", default=str(DEFAULT_VAULT), help="vault 根路径（默认 工程/vault）")
     c.add_argument("--target", default=None, help="隔离测试目标目录（替代 --vault）")
     args = ap.parse_args(argv)
