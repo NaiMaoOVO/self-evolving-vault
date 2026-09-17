@@ -199,6 +199,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 172/172 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`e26793a` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（十九）
+
+- 修复：每日工作台在风险、回流或手动待办超过接口加载上限时，不再把截断结果当成完整队列。
+- 新增：状态栏和进度摘要展示服务端总数与当前加载数，明确提示“仅展示最近 X/Y 条”，方便及时进入管理列表继续处理。
+- 本批验证：`npm test` 173/173 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`d0faf20` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
