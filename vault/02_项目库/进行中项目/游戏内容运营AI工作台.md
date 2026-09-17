@@ -220,6 +220,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 175/175 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`e927d21` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十二）
+
+- 修复：每日工作台读取风险、回流、待办和晨报接口时，统一将 `null`、数组等非对象 JSON 归一化为空对象，避免读取 `.ok` 抛错后把手动待办整体误判为加载失败。
+- 新增：回归测试覆盖非对象响应体，确保可选接口异常时仍保留手动待办和可用的降级提示。
+- 本批验证：`npm test` 176/176 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`9a9dc65` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
