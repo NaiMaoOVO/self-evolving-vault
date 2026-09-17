@@ -93,6 +93,14 @@ sensitivity: 内部
 - 本批验证：`npm test` 154/154 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码本地提交：`c7f3020`、`0070b1d`、`3318848`；GitHub 推送待确认目标分支后执行。
 
+## 2026-09-18 优化记录（四）
+
+- 新增：后台存档失败时提供“重试存档”按钮，复用最近快照请求，不必重新运行分析。
+- 修复：侧边导航同步 `aria-current="page"`，辅助技术可识别当前模块。
+- 修复：创作者个人库“最近更新”日期使用共享业务日期格式化器。
+- 本批验证：契约测试、`npm run check`、`npm run build:public`、`npm run check:public` 均通过；此前完整测试 154/154 通过。
+- 代码本地提交：`8e42018`、`3be8363`、`0f90d99`；GitHub 推送待确认目标分支后执行。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
