@@ -276,6 +276,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 181/181 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`fd7e6ba` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（三十）
+
+- 修复：发布台账与风险工单列表读取失败时，状态栏会显示具体错误，不再保留旧的“已加载”状态造成误判；列表仍保留服务不可用提示。
+- 新增：静态回归检查锁定两个列表 catch 分支必须更新各自状态栏。
+- 本批验证：`npm test` 182/182 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`40123c8` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
