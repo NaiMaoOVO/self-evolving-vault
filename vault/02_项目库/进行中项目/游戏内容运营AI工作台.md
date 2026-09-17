@@ -262,6 +262,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 179/179 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`8c7a964` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十八）
+
+- 修复：项目档案下拉项被标记为损坏后，载入操作会明确阻断并提示重新保存，不再误报“已恢复”或用空对象覆盖当前内容。
+- 新增：静态回归检查锁定损坏档案的载入保护。
+- 本批验证：`npm test` 180/180 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`07572a4` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
