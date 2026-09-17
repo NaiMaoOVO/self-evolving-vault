@@ -3,7 +3,7 @@ title: 游戏内容运营AI工作台
 type: project
 status: active
 created: 2026-08-23
-updated: 2026-08-23
+updated: 2026-09-18
 source: 多轮开发会话（2026-08-23 全天）
 confidence: high
 sensitivity: 内部
@@ -65,8 +65,20 @@ sensitivity: 内部
 - [ ] 小红书 MCP 本机安装登录注册验证
 - [ ] 热点榜单键盘可达性、CSS 三套系统收敛
 
+## 2026-09-17 同步记录
+
+- 本轮完成：每日工作台接入晨报运行状态（成功时间、失败原因、服务不可用提示）；手动待办按逾期/今日/计划日期排序并显示状态标签；存档备份增加 SHA-256 校验文件与 `ARCHIVE_BACKUP_KEEP` 保留策略。
+- 验证结果：`npm run check`、`npm run build:public`、`npm run check:public`、`npm test` 全部通过，当前 145/145。
+- 源码 GitHub：`NaiMaoOVO/chengzi-game-ai-workbench`，本轮已整理本地提交，推送待确认目标分支。
+- 同步规则：每完成 3 个已验证功能同步一次；P0、安全和数据完整性修复立即同步。
+
+## 2026-09-18 优化记录
+
+- 新增：每日工作台日期标题统一使用 Asia/Shanghai；待办队列在晨报接口异常时保留核心数据；备份增加独立完整性验证命令 `npm run archive:verify`。
+- 本批验证：相关契约测试、`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码本地提交：`473da9b`、`b3c7454`、`0f6f91e`；GitHub 推送待确认目标分支后执行。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
 - 会话中曾求助的子智能体模式：三路并行深读评审（前端/后端/产品）→ 合并去重 → 分批落地
-
