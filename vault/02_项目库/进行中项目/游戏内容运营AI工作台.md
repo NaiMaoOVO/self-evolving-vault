@@ -269,6 +269,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 180/180 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`07572a4` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十九）
+
+- 修复：每日队列对风险、回流、手动待办、已完成待办和晨报的 `items` 做数组校验，错误响应按来源降级或进入明确错误态，不再因字符串等异常形状触发 `.map/.filter` 类型错误。
+- 新增：异常可选响应不会伪造数量，风险统计在不可用时显示为 0/不可用状态。
+- 本批验证：`npm test` 181/181 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`fd7e6ba` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
