@@ -192,6 +192,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 171/171 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`9c78c70` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（十八）
+
+- 修复：晨报生成时间、历史简报时间和项目档案更新时间统一按 Asia/Shanghai 显示，避免浏览器或设备时区不同导致日期前后跳变。
+- 新增：引入统一的业务时间格式化函数，并将复制到飞书/企微的晨报日期也改为业务日期。
+- 本批验证：`npm test` 172/172 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`e26793a` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
