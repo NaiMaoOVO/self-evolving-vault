@@ -178,6 +178,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 169/169 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`f8befb5` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（十六）
+
+- 修复：抖音/小红书外部提供器的 `today` 过滤改用 Asia/Shanghai 业务日零点，部署到 UTC 主机时不再错分凌晨内容。
+- 新增：跨时区回归测试在 UTC 环境验证上海零点边界，并保留 24 小时等其他范围逻辑不变。
+- 本批验证：`npm test` 170/170 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`6db374d` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
