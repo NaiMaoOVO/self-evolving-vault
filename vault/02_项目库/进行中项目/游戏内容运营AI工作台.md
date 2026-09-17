@@ -234,6 +234,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 177/177 通过，覆盖认证服务下的损坏档案；`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`71c4c55` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十四）
+
+- 修复：快照列表、最新快照和统计接口不再因单条损坏 JSON 直接失败；无效记录会降级为空对象并标记 `invalid`，统计保留记录数并计入无效计数。
+- 新增：认证服务回归用例覆盖损坏快照的列表、最新记录和统计读取，确保存档服务继续可用。
+- 本批验证：`npm test` 177/177 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`8fe9ed4` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
