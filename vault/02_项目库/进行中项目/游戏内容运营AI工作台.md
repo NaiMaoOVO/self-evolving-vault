@@ -241,6 +241,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 177/177 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`8fe9ed4` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十五）
+
+- 修复：简报历史读取现在校验 HTTP 与业务状态，服务异常不会再被误显示为空列表；页面状态栏会说明读取失败原因。
+- 新增：损坏的历史简报显示为“数据损坏”并禁用查看，提示重新生成，避免把空对象当成正常工作日志。
+- 本批验证：`npm test` 178/178 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`27cd5e5` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
