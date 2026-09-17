@@ -248,6 +248,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 178/178 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`27cd5e5` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十六）
+
+- 修复：项目档案写入接口拒绝数组类型，避免 API 自身继续制造后续读取时被标记为损坏的档案。
+- 新增：存档服务冒烟契约现在真正执行扩展读写检查，并覆盖数组档案返回 400。
+- 本批验证：`npm test` 178/178 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`608d2d9` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
