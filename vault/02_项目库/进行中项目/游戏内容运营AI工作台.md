@@ -185,6 +185,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 170/170 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`6db374d` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（十七）
+
+- 修复：版本包装助手的口径说明在写入弹窗前统一转义动态文本，仅保留换行转换，避免后续接入可编辑或外部数据时产生 HTML 注入。
+- 新增：静态回归测试锁定 `openCaliberPanel` 的安全渲染约束，防止后续重构回退到直接拼接原文。
+- 本批验证：`npm test` 171/171 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`9c78c70` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
