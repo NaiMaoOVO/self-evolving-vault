@@ -297,6 +297,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 184/184 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`364a76a` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（三十三）
+
+- 修复：风险工单按工单 ID 进行写入串行化，同一工单快速点击状态流转或删除时只会保留一个进行中的请求，避免并行写入和旧响应覆盖。
+- 新增：重复操作会收到明确的“正在处理中”提示，异常路径也会释放锁，后续仍可重试。
+- 本批验证：`npm test` 185/185 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`9e99aa2` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
