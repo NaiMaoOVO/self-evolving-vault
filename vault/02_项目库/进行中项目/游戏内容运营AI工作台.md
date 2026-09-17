@@ -213,6 +213,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 174/174 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`9fe0153` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十一）
+
+- 修复：每日工作台“待回流”判断不再只识别 B 站，已纳入小红书，并按渠道分别检查 `view` 或 `likes` 指标是否缺失。
+- 新增：小红书实际互动数据现在会进入每日回流提醒，完成回流后 0 值也会正确视为已记录。
+- 本批验证：`npm test` 175/175 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`e927d21` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
