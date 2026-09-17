@@ -255,6 +255,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 178/178 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`608d2d9` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十七）
+
+- 修复：每日队列刷新接入 generation guard，初始化、切换项目、操作待办和定时刷新并发时，旧响应不会覆盖最新状态，旧请求失败也不会误报全局错误。
+- 新增：前端静态回归检查锁定队列刷新必须使用 generation guard。
+- 本批验证：`npm test` 179/179 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`8c7a964` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
