@@ -290,6 +290,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 183/183 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`6ccc248` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（三十二）
+
+- 修复：发布台账和风险工单的刷新、写入后自动加载等并发请求接入独立 generation guard，旧成功或失败响应不会覆盖最新列表与状态。
+- 新增：静态回归检查锁定两个管理列表的请求代次校验。
+- 本批验证：`npm test` 184/184 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`364a76a` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
