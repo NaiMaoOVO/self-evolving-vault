@@ -227,6 +227,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 176/176 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`9a9dc65` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十三）
+
+- 修复：项目档案接口不再直接解析数据库 JSON；历史损坏记录会降级为空对象并标记 `invalid`，`/profiles` 与 `/profile` 均能保持 200 响应，避免单条坏数据拖垮存档服务。
+- 新增：档案列表会显示“档案损坏，请重新保存”，读取接口异常也会在页面状态栏提示，不再静默清空下拉框。
+- 本批验证：`npm test` 177/177 通过，覆盖认证服务下的损坏档案；`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`71c4c55` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
