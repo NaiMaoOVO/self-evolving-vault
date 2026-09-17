@@ -78,6 +78,14 @@ sensitivity: 内部
 - 本批验证：相关契约测试、`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码本地提交：`473da9b`、`b3c7454`、`0f6f91e`；GitHub 推送待确认目标分支后执行。
 
+## 2026-09-18 优化记录（二）
+
+- 新增：后台热点/评论快照写入状态可见（保存中、已保存编号、失败原因），不再静默吞错。
+- 新增：热点与评论快照使用按业务日和内容生成的幂等键，重复渲染不会污染历史记录。
+- 修复：趋势周环比边界改用 Asia/Shanghai 业务日，避免 UTC 跨日造成误分组。
+- 本批验证：`npm test` 149/149 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码本地提交：`bed5d81`、`4478132`、`c6fe3e1`；GitHub 推送待确认目标分支后执行。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
