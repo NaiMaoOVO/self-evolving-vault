@@ -206,6 +206,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 173/173 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`d0faf20` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（二十）
+
+- 修复：发布台账写入和评论风险转工单请求增加稳定幂等键，重复点击或网络重试不会重复创建记录。
+- 新增：幂等键由当日业务日期与本次表单/风险事件内容生成，内容变更后仍可创建新的合法记录。
+- 本批验证：`npm test` 174/174 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`9fe0153` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
