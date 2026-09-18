@@ -368,6 +368,14 @@ sensitivity: 内部
 - 本批验证：`npm test` 190/190 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`24df907`（RED）与 `db2c6dc`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（四十二）
+
+- 修复：备份脚本每次运行都会将备份目录权限收紧为 `0700`；即使目录之前已存在且权限过宽，也不会继续暴露备份文件。
+- 新增：回归用例覆盖已有备份目录的权限收紧。
+- 本批验证：`npm test` 191/191 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`16f6067`（RED）与 `1aa86c2`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：五小时窗口已用 49%，当周窗口仍剩 39%。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
