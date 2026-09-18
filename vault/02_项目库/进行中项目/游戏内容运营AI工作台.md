@@ -311,6 +311,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 186/186 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`37d033a`（RED）与 `3ff3966`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（三十五）
+
+- 修复：远端创作者库出现损坏 JSON 时，接口会明确返回 `invalid`，并拒绝后续同步覆盖写入；不再把损坏库静默伪装为空库而丢失原始数据。
+- 新增：前端同步在发现远端损坏时会停止写入，提示恢复备份或确认后重新保存；后端与前端均有回归测试。
+- 本批验证：`npm test` 188/188 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`34a6ac5`、`ddf49fd`（RED）与 `f8533e9`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
