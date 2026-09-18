@@ -433,6 +433,14 @@ sensitivity: 内部
 - 本批验证：每日页面契约测试 61/61 通过；完整 `npm test` 198/198 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Edge 强制刷新后已实际核对标题、Banner、指标卡和首屏错误信息收纳。
 - 代码已推送：`fcef6d5`（RED）与 `0c4d62b`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（五十）
+
+- 下半区重构：今日简报增加“汇总信号 → 确认下一步 → 存档并同步”的可见工作流；发布台账与风险工单由两块空的折叠栏改为并列的“内容回流 / 风险处置”行动卡。
+- 操作收纳：日常先用“刷新台账 / 查询工单”处理；录入发布和筛选工单字段收进二级展开项，减少空数据时的表单噪音，同时保留全部原有字段和接口。
+- 错误体验：本机存档服务未连接时只显示可行动的说明，不再把 `Failed to fetch` 暴露给用户，也不重复显示同一故障。
+- 本批验证：每日页面契约测试 62/62 通过；完整 `npm test` 199/199 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Edge 已实际验证两张行动卡和“登记一条发布”的展开字段。
+- 代码已推送：`6ccb988`、`69f1dda`（RED）与 `14893b4`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
