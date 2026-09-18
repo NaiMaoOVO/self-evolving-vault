@@ -361,6 +361,13 @@ sensitivity: 内部
 - 代码已推送：`feb8ae9`（RED）与 `d917b41`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 本轮额度复查：当周窗口已用 61%，剩余 39%，仍保留超过 20% 的预算。
 
+## 2026-09-18 优化记录（四十一）
+
+- 修复：备份校验程序除了 SHA-256 外，还会以只读模式打开 SQLite 并执行 `PRAGMA integrity_check`；校验和匹配但不是有效 SQLite 的文件会被拒绝。
+- 新增：回归用例覆盖“校验文件匹配但数据库内容不是 SQLite”的情况。
+- 本批验证：`npm test` 190/190 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`24df907`（RED）与 `db2c6dc`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
