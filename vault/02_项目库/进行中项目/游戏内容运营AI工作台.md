@@ -417,6 +417,14 @@ sensitivity: 内部
 - 代码已推送：`a987666`（RED）与 `1df228b`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 说明：初次沙箱测试因禁止监听 `127.0.0.1` 报 `EPERM`；允许本机回环端口后完整服务测试通过。
 
+## 2026-09-19 优化记录（四十八）
+
+- 参考真实运营仪表台的信息结构，调整每日工作台首屏为“项目上下文 → 四项工作量 → 行动队列与 AI 洞察并列”。
+- 新增：项目 Banner 从当前游戏与版本主题字段实时读取；只有游戏匹配时才展示主题，否则提示“尚未为当前项目配置版本主题”，不使用虚构版本、活动或素材。
+- 新增：Banner 的“版本包装”和“项目档案”入口直达原有功能；Safari 已验证版本入口可用。
+- 本批验证：`npm test` 197/197 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Safari 已验证项目上下文、桌面双栏布局与跨模块跳转。
+- 代码已推送：`2798b5a`（RED）与 `db2c351`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
