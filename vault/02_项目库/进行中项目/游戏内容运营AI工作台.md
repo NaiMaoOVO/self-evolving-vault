@@ -329,6 +329,14 @@ sensitivity: 内部
 
 - 浏览器端到端检查仍受 Codex In-app Browser 对本机回环地址的 `ERR_BLOCKED_BY_CLIENT` 限制；本批以完整测试与发布产物校验代替，未把它当作浏览器验收成功。
 
+## 2026-09-18 优化记录（三十七）
+
+- 修复：每日待办的截止日期不再只校验字符串格式；`2026-02-30`、月份越界等不存在的日历日期会被接口拒绝，避免无效任务进入时间线。
+- 新增：接口回归用例覆盖“格式正确但日期不存在”的输入。
+- 本批验证：`npm test` 189/189 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`308308f`（RED）与 `da753fc`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：五小时窗口已用 43%，为避免越过 50% 上限，本批后停止新增代码。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
