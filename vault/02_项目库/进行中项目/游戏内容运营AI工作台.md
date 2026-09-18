@@ -318,6 +318,17 @@ sensitivity: 内部
 - 本批验证：`npm test` 188/188 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`34a6ac5`、`ddf49fd`（RED）与 `f8533e9`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（三十六）
+
+- 修复：手动“存档本次简报”现在携带稳定幂等键；网络重试或页面恢复对同一份简报不会重复创建工作日志。
+- 新增：回归检查锁定手动简报存档必须复用快照幂等键。
+- 本批验证：`npm test` 189/189 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`7357fd2`（RED）与 `17b2c15`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
+- 本轮额度检查：五小时窗口已用 37%，仍在 50% 上限内。
+
+- 浏览器端到端检查仍受 Codex In-app Browser 对本机回环地址的 `ERR_BLOCKED_BY_CLIENT` 限制；本批以完整测试与发布产物校验代替，未把它当作浏览器验收成功。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
