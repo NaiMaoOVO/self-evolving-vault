@@ -400,6 +400,14 @@ sensitivity: 内部
 - 代码已推送：`31dbf2e`、`4e1f68c`（测试）与 `12be01a`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 本轮额度复查：当周窗口已用 62%，剩余 38%，仍高于 20% 停止线。
 
+## 2026-09-18 优化记录（四十六）
+
+- 修复：个人库同步发现缺少姓名或平台等结构损坏记录时，会阻止覆盖写入并提示恢复或修复；不再静默丢弃坏记录。
+- 新增：前端回归检查覆盖本地、远端结构损坏记录的同步保护。
+- 本批验证：`npm test` 195/195 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`93d9ea2`（RED）与 `f3c5079`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：当周窗口已用 62%，剩余 38%，仍高于 20% 停止线。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
