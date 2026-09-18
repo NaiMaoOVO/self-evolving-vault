@@ -353,6 +353,14 @@ sensitivity: 内部
 - 代码已推送：`630bc1a`（RED）与 `e9f5669`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 本轮额度复查：当周窗口已用 61%，仍保留 39%，高于预留的 20%。
 
+## 2026-09-18 优化记录（四十）
+
+- 修复：每日工作台前端对历史损坏日期增加日历真实性校验；无效日期统一按“未设日期”处理，不会误显示为逾期或计划事项。
+- 新增：回归检查锁定 `dueState` 必须使用真实日历日期判断。
+- 本批验证：`npm test` 189/189 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`feb8ae9`（RED）与 `d917b41`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：当周窗口已用 61%，剩余 39%，仍保留超过 20% 的预算。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
