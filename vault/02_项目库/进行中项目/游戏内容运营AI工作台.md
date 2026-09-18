@@ -392,6 +392,14 @@ sensitivity: 内部
 - 代码已推送：`93b4701`（RED）与 `da8796c`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 本轮额度复查：当周窗口已用 62%，剩余 38%，仍高于 20% 停止线。
 
+## 2026-09-18 优化记录（四十五）
+
+- 修复：个人库同步合并前会根据创作者平台、账号 ID 或主页统一生成稳定键；旧“平台+姓名”记录与新稳定身份记录会合并，不再因同步产生重复档案。
+- 保留：合作历史按记录 ID 去重，并按更新时间保留较新的档案字段。
+- 本批验证：`npm test` 194/194 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`31dbf2e`、`4e1f68c`（测试）与 `12be01a`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：当周窗口已用 62%，剩余 38%，仍高于 20% 停止线。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
