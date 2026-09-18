@@ -337,6 +337,14 @@ sensitivity: 内部
 - 代码已推送：`308308f`（RED）与 `da753fc`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 本轮额度复查：五小时窗口已用 43%，为避免越过 50% 上限，本批后停止新增代码。
 
+## 2026-09-18 优化记录（三十八）
+
+- 修复：编辑每日待办时，传入 `null` 或空字符串可以清空截止日期；省略 `due_date` 仍会保留原值，避免延期和取消截止时间时产生歧义。
+- 新增：接口回归用例覆盖截止日期清空路径。
+- 本批验证：`npm test` 189/189 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`b4c9814`（RED）与 `8da27af`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：五小时窗口已用 45%，当周窗口已用 61%，仍保留超过 20% 的当周额度。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
