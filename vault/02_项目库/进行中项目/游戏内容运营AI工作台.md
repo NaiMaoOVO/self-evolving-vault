@@ -304,6 +304,13 @@ sensitivity: 内部
 - 本批验证：`npm test` 185/185 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
 - 代码已推送：`9e99aa2` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-18 优化记录（三十四）
+
+- 修复：历史简报即使 JSON 本身合法、但 `topics`、待办建议、舆情或环比字段形状异常，也会归一化为安全的空值，不再在“查看存档”时触发前端渲染异常。
+- 新增：动态回归用例直接执行简报渲染，覆盖字段为字符串、对象或空值的损坏情形。
+- 本批验证：`npm test` 186/186 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`37d033a`（RED）与 `3ff3966`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
