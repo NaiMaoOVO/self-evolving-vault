@@ -376,6 +376,14 @@ sensitivity: 内部
 - 代码已推送：`16f6067`（RED）与 `1aa86c2`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 - 本轮额度复查：五小时窗口已用 49%，当周窗口仍剩 39%。
 
+## 2026-09-18 优化记录（四十三）
+
+- 修复：备份校验现在要求 `.sha256` 中声明的文件名必须与实际目标文件一致，避免把一个备份的校验值误配到另一个文件。
+- 新增：回归用例覆盖校验和正确但文件名不匹配的情况。
+- 本批验证：`npm test` 192/192 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。
+- 代码已推送：`e9e65bc`（RED）与 `5a7e034`（修复）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+- 本轮额度复查：当周窗口已用 62%，剩余 38%，距离 20% 停止线仍有余量。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
