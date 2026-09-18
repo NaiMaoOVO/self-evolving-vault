@@ -425,6 +425,14 @@ sensitivity: 内部
 - 本批验证：`npm test` 197/197 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Safari 已验证项目上下文、桌面双栏布局与跨模块跳转。
 - 代码已推送：`2798b5a`（RED）与 `db2c351`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（四十九）
+
+- 首屏层级：每日页改为“标题与目标说明 → 当前项目 Banner → 四项工作量 → 行动队列与 AI 洞察”；全局链路与存档错误不再占据每日页第一屏，但连接状态仍在工作台内明确可见。
+- 视觉细节：四项指标补充来源明确的工作语义、低饱和状态图形和紧凑信息层级；项目 Banner 使用纯 CSS 的深色项目上下文，不伪造角色图、版本主题或活动数据。
+- 真实性：本机服务未连接时保持空队列与连接说明，不为了匹配样稿而写入虚构任务、趋势或告警。
+- 本批验证：每日页面契约测试 61/61 通过；完整 `npm test` 198/198 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Edge 强制刷新后已实际核对标题、Banner、指标卡和首屏错误信息收纳。
+- 代码已推送：`fcef6d5`（RED）与 `0c4d62b`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
