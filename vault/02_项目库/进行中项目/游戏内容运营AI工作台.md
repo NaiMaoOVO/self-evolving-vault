@@ -448,6 +448,13 @@ sensitivity: 内部
 - 本批验证：新增行为回归用例；每日页面契约测试 63/63 通过，完整 `npm test` 200/200 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Edge 已实际验证初始禁用状态与辅助提示。
 - 代码已推送：`763200f`（RED）与 `aa644d8`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（五十二）
+
+- 修复：简报存档、历史读取、发布台账和风险工单统一使用本机服务不可用判定；每日工作台不再暴露 `Failed to fetch`、`NetworkError` 等传输细节。
+- 恢复路径：连接故障明确提示启动本机服务；非连接类异常仅提示稍后重试，避免把数据异常误说成服务未启动。
+- 本批验证：每日页面契约测试 64/64 通过；完整 `npm test` 201/201 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过。浏览器验证因 Mac 锁屏无法执行，待解锁后补测。
+- 代码已推送：`682b8ba`（RED）与 `f1ddd89`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
