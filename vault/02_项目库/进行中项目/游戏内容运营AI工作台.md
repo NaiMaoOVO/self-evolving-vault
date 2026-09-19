@@ -519,6 +519,13 @@ sensitivity: 内部
 - 本批验证：新增上游内部错误不泄漏到浏览器的回归；定向 LLM 测试 9/9、完整 `npm test`、`npm run build:public`、`npm run check:public` 与差异检查均通过。
 - 代码已推送：`9b3aee6` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（六十二）
+
+- 无障碍：每日 AI 洞察进入生成状态时，原生 `disabled` 与 `aria-disabled` 同步，避免读屏用户将忙碌中的入口误解为可操作。
+- 交互修复：热点卡片的“查看分析”改为独立按钮，“原帖”改为独立外链；不再在互动控件中嵌套链接，方向键选择不拦截外链的 Enter 打开行为。
+- 本批验证：新增热点语义与键盘边界契约；页面契约测试 72/72、完整 `npm test`、`npm run check`、`npm run build:public` 与 `npm run check:public` 均通过。
+- 代码已推送：`3f3e816` 与 `161314a` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
