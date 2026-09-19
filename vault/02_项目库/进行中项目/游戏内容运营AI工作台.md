@@ -469,6 +469,13 @@ sensitivity: 内部
 - 本批验证：每日页面契约测试 66/66 通过，完整 `npm test` 203/203 通过（使用本机回环端口运行临时服务），`npm run check`、`npm run build:public`、`npm run check:public` 均通过。浏览器验证仍受 Mac 锁屏阻断，待解锁后补测。
 - 代码已推送：`e273406`（RED）与 `8524b57`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（五十五）
+
+- 修复：记录发布、回流效果、删除发布记录、更新工单状态和删除风险工单统一输出业务动作与恢复路径，不再暴露底层传输错误。
+- 区分：本机存档服务断开时提示启动服务后重试；非连接类写入异常只提示稍后重试。
+- 本批验证：每日页面契约测试 67/67 通过，完整 `npm test` 204/204 通过（使用本机回环端口运行临时服务），`npm run check`、`npm run build:public`、`npm run check:public` 均通过。浏览器验证仍受 Mac 锁屏阻断，待解锁后补测。
+- 代码已推送：`f14f7f8`（RED）与 `eb98e6c`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
