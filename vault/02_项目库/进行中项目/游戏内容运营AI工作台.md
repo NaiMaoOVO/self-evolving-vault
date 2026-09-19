@@ -491,6 +491,13 @@ sensitivity: 内部
 - 本批验证：页面契约测试 70/70、AI 服务定向联调 7/7 和完整 `npm test` 均通过；`npm run check`、`npm run build:public`、`npm run check:public` 均通过。浏览器验收仍受 Mac 锁屏阻断，待解锁后补测。
 - 代码已推送：`9513cd2`（契约）与 `5c07dd5`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（五十八）
+
+- 修复：非流式 LLM 调用现在正确继承各任务的温度和输出长度配置；上游不支持 `response_format` 时，自动降级会真正移除 JSON 模式参数后重试。
+- 影响：新增的每日 AI 洞察以及既有评论、版本文案等非流式任务，在 OpenAI 兼容性不完整的网关中不再因同一参数重复失败。
+- 本批验证：新增回归覆盖“每日洞察保留任务限制并降级 JSON 模式”，定向 LLM 服务测试 8/8、完整 `npm test`、`npm run build:public`、`npm run check:public` 与差异检查均通过。
+- 代码已推送：`81d92e8` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
