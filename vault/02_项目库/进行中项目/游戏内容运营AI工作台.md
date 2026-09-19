@@ -441,6 +441,13 @@ sensitivity: 内部
 - 本批验证：每日页面契约测试 62/62 通过；完整 `npm test` 199/199 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Edge 已实际验证两张行动卡和“登记一条发布”的展开字段。
 - 代码已推送：`6ccb988`、`69f1dda`（RED）与 `14893b4`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（五十一）
+
+- 修复：没有生成或载入简报时，“存档本次简报”和“复制为飞书/企微消息”默认禁用，并通过提示说明需要先生成简报；不再允许用户触发必然失败的后续操作。
+- 保留：查看历史简报始终可用；生成新简报或载入一份历史简报后，存档与复制会自动恢复可用。
+- 本批验证：新增行为回归用例；每日页面契约测试 63/63 通过，完整 `npm test` 200/200 通过，`npm run check`、`npm run build:public`、`npm run check:public` 均通过；Edge 已实际验证初始禁用状态与辅助提示。
+- 代码已推送：`763200f`（RED）与 `aa644d8`（实现）已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
