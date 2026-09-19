@@ -526,6 +526,12 @@ sensitivity: 内部
 - 本批验证：新增热点语义与键盘边界契约；页面契约测试 72/72、完整 `npm test`、`npm run check`、`npm run build:public` 与 `npm run check:public` 均通过。
 - 代码已推送：`3f3e816` 与 `161314a` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（六十三）
+
+- 无障碍：全局命令面板补齐 Tab / Shift+Tab 焦点圈闭，与 `aria-modal` 一致；Escape、遮罩关闭和触发器焦点回退保持原行为。
+- 验证：命令面板结构契约扩展，页面契约测试 72/72、完整 `npm test`、语法检查与 public 构建校验均通过。
+- 代码已推送：`cc70f23` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
