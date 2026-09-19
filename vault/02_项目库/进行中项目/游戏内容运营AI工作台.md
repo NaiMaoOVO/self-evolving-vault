@@ -512,6 +512,13 @@ sensitivity: 内部
 - 本批验证：扩展跨工作区视觉契约；页面契约测试 71/71、完整 `npm test`、`npm run check`、`npm run build:public` 与 `npm run check:public` 均通过。浏览器验收仍受 Mac 锁屏阻断，待解锁后补测。
 - 代码已推送：`bc88284` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
 
+## 2026-09-19 优化记录（六十一）
+
+- 安全修复：LLM 网关不再将上游代理、供应商或网络异常的原始错误回传页面；浏览器统一得到可行动的通用错误，原始信息仅记入本机服务日志。
+- 覆盖范围：普通 JSON 请求和版本文案的流式 SSE 请求使用相同的错误边界。
+- 本批验证：新增上游内部错误不泄漏到浏览器的回归；定向 LLM 测试 9/9、完整 `npm test`、`npm run build:public`、`npm run check:public` 与差异检查均通过。
+- 代码已推送：`9b3aee6` 已同步至 `NaiMaoOVO/chengzi-game-ai-workbench:main`。
+
 ## 关联
 
 - 项目内评审详情：OPTIMIZATION.md（含第一至第四轮全部建议与进度标记）
