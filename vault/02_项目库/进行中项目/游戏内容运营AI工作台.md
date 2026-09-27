@@ -1190,3 +1190,11 @@ sensitivity: 内部
 - 回归覆盖：预检拒绝 `1junk`、0、101、小数、`NaN`、`Infinity`；1 和 100 的边界通过；备份脚本继续复用同一校验结果。
 - 本批验证：完整 `npm test` 467/467；`npm run check`、public 构建及一致性、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `c9b7219` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百五十五）
+
+- 小红书桥接错误脱敏：不再把 mcporter 子进程 stderr 或 MCP 错误原文回传浏览器；stderr 仅排空、不缓存，避免签名 `xsec_token`、请求参数或提供器内部细节随失败响应泄露。
+- 可操作提示：对外错误按超时、输出超限、mcporter 未安装及登录态失效给出稳定提示；其他错误统一指引检查登录态与桥接服务。
+- 回归覆盖：用临时 mcporter 进程模拟 stderr 回显假签名 token，验证 HTTP 502 响应不含 token；错误分类单测验证不会反射提供器详情。
+- 本批验证：完整 `npm test` 469/469；`npm run check`、`npm run check:public` 与 `git diff --check` 均通过。
+- 同步状态：源码提交 `e56bccd` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
