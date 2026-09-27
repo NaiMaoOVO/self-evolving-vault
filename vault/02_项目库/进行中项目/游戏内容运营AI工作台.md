@@ -1324,3 +1324,10 @@ sensitivity: 内部
 - 回归覆盖：添加新来源轮换序列，确认溢出计数生效且早期活跃来源依旧受限；用例旧逻辑失败，修复后通过。
 - 本批验证：完整测试套件 493/493；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `c1944d7` 已推送到 GameOps `main`；本条记录待推送 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百七十四）
+
+- GitHub Actions 去重：`ci.yml` 与 `verify.yml` 曾同时响应 push/PR 并运行同一套检查、测试与构建。保留 CI 作为唯一自动入口，将 Verify 调整为手动 `workflow_dispatch`；同时固定两项 Actions 的 SHA、禁用 checkout 凭据持久化并设置 15 分钟超时。
+- 回归覆盖：新增 workflow 合同测试，验证自动触发唯一性、手动流程触发器及 Actions 固定版本/凭据策略；旧配置下失败，调整后通过。
+- 本批验证：完整测试套件 494/494；`npm run check`、`npm run check:public`、`git diff --check` 均通过。本地验证配置合同，不代表已观察到 GitHub 云端运行结果。
+- 同步状态：源码提交 `48cb223` 已推送到 GameOps `main`；本条记录待推送 Obsidian `main`。
