@@ -1413,3 +1413,9 @@ sensitivity: 内部
 - Nginx 安全头回归覆盖：此前只断言 CSP/HSTS 存在；现扩展为校验 HSTS、nosniff、Referrer-Policy、Permissions-Policy、CSP 五项都在服务器层设置并带 `always`，location 不重置继承。另将本地被忽略的 `HANDOFF.md` 刷新为当前测试数与 Launcher 只读检查结果；遵循 `.gitignore`，未强制纳入源码仓库。
 - 本批验证：Nginx 配置专项 6/6；完整 `npm test` 502/502；`npm run check`、`git diff --check` 通过。当前环境无 Nginx 可执行文件，未运行 `nginx -t`。
 - 同步状态：源码测试提交 `01f293c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百八十七）
+
+- 审计快照刷新：将本地 `HANDOFF.md` 与 `OPTIMIZATION.md` 的入口状态更新到 2026-09-28：当前提交 `01f293c`、502 项测试、Nginx 配置合同结果、未安装 Nginx 的验证限制，以及 Launcher runtime 仍过期的只读检查和差异清单。两份文件均被 `.gitignore` 明确排除，遵循仓库约定保留为本地文件，不强制提交。
+- 验证：直接核对两份文件的日期、提交、测试数与 Launcher 差异清单；当前跟踪工作树保持干净。
+- 同步状态：本记录推送至 Obsidian `main`；源码最新已推送提交为 `01f293c`，审计快照不进入源码仓库。
