@@ -1219,4 +1219,11 @@ sensitivity: 内部
 - 校验在服务启动与 PM2 部署配置中共用，`.env.example` 已说明生产限制；当前本机 `.env` 未配置自定义视频接口，不受行为变更影响。
 - 回归覆盖：默认官方地址、伪装域名、内嵌凭据、固定查询参数、非 loopback HTTP、生产服务拒绝任意主机，以及本地 loopback 假上游继续可用。
 - 本批验证：完整 `npm test` 475/475；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `0819b78` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `0819b78` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `5a90e95` 推送到 `main`。
+
+## 2026-09-27 优化记录（一百五十九）
+
+- 热点提供器容错：归一化外部平台数据时跳过 `null`、数组等无效行，不再因一条坏记录丢弃整份结果；超出 JavaScript 日期范围的时间戳降级为空时间，不再让 `toISOString()` 抛错中断整个列表。
+- 回归用例混合无效行、超范围时间戳与有效热点，确认坏数据被隔离且有效结果仍返回。
+- 本批验证：完整 `npm test` 476/476；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `79ee062` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
