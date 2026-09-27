@@ -674,3 +674,10 @@ sensitivity: 内部
 - 回归覆盖：分别模拟清理项目快照和槽位时另一标签页更新，验证新值保留且清理流程不执行覆盖写入；既有损坏数据保护用例仍通过。
 - 本批验证：完整 `npm test` 381/381；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `635a715` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十三）
+
+- 项目槽位最终写入保护：保存前重新读取槽位原始值；若页面状态收集期间其他标签页修改了任一槽位，则取消整次写入，避免空槽保存时丢掉其他标签页新增的槽位。
+- 回归覆盖：覆盖已有槽位与保存到空槽两种竞争场景；两个用例均先复现静默覆盖，再验证更新后能保留新数据。
+- 本批验证：完整 `npm test` 383/383；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `2d391b4` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
