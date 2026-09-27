@@ -1373,3 +1373,10 @@ sensitivity: 内部
 - 回归覆盖：先创建普通成员，再以该用户名启动认证初始化，旧逻辑下测试失败、修复后拒绝启动且不改角色。
 - 本批验证：完整 `npm test` 497/497；专项认证测试通过；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `c5ca344` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
+
+## 2026-09-28 优化记录（一百八十一）
+
+- SQLite 路径符号链接保护：权限加固此前通过 `statSync` 检查，会跟随 `ARCHIVE_DB_PATH` 或 `-wal/-shm/-journal` 侧文件的符号链接，并 chmod 目标文件；SQLite 随后可能把无关文件当数据库打开。现在使用 `lstatSync`，启动前拒绝符号链接。
+- 回归覆盖：把 `archive.db` 链接到内容为普通文本、权限为 `0644` 的目标，验证服务以可识别错误退出，目标内容和权限保持不变；旧逻辑下测试失败。
+- 本批验证：完整 `npm test` 498/498；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `41f9d86` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
