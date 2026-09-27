@@ -751,3 +751,10 @@ sensitivity: 内部
 - 回归覆盖：覆盖待办创建的 priority/status/link_view、待办更新的 priority/status，以及风险工单创建的 level/status；用数字、对象和数组验证不再静默成功。
 - 本批验证：完整 `npm test` 393/393；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `36fb394` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十四）
+
+- 快照来源口径校验：`POST /snapshots` 过去把任何非 `real` 值（包括数字和拼写错误）都静默记为 `sample`。现在显式来源只接受 `real`/`sample` 并拒绝其他值；省略来源仍兼容默认 `sample`。
+- 回归覆盖：真实 HTTP 服务测试验证数字和未知来源值返回 400；验证省略值默认保存为 sample、显式 real 保留为 real，服务仍可继续响应。
+- 本批验证：完整 `npm test` 393/393；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `c45e640` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
