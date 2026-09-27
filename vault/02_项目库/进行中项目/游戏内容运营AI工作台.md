@@ -1197,11 +1197,18 @@ sensitivity: 内部
 - 可操作提示：对外错误按超时、输出超限、mcporter 未安装及登录态失效给出稳定提示；其他错误统一指引检查登录态与桥接服务。
 - 回归覆盖：用临时 mcporter 进程模拟 stderr 回显假签名 token，验证 HTTP 502 响应不含 token；错误分类单测验证不会反射提供器详情。
 - 本批验证：完整 `npm test` 469/469；`npm run check`、`npm run check:public` 与 `git diff --check` 均通过。
-- 同步状态：源码提交 `e56bccd` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `e56bccd` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `eef81f8` 推送。
 
 ## 2026-09-27 优化记录（一百五十六）
 
 - LLM 网关日志脱敏：上游 HTTP 错误正文不再写入服务日志，保留受控错误类型、错误码与 HTTP 状态，避免可配置上游回显 `Authorization` 假 Key 时把凭据写入 stderr/PM2 日志。
 - 浏览器错误继续使用稳定业务提示；日志回归覆盖普通 JSON 与 SSE 错误处理路径，并确认本地假上游确实收到 Bearer 假 Key、但日志不包含该 Key。
 - 本批验证：LLM 专项 13/13；完整 `npm test` 469/469；`npm run check`、`npm run check:public` 与 `git diff --check` 均通过。
-- 同步状态：源码提交 `547afd8` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `547afd8` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `8952c51` 推送。
+
+## 2026-09-27 优化记录（一百五十七）
+
+- 交接文档纠偏：本地 `HANDOFF.md` 与 `OPTIMIZATION.md` 顶部仍残留 106/106 测试数、旧工作区状态和“HTTP 契约测试受 listen EPERM 阻断”等过期描述；已在本地刷新为最近 469/469、Launcher runtime 过期、服务状态未确认，并标注长篇旧内容为历史记录。
+- 边界：两份文档被项目 `.gitignore` 明确排除，未强制加入源码仓库；项目笔记在此记录最新状态。Launcher 安装仍待用户授权，浏览器登录 Cookie 的手动验证待用户反馈。
+- 验证：重新运行 `npm run launcher:check`，确认 runtime 过期及差异文件；完整源码测试此前 469/469，通过 `npm run check`、`npm run check:public`、`git diff --check`。
+- 同步状态：源码最近提交 `547afd8` 已在 GameOps `main`；本条记录待推送到 Obsidian `main`。
