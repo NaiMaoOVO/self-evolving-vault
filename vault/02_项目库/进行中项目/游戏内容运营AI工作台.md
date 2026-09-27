@@ -1541,3 +1541,10 @@ sensitivity: 内部
 - 回归覆盖：验证调度器待运行、执行中、失败、成功及跨日状态转换；接口测试校验匿名拒绝、管理员允许、普通成员拒绝和响应字段白名单；前端测试覆盖健康、失败和受限状态文案。
 - 本批验证：完整 `npm test` 535/535；`npm run build:public`、`npm run check:public`、`npm run check`、`git diff --check` 均通过。未进行浏览器实机交互验收。
 - 同步状态：源码提交 `af35211` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（二百零五）
+
+- 归档恢复目标校验：旧恢复流程以 `existsSync` 检查 SQLite 数据库及 `-wal/-shm/-journal` 侧文件，无法识别悬空符号链接，可能在留下危险侧链的同时继续替换数据库。现恢复前逐个用 `lstat` 检查，目标仅接受普通文件；符号链接及其他文件类型在复制安全副本或替换前被拒绝。
+- 回归覆盖：新增真实备份恢复测试，旧实现会成功替换并留下悬空 `-wal` 链接；修复后明确失败，原数据库内容与链接均保留，且未生成部分安全副本。
+- 本批验证：恢复专项 4/4；完整 `npm test` 536/536；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `b9909c2` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
