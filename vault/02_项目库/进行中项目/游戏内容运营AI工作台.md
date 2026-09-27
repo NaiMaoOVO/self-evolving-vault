@@ -842,3 +842,10 @@ sensitivity: 内部
 - 回归覆盖：通过 `BEFORE UPDATE` 触发器拒绝台账更新，确认 500、内部错误不泄露、标题保留原值且服务健康；既有非字符串字段、日期与指标校验回归通过。
 - 本批验证：完整 `npm test` 403/403；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `96de29d` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零七）
+
+- 快照存档失败隔离：`POST /snapshots` 的幂等键查找或写入失败此前会逃出请求回调并终止归档服务。现在查找/写入异常返回不泄露 SQLite 细节的 500；无法查明写入结果时不假报成功，同键已存在时仍返回原快照。
+- 回归覆盖：以 `BEFORE INSERT` 触发器拒绝快照写入，确认 500、响应不含内部错误、无快照残留且服务健康。
+- 本批验证：完整 `npm test` 404/404；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `2341489` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
