@@ -709,3 +709,10 @@ sensitivity: 内部
 - 回归覆盖：使用真实本地假上游分别验证 `null` 的非流式和流式响应；确认调用方收到可恢复错误，SSE 不产生 `done`。
 - 本批验证：完整 `npm test` 385/385；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `7e6e42c` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十八）
+
+- SSE 正常结束校验：流式网关此前只要收到可解析文本就会发送成功事件，即使上游没有发 OpenAI 兼容协议的 `[DONE]` 结束标记。现在缺少该标记会作为上游中断处理，向前端发出错误而不伪报完成。
+- 回归覆盖：构造“内容本身是有效 JSON，但 SSE 缺少 `[DONE]`”的上游响应；先复现旧逻辑错误发出 `done`，再验证修复后只发出 `error`。正常结束标记的既有流式用例继续通过。
+- 本批验证：LLM 流式专项 12/12、完整 `npm test` 386/386；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `37b2388` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
