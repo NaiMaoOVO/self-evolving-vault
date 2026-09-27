@@ -884,3 +884,10 @@ sensitivity: 内部
 - 回归覆盖：隔离临时数据库重命名发布表，验证旧实现返回 400；修复后为 500、不含表名/SQLite 细节，且 `/health` 仍为 200。
 - 本批验证：完整 `npm test` 409/409；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `0a9a440` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十三）
+
+- 快照列表/最近快照读取故障隔离：`GET /snapshots` 与 `GET /latest` 之前把 SQLite 读取异常返回为 400 并泄露内部文本。现在非法 `kind` 在访问数据库前仍返回 400；存储异常则统一为安全 500，损坏 JSON 的无效标记行为保持不变。
+- 回归覆盖：先验证非法 kind 保持 400，再于隔离临时库重命名快照表，验证两路由返回固定 500、不含 SQLite/表名且服务健康检查仍为 200。
+- 本批验证：完整 `npm test` 410/410；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `ee857ad` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
