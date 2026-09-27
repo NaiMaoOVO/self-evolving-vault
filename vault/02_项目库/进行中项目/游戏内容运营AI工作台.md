@@ -1052,3 +1052,10 @@ sensitivity: 内部
 - 回归覆盖：占位主机及尾随点形式拒绝；`notexample.com`、合法域名的路径包含示例字符串、`example.com.evil.test` 均正常接受。
 - 本批验证：部署检查专项 9/9；完整 `npm test` 439/439；语法检查、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `91a757c` 已推送到 GameOps `main`；本条记录已推送到 Obsidian `main`（提交 `5d5e9aa`）。
+
+## 2026-09-27 优化记录（一百三十七）
+
+- OCR 部署模式校验：仅允许 `macos` / `remote`；对大小写和首尾空白做标准化，远程模式的 URL 预检不再被 `REMOTE` 或 ` REMOTE ` 绕过，PM2 收到规范值。
+- 回归覆盖：未知 provider 拒绝、远程模式缺少 URL 时拒绝、空白/大小写变体成功标准化且 PM2 配置值为 `remote`。
+- 本批验证：部署检查专项 10/10；完整 `npm test` 440/440；语法检查、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `a91a79a` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
