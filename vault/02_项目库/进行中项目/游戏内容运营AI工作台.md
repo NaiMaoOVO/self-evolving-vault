@@ -1407,3 +1407,9 @@ sensitivity: 内部
 - 回归覆盖：配置合同测试锁定服务器级 CSP/HSTS、location 不重置 `add_header`，同时检查 HTML/静态缓存周期；旧配置下测试失败，修复后通过。
 - 本批验证：Nginx 配置专项 6/6；完整 `npm test` 502/502；`npm run check`、`npm run check:public`、`git diff --check` 均通过。当前环境无 Nginx 可执行文件，未运行 `nginx -t`。
 - 同步状态：源码提交 `4d7b506` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百八十六）
+
+- Nginx 安全头回归覆盖：此前只断言 CSP/HSTS 存在；现扩展为校验 HSTS、nosniff、Referrer-Policy、Permissions-Policy、CSP 五项都在服务器层设置并带 `always`，location 不重置继承。另将本地被忽略的 `HANDOFF.md` 刷新为当前测试数与 Launcher 只读检查结果；遵循 `.gitignore`，未强制纳入源码仓库。
+- 本批验证：Nginx 配置专项 6/6；完整 `npm test` 502/502；`npm run check`、`git diff --check` 通过。当前环境无 Nginx 可执行文件，未运行 `nginx -t`。
+- 同步状态：源码测试提交 `01f293c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
