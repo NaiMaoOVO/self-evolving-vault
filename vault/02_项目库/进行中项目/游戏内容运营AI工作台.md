@@ -1255,3 +1255,10 @@ sensitivity: 内部
 - 回归覆盖：运行时探针把各服务上游超时设为 600 秒，逐个读取真实 HTTP Server 配置，确认入站限制不变；历史配置对热点、评论、OCR 探针均失败。
 - 本批验证：完整 `npm test` 484/484；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `6344983` 已推送到 GameOps `main`；本条已随 Obsidian 提交 `71d9433` 推送到 `main`。
+
+## 2026-09-27 优化记录（一百六十四）
+
+- LLM 流式体验：LLM 网关已发出 SSE 增量事件，但两份 Nginx 模板只关闭请求体缓冲、响应仍使用默认缓冲，线上可能攒住事件直到生成完成。现只在 `/api/llm/` 代理 location 增加 `proxy_buffering off`，同时保留 `proxy_request_buffering off`。
+- 回归覆盖：两份模板均检查 LLM location 独立具备请求与响应缓冲关闭指令；旧模板测试失败，修复后通过。该环境未安装 Nginx，未执行 `nginx -t` 或真实反代浏览器验收。
+- 本批验证：完整 `npm test` 486/486；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `41f6231` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
