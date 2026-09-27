@@ -919,3 +919,10 @@ sensitivity: 内部
 - 回归覆盖：SQLite `BEFORE INSERT` 触发器拒绝新成员账号，验证 500、不暴露触发器/SQLite 文本、账号未落库、服务健康；认证专项正常账号创建、登录与隔离回归继续通过。
 - 本批验证：完整 `npm test` 414/414；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `7a8118c` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十八）
+
+- 登录存储错误分类：正确凭据遇到用户查询、过期会话清理或会话插入故障时，过去会误报为 401“用户名或密码错误”。现在认证存储异常使用内部错误码转为不泄露细节的 500；真实凭据错误仍保持 401。
+- 回归覆盖：SQLite 触发器拒绝有效管理员会话写入，确认安全 500；移除触发器后同一凭据登录成功。认证集成测试进程单独提高限流阈值以隔离多个登录故障用例，生产默认限流不变。
+- 本批验证：完整 `npm test` 415/415；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `d2e0d41` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
