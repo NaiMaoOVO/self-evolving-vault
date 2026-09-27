@@ -723,3 +723,10 @@ sensitivity: 内部
 - 回归覆盖：三类任务分别用空对象覆盖 JSON 与 SSE 路径；额外重复一次相同失败请求，确认再次访问上游而不是命中错误缓存。同步更新日报成功响应的测试夹具。
 - 本批验证：完整 `npm test` 387/387；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `fbdd633` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十）
+
+- 发布台账输入校验：发布时间现在只接受有效的 `YYYY-MM-DD` 或 ISO 日期时间；非法日期和非字符串输入返回 400，无效更新不会覆盖已有值。创建时对超长字段统一捕获并返回 400，避免验证异常逃出 HTTP 回调导致存档服务退出；历史脏日期在未修改时保持原样。
+- 回归覆盖：拒绝自然语言日期、无效闰日、非字符串日期和超长标题；逐项确认服务仍可健康响应；接受有效日期和既有 ISO 时间戳，并验证非法更新保留旧值。
+- 本批验证：完整 `npm test` 388/388；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `4504822` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
