@@ -1211,4 +1211,12 @@ sensitivity: 内部
 - 交接文档纠偏：本地 `HANDOFF.md` 与 `OPTIMIZATION.md` 顶部仍残留 106/106 测试数、旧工作区状态和“HTTP 契约测试受 listen EPERM 阻断”等过期描述；已在本地刷新为最近 469/469、Launcher runtime 过期、服务状态未确认，并标注长篇旧内容为历史记录。
 - 边界：两份文档被项目 `.gitignore` 明确排除，未强制加入源码仓库；项目笔记在此记录最新状态。Launcher 安装仍待用户授权，浏览器登录 Cookie 的手动验证待用户反馈。
 - 验证：重新运行 `npm run launcher:check`，确认 runtime 过期及差异文件；完整源码测试此前 469/469，通过 `npm run check`、`npm run check:public`、`git diff --check`。
-- 同步状态：源码最近提交 `547afd8` 已在 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码最近提交 `547afd8` 已在 GameOps `main`；本条记录已随 Obsidian 提交 `046dba6` 推送到 `main`。
+
+## 2026-09-27 优化记录（一百五十八）
+
+- B 站凭据目标校验：评论服务会将 `BILIBILI_COOKIE` 发给 `BILIBILI_VIDEO_INFO_URL`。生产配置现只接受 `https://api.bilibili.com`，并拒绝 URL 内嵌账号密码、查询参数或片段，避免 Cookie 被误发到自定义主机；本地开发仍支持 loopback HTTP 假上游。
+- 校验在服务启动与 PM2 部署配置中共用，`.env.example` 已说明生产限制；当前本机 `.env` 未配置自定义视频接口，不受行为变更影响。
+- 回归覆盖：默认官方地址、伪装域名、内嵌凭据、固定查询参数、非 loopback HTTP、生产服务拒绝任意主机，以及本地 loopback 假上游继续可用。
+- 本批验证：完整 `npm test` 475/475；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `0819b78` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
