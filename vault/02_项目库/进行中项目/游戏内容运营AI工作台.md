@@ -772,3 +772,10 @@ sensitivity: 内部
 - 回归覆盖：模拟失败快照重试收到 HTTP 400，确认提示“本次数据未保存”且不再重复展示该项重试按钮；并保留并发快照失败队列的覆盖。
 - 本批验证：完整 `npm test` 394/394；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `21cd18f` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十七）
+
+- 存档失败恢复文案：重试内容只保存在页面内存，旧提示却建议“刷新确认后重试”，刷新会丢失当前待重试队列。现改为留在当前页点击重试，并说明同一幂等键可避免重复新增；并发失败时也给出当前页重试入口。
+- 回归覆盖：实际执行存档状态回调，断言服务中断后保留待重试数量、明确提示留在当前页，并且不再建议刷新。
+- 本批验证：完整 `npm test` 394/394；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `8ea8157` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
