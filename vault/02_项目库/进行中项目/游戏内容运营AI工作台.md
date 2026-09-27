@@ -933,3 +933,10 @@ sensitivity: 内部
 - 回归覆盖：使用已认证会话检查 `/auth/session`、`/daily-todos`、`/creator-library` 与 `/profile` 均返回 `no-store`。
 - 本批验证：完整 `npm test` 416/416；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `13debcb` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百二十）
+
+- 退出登录的存储故障恢复：数据库删除会话失败时，接口现在返回固定 500 提示且不清除仍有效的 cookie；数据库恢复后，同一会话可重试退出。修复了路由将 SQLite 预编译语句误当函数调用的接口问题，并将会话删除封装为认证模块方法。
+- 回归覆盖：通过 SQLite 触发器模拟一次删除失败，验证会话仍有效、响应不设置清除 cookie；解除故障后重试返回成功、清除 cookie，旧会话随即无效。
+- 本批验证：完整 `npm test` 417/417；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `9a51ecf` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
