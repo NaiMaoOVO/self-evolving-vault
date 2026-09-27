@@ -968,3 +968,10 @@ sensitivity: 内部
 - 回归覆盖：模拟另一个标签切换到新账号、退出登录、本地/线上模式切换，确认本标签读取正确 session、旧 CSRF 不残留；另验证广播不包含账号/token 文本。
 - 本批验证：完整 `npm test` 429/429；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做真实浏览器多标签端到端验收。
 - 同步状态：源码提交 `75c347f` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十五）
+
+- 部署检查诊断：将 `deploy:check` 的内联 Node 异常改为独立检查脚本；配置不完整时保留非零退出和原校验，改为一行可行动错误，不展示调用栈；有效 HTTPS 配置仍通过。
+- 凭据保护回归：用无效管理员口令哨兵验证部署错误输出不包含口令；占位域名提示保持单行，避免泄露无关环境细节。
+- 本批验证：完整 `npm test` 432/432；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。`npm run deploy:check` 在当前环境按预期因未设置正式 `ALLOWED_ORIGIN` 退出；未部署、未代填域名。
+- 同步状态：源码提交 `1f3ebe7` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
