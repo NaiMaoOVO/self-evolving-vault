@@ -1419,3 +1419,9 @@ sensitivity: 内部
 - 审计快照刷新：将本地 `HANDOFF.md` 与 `OPTIMIZATION.md` 的入口状态更新到 2026-09-28：当前提交 `01f293c`、502 项测试、Nginx 配置合同结果、未安装 Nginx 的验证限制，以及 Launcher runtime 仍过期的只读检查和差异清单。两份文件均被 `.gitignore` 明确排除，遵循仓库约定保留为本地文件，不强制提交。
 - 验证：直接核对两份文件的日期、提交、测试数与 Launcher 差异清单；当前跟踪工作树保持干净。
 - 同步状态：本记录推送至 Obsidian `main`；源码最新已推送提交为 `01f293c`，审计快照不进入源码仓库。
+
+## 2026-09-28 优化记录（一百八十八）
+
+- HTTPS 整站 Basic Auth 覆盖：此前测试只断言 API 代理块没有 `auth_basic off`；现在覆盖 HTTPS 模板全部 12 个 location，避免未来静态资源或 SPA 路由意外关闭整站门禁。源配置未变化。
+- 本批验证：Nginx 配置专项 6/6；完整 `npm test` 502/502；`git diff --check` 通过。
+- 同步状态：源码测试提交 `79bc67c` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。被 `.gitignore` 排除的本地审计快照已同步更新为 `79bc67c`。
