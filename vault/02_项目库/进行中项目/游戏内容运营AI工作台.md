@@ -612,3 +612,10 @@ sensitivity: 内部
 - 回归覆盖：验证损坏 JSON、损坏条目均不会被启动清理或保存覆盖；混合数据会保留损坏条目并清理有效槽位凭据。
 - 本批验证：完整 `npm test` 363/363；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 通过。浏览器端检查受策略阻止：`file://` 页面 URL 不可访问；未尝试绕过，未完成浏览器端到端验收。
 - 同步状态：源码提交 `321b9d9` 已推送到 GameOps `main`；本条仅更新此项目笔记。
+
+## 2026-09-27 优化记录（七十四）
+
+- 本机项目快照保护：保存前先读取并检查现有快照；若 JSON 或必需结构已损坏，必须明确确认后才能覆盖，取消时保留原始数据。若无法读取存储，也会停止保存。
+- 回归覆盖：验证损坏快照取消覆盖、明确确认后替换、可读快照正常无额外确认，以及读取失败时不写入。
+- 本批验证：定向测试 8/8，完整 `npm test` 367/367；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `b3fa9c5` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
