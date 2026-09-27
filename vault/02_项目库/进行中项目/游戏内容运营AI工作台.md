@@ -1004,3 +1004,10 @@ sensitivity: 内部
 - 凭据处理：测试只比较配置值是否匹配的布尔结果，并断言测试口令不出现在任何标准输出中。
 - 本批验证：完整 `npm test` 436/436；`npm run check` 和 `git diff --check` 通过。
 - 同步状态：源码提交 `3a144d8` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百三十）
+
+- 管理员占位口令拦截：生产检查现在拒绝 README 示例句、`change-me`、`changeme`、`password`、`admin123` 等明显占位口令，避免照抄文档后仅凭长度检查误通过。
+- 回归覆盖：示例句与常见占位值均被拒绝；长度不在 12-200 的值也被拒绝；诊断不回显口令。
+- 本批验证：完整 `npm test` 436/436；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。
+- 同步状态：源码提交 `6a3b222` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
