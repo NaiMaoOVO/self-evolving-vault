@@ -1425,3 +1425,10 @@ sensitivity: 内部
 - HTTPS 整站 Basic Auth 覆盖：此前测试只断言 API 代理块没有 `auth_basic off`；现在覆盖 HTTPS 模板全部 12 个 location，避免未来静态资源或 SPA 路由意外关闭整站门禁。源配置未变化。
 - 本批验证：Nginx 配置专项 6/6；完整 `npm test` 502/502；`git diff --check` 通过。
 - 同步状态：源码测试提交 `79bc67c` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。被 `.gitignore` 排除的本地审计快照已同步更新为 `79bc67c`。
+
+## 2026-09-28 优化记录（一百八十九）
+
+- HSTS 子域策略安全默认值：HTTPS 模板此前默认发送一年期 `includeSubDomains`，若部署在主域名，会让所有子域也强制走 HTTPS；未配置 HTTPS 的其他子服务会被浏览器阻断。现默认仅保护配置主机本身，并在 Nginx 模板与 README 明示：确认所有子域均可用 HTTPS 后再显式加 `includeSubDomains`。
+- 回归覆盖：用例先在旧模板下失败，改为安全默认值与部署说明后通过。
+- 本批验证：Nginx 配置专项 7/7；完整 `npm test` 503/503；`npm run check`、`npm run check:public`、`git diff --check` 通过。`nginx -t` 因当前环境未安装 Nginx 未运行。
+- 同步状态：源码提交 `3d04ff1` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
