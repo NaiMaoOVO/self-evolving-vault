@@ -1438,3 +1438,11 @@ sensitivity: 内部
 - HTTP 到 HTTPS 重定向回归保护：HTTP 示例虽然保留了 API 反代 location，但依赖 server 级 `return 301 https://$host$request_uri` 使所有请求先升级到 HTTPS。新增合同测试，确保该跳转在 80 端口配置层级生效且早于 location；避免删改后 HTTP 绕过 HTTPS 模板的 Basic Auth。
 - 本批验证：Nginx 配置专项 8/8；完整 `npm test` 504/504；`npm run check`、`git diff --check` 通过。
 - 同步状态：源码测试提交 `365856b` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。Nginx 实际语法检查仍受当前环境未安装 Nginx 限制。
+
+## 2026-09-28 优化记录（一百九十一）
+
+- 离线恢复与数据保留：Edge 页面检查发现归档服务整体断开时只给“重试同步”，且失败返回的空队列可能覆盖同账号上次成功快照。现区分全量网络故障与单接口故障；全量断开时提供启动本机服务/重新连接入口，保留上次成功队列，不把不可读显示为 0，也不以失败数据覆盖缓存。单接口故障仍只提示重试。
+- Host 重定向安全：HTTP Nginx 模板曾把客户端可控的 `$host` 用作 HTTPS 301 目标，现改为配置域名 `$server_name`，防止错误 Host 影响跳转目的地。
+- 回归覆盖：全量归档请求拒绝、局部失败、离线恢复动作、旧快照保留与不覆盖；HTTP 重定向合同测试先复现旧配置失败再通过。
+- 本批验证：完整 `npm test` 507/507；`npm run check`、`npm run check:public`、`git diff --check` 通过；Nginx 配置专项 8/8。当前环境未安装 Nginx，未运行 `nginx -t`；Edge 通过辅助功能树做了只读检查，未完成重载后的真实点击验收。
+- 同步状态：源码提交 `d10dc66` 已推送至 GameOps `main`；本记录及此前待同步项目记录随本次笔记更新推送至 Obsidian `main`。
