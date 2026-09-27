@@ -779,3 +779,10 @@ sensitivity: 内部
 - 回归覆盖：实际执行存档状态回调，断言服务中断后保留待重试数量、明确提示留在当前页，并且不再建议刷新。
 - 本批验证：完整 `npm test` 394/394；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `8ea8157` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十八）
+
+- 存档删除异常保护：发布台账、每日待办、风险工单的删除 SQL 遇到数据库错误时，过去会让未捕获异常终止存档服务。现在各接口返回明确的 500 JSON 提示，不暴露 SQLite 内部错误；失败删除不会改变记录。
+- 回归覆盖：用 SQLite `BEFORE DELETE` 触发器模拟三类删除失败，逐项断言 500、安全错误文案、记录仍存在，并在每次失败后确认 `/health` 仍可用。用例先在旧实现上复现了连接重置，再于修复后通过。
+- 本批验证：完整 `npm test` 395/395；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。`npm run launcher:check` 仍报告用户级安装的桌面启动器运行时过期；因安装器会改动 `~/Applications`、`~/Library/Application Support` 并注册 `gameops://`，尚未获得本轮安装授权，未执行。未做浏览器端到端验收。
+- 同步状态：源码提交 `7664682` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
