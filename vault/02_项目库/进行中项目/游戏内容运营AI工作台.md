@@ -961,3 +961,10 @@ sensitivity: 内部
 - 回归覆盖：模拟旧服务的登录和登出请求在切换到线上模式后才返回，确认账号与 CSRF 保持新模式的空状态；正常成功登录、登出仍正确应用会话。
 - 本批验证：完整 `npm test` 426/426；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `f5d8aeb` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十四）
+
+- 跨标签页账号隔离：登录或登出成功后只广播随机状态标记，不写用户名、密码、session 或 CSRF；其他标签收到后重新向服务端核验，让账号切换事件触发既有旧账号数据清理。服务模式跨标签更改时也会同步端点、清理旧身份并重新验证。
+- 回归覆盖：模拟另一个标签切换到新账号、退出登录、本地/线上模式切换，确认本标签读取正确 session、旧 CSRF 不残留；另验证广播不包含账号/token 文本。
+- 本批验证：完整 `npm test` 429/429；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做真实浏览器多标签端到端验收。
+- 同步状态：源码提交 `75c347f` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
