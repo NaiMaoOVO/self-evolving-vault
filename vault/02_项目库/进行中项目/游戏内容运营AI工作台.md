@@ -835,3 +835,10 @@ sensitivity: 内部
 - 回归覆盖：用 `BEFORE UPDATE` 触发器拒绝工单状态变更，确认 500、不泄露数据库错误、原状态仍为 open 且健康检查成功；旧实现实际误报 400。
 - 本批验证：完整 `npm test` 402/402；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `cf52f0a` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零六）
+
+- 发布台账更新故障分类：`PUT /publications/:id` 此前把 SQLite 查询、更新和回读异常与请求字段校验一起返回 400。现在存储读取/更新问题返回不含内部错误的 500，成功更新但回读失败会明确说明；非法字段和日期仍返回 400。
+- 回归覆盖：通过 `BEFORE UPDATE` 触发器拒绝台账更新，确认 500、内部错误不泄露、标题保留原值且服务健康；既有非字符串字段、日期与指标校验回归通过。
+- 本批验证：完整 `npm test` 403/403；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `96de29d` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
