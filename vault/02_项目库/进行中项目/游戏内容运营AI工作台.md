@@ -1303,3 +1303,10 @@ sensitivity: 内部
 - 回归覆盖：增加合同用例，确保验证调用位于旧备份清理之前；备份专项测试 12/12 通过，正常备份/校验/保留策略与恢复流程继续通过。
 - 本批验证：完整测试套件 491/491；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `0ab6175` 已推送到 GameOps `main`；本条记录待推送 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百七十一）
+
+- SQLite 恢复保护：恢复命令此前只要求手工传入 `--service-stopped`，并不确认 archive 服务是否真的停止。现在会探测 `ARCHIVE_PORT` 上的本机 HTTP 服务；有响应或健康检查超时/状态不明时 fail-closed，只有连接明确被拒绝才进入恢复。README 同步说明该行为。
+- 回归覆盖：启动真实隔离 archive 服务，带 `--service-stopped` 执行恢复仍被拒绝，并确认活动数据库数据未被替换；服务停止后的既有恢复与恢复前副本保护测试继续通过。
+- 本批验证：完整测试套件 492/492；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `604a1f0` 已推送到 GameOps `main`；本条记录待推送 Obsidian `main`。
