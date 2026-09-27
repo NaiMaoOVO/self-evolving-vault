@@ -1268,4 +1268,4 @@ sensitivity: 内部
 - 登录密码校验短路：账号密码长度策略为 12–200 位，但登录此前会先对任意长度的密码执行同步 `scrypt`，超长输入可无意义占用 CPU。现在非字符串或长度越界会在哈希计算前直接拒绝。
 - 回归覆盖：用内存 SQLite 和 `scrypt` 调用计数确认 11 位、201 位密码零次哈希且拒绝；有效密码仍只执行一次哈希并可登录。
 - 本批验证：完整 `npm test` 487/487；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `24179af` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `24179af` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `6c84802` 推送到 `main`。
