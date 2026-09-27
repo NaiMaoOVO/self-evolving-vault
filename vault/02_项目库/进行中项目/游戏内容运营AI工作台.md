@@ -1160,3 +1160,11 @@ sensitivity: 内部
 - 回归覆盖：固定时间的上海午夜/窗口边界单测；归档 HTTP 集成验证窗口外快照被排除、窗口内与当日快照保留。
 - 本批验证：完整 `npm test` 460/460；`npm run check`、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `b64a9c8` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百五十一）
+
+- 趋势查询索引：为按游戏筛选的历史快照查询增加 `(owner_key, kind, game, created_at)` 复合索引；保留不筛选游戏时使用的 `(owner_key, kind, created_at)` 索引。
+- 启动迁移会创建新索引并移除被替代的前缀索引，不改动快照内容，避免重复索引长期增加写入和磁盘开销。
+- 回归覆盖：从含旧索引的数据库启动并验证迁移；`EXPLAIN QUERY PLAN` 确认两种统计查询命中各自的范围索引，游戏筛选查询无临时排序。
+- 本批验证：完整 `npm test` 461/461；`npm run check`、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `a5b32de` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
