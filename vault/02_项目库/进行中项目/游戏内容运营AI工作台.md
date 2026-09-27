@@ -990,3 +990,10 @@ sensitivity: 内部
 - 回归覆盖：从隔离子进程加载 ecosystem 配置，仅核对口令是否匹配的布尔值（不打印口令），并验证认证开关、用户名、安全 Cookie 与会话时长均注入 archive 进程配置。
 - 本批验证：完整 `npm test` 434/434；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未在本机重启 PM2 实例做运行时验收。
 - 同步状态：源码提交 `1cb795a` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十八）
+
+- PM2 生产安全门：线上 archive 部署现在必须启用认证，管理员名符合 3-40 位格式、口令长度为 12-200 位，并保持 Secure Cookie；不安全配置会在 PM2 启动前失败。`start-demo.js` 本机演示模式不受影响。
+- 回归覆盖：分别验证认证关闭、无效用户名、超长口令、关闭 Secure Cookie 会被拒绝；有效 HTTPS 与认证配置通过，短口令错误不回显口令内容。
+- 本批验证：完整 `npm test` 436/436；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未在本机运行 PM2 服务端到端验收。
+- 同步状态：源码提交 `fbe5ae1` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
