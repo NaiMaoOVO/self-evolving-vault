@@ -626,3 +626,10 @@ sensitivity: 内部
 - 回归覆盖：模拟用户在确认期间切换到另一标签页并写入有效快照，验证旧页面不会覆盖新数据。
 - 本批验证：定向测试 9/9，完整 `npm test` 368/368；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `32f8ebc` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（七十六）
+
+- 项目快照恢复校验：恢复前统一预检必需的 `controls` 结构，以及可选创作者/热点数组中的记录形状。损坏的数组项会在恢复逻辑运行前被拒绝，避免表单先被部分改写后才报错。
+- 回归覆盖：创作者和热点数组包含 `null` 时，均验证恢复函数不会被调用，页面状态保持未应用。
+- 本批验证：定向测试 11/11，完整 `npm test` 370/370；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `48ca9e2` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
