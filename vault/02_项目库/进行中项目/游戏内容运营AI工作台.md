@@ -702,3 +702,10 @@ sensitivity: 内部
 - 回归覆盖：用超过 1 MiB 的有效 JSON 结果分别测试非流式与 SSE，确认非流式返回通用 502、SSE 发出 error 而不发 done。
 - 本批验证：完整 `npm test` 384/384；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `27d3f23` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十七）
+
+- LLM 输出结构校验：上游虽要求 JSON，但 `null`、字符串和数组曾被当作成功解析结果返回。现在解析器只接受 JSON 对象；非对象结果在普通请求中返回通用 502，在 SSE 中发出错误事件且不伪报完成。
+- 回归覆盖：使用真实本地假上游分别验证 `null` 的非流式和流式响应；确认调用方收到可恢复错误，SSE 不产生 `done`。
+- 本批验证：完整 `npm test` 385/385；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `7e6e42c` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
