@@ -1400,3 +1400,10 @@ sensitivity: 内部
 - 回归覆盖：新建文档合同测试校验部署指南与 Nginx 模板引用一致；先验证旧文档缺少命令时测试失败，再补说明后通过。
 - 本批验证：项目与 Nginx 配置专项 11/11；完整 `npm test` 501/501；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `65808bc` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百八十五）
+
+- HTTPS 响应安全头继承：缓存用的两个 Nginx location 分别定义 `add_header Cache-Control`，按 Nginx 默认继承规则会屏蔽服务器级 CSP、HSTS 等全部 `add_header`，影响首页和 JS/CSS。改用 `expires -1` 保持 HTML 不缓存、`expires 30d` 保留带指纹资源的长缓存，并让安全头继续继承。
+- 回归覆盖：配置合同测试锁定服务器级 CSP/HSTS、location 不重置 `add_header`，同时检查 HTML/静态缓存周期；旧配置下测试失败，修复后通过。
+- 本批验证：Nginx 配置专项 6/6；完整 `npm test` 502/502；`npm run check`、`npm run check:public`、`git diff --check` 均通过。当前环境无 Nginx 可执行文件，未运行 `nginx -t`。
+- 同步状态：源码提交 `4d7b506` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
