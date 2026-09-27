@@ -1059,3 +1059,10 @@ sensitivity: 内部
 - 回归覆盖：未知 provider 拒绝、远程模式缺少 URL 时拒绝、空白/大小写变体成功标准化且 PM2 配置值为 `remote`。
 - 本批验证：部署检查专项 10/10；完整 `npm test` 440/440；语法检查、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `a91a79a` 已推送到 GameOps `main`；本条记录已推送到 Obsidian `main`（提交 `827b616`）。
+
+## 2026-09-27 优化记录（一百三十八）
+
+- 本地 OCR 启动一致性：服务入口也对 `OCR_PROVIDER` 去除首尾空白并转小写，和 PM2 部署预检的规范化行为一致。
+- 回归覆盖：以 `" REMOTE "` 启动真实 OCR 子进程，验证 `/ready` 返回 200、provider 为 `remote` 且配置就绪。
+- 本批验证：HTTP 合约专项 19/19；完整 `npm test` 441/441；语法检查、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。仅验证本机 loopback 配置，不调用真实远端 OCR。
+- 同步状态：源码提交 `e688a1c` 与本条项目记录已推送到各自仓库 `main`。
