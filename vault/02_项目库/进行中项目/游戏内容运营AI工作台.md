@@ -1393,3 +1393,10 @@ sensitivity: 内部
 - 线上 API 访问门禁与健康检查：HTTPS Nginx 模板原有服务器级 Basic Auth，但缺少回归保护；新增配置合同测试，确认所有 5 个代理服务仍受该门禁保护且路由没有关闭认证。部署文档同步要求自定义反代配置等效认证，并让健康检查命令交互提示密码，避免执行模板命令时意外收到 401 或把口令写入命令历史。
 - 本批验证：Nginx 配置专项 5/5；完整 `npm test` 500/500；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `1376145` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百八十四）
+
+- HTTPS 首次部署引导：Nginx 模板要求 `/etc/nginx/.htpasswd-gameops`，README 之前没有创建步骤，干净服务器会在 Nginx 校验时因认证文件缺失而卡住。现添加交互式 `htpasswd -c` 示例，说明后续添加用户必须去掉 `-c`（否则会覆盖现有账号），并提醒确认 Nginx worker 可读取该文件及 Basic Auth 与 archive 账号用途不同。
+- 回归覆盖：新建文档合同测试校验部署指南与 Nginx 模板引用一致；先验证旧文档缺少命令时测试失败，再补说明后通过。
+- 本批验证：项目与 Nginx 配置专项 11/11；完整 `npm test` 501/501；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `65808bc` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
