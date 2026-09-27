@@ -1380,3 +1380,10 @@ sensitivity: 内部
 - 回归覆盖：把 `archive.db` 链接到内容为普通文本、权限为 `0644` 的目标，验证服务以可识别错误退出，目标内容和权限保持不变；旧逻辑下测试失败。
 - 本批验证：完整 `npm test` 498/498；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `41f9d86` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
+
+## 2026-09-28 优化记录（一百八十二）
+
+- 本地模式启动兼容：认证关闭时管理员用户名不参与登录，但初始化此前仍校验 `ARCHIVE_ADMIN_USERNAME`；遗留邮箱式值会阻止个人模式 archive 服务启动。现仅在启用认证时规范化该用户名，本地模式忽略无关配置，线上校验不变。
+- 回归覆盖：`ARCHIVE_AUTH_ENABLED=0` 且管理员用户名为 `admin@example.com` 时，旧逻辑抛出校验错误；调整后成功创建本地模式认证对象。
+- 本批验证：完整 `npm test` 499/499；`npm run check`、`git diff --check` 均通过。
+- 同步状态：源码提交 `ab7d196` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
