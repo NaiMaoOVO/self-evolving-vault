@@ -856,3 +856,10 @@ sensitivity: 内部
 - 回归覆盖：用数据库触发器拒绝远端库写入，确认 500、不泄露内部错误、健康检查成功，并验证失败前后的远端 `library` 与 `updated_at` 完全一致；既有登录、CSRF、冲突、无效档案回归通过。
 - 本批验证：完整 `npm test` 405/405；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `61a2aee` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零九）
+
+- KOL/KOC 个人库读取故障保护：`GET /creator-library` 此前直接查询 SQLite，表不可用时未捕获异常会让请求连接重置。现在返回统一的安全 500 提示，不暴露 SQLite/表结构信息，服务进程保持可用。
+- 回归覆盖：在隔离临时数据库中重命名个人库表，验证旧实现先复现 `socket hang up`；修复后接口返回预期 500，随后 `/health` 仍为 200。
+- 本批验证：完整 `npm test` 406/406；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `7ff1b98` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
