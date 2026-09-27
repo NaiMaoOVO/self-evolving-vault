@@ -619,3 +619,10 @@ sensitivity: 内部
 - 回归覆盖：验证损坏快照取消覆盖、明确确认后替换、可读快照正常无额外确认，以及读取失败时不写入。
 - 本批验证：定向测试 8/8，完整 `npm test` 367/367；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `b3fa9c5` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（七十五）
+
+- 跨标签页并发保护：损坏快照覆盖确认框关闭后，会再次读取本机快照并与确认前的原始内容比对；若另一标签页在等待期间已更新，取消本次旧页面覆盖并提示重新载入。
+- 回归覆盖：模拟用户在确认期间切换到另一标签页并写入有效快照，验证旧页面不会覆盖新数据。
+- 本批验证：定向测试 9/9，完整 `npm test` 368/368；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `32f8ebc` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
