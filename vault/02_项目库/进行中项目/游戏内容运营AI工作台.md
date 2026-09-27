@@ -1031,3 +1031,10 @@ sensitivity: 内部
 - 最小权限：B站 Cookie 只进热点/评论服务；LLM Key 只进 LLM；OCR Key 只进 OCR；抖音/小红书提供器令牌只进热点。测试仅校验布尔匹配，不输出凭据。
 - 本批验证：完整 `npm test` 437/437；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未运行真实 PM2 worker 做部署端到端验收。
 - 同步状态：源码提交 `f7a4f87` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百三十四）
+
+- 线上来源校验补强：规范化域名尾随点后再判断 loopback，避免 `localhost.`、`127.0.0.1.` 绕过部署 origin 检查。
+- 回归覆盖：新增两个带尾随点的本机来源拒绝用例；标准公网 HTTPS 来源仍由此前用例覆盖。
+- 本批验证：完整 `npm test` 437/437；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。
+- 同步状态：源码提交 `d45a39a` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
