@@ -1247,4 +1247,4 @@ sensitivity: 内部
 - LLM 网关超时边界：此前将上游模型等待时长 `LLM_TIMEOUT_MS` 加 5 秒后同时用于 Node HTTP 入站 `requestTimeout`，慢模型配置可能把未完成的客户端请求体连接延长到数分钟。现将入站完整请求限制固定为 60 秒、请求头限制为 10 秒；上游模型调用仍使用独立的 `LLM_TIMEOUT_MS`。
 - 回归覆盖：运行时将模型超时设为 600 秒，确认服务器入站超时仍是 60/10 秒；旧实现复现为 605/60 秒。
 - 本批验证：完整 `npm test` 481/481；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `349f03c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `349f03c` 已推送到 GameOps `main`；本条已随 Obsidian 提交 `56c5781` 推送到 `main`。
