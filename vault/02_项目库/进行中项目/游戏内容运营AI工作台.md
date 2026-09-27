@@ -744,3 +744,10 @@ sensitivity: 内部
 - 回归覆盖：为风险工单创建、更新分别提交数字/对象字段，并对快照写入提交非字符串项目名；逐项断言 400、原记录保留或健康端点持续可用。
 - 本批验证：完整 `npm test` 391/391；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `718e404` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十三）
+
+- 存档枚举字段类型校验：待办优先级/状态、风险工单级别/状态以及待办的 `link_view` 若显式提交非字符串，此前会被当成缺省值并返回成功。现在创建和更新路径拒绝该输入并返回 400；缺省字段仍按既有默认值处理。
+- 回归覆盖：覆盖待办创建的 priority/status/link_view、待办更新的 priority/status，以及风险工单创建的 level/status；用数字、对象和数组验证不再静默成功。
+- 本批验证：完整 `npm test` 393/393；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `36fb394` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
