@@ -912,3 +912,10 @@ sensitivity: 内部
 - 回归覆盖：使用有效管理员会话，临时改名用户表中的非认证时间字段以只破坏列表查询，验证固定 500、服务健康；恢复 schema 后确认同一会话仍有效，未影响后续会话故障用例。
 - 本批验证：完整 `npm test` 413/413；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。管理员权限、CSRF 与账号隔离回归通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `b0c4f36` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十七）
+
+- 管理员新增账号故障分类：账号输入校验、角色/密码规则与重名仍返回 400；认证模块的用户查找、插入或写后读取遇到数据库异常时，改为带内部错误码交给路由映射成安全 500。
+- 回归覆盖：SQLite `BEFORE INSERT` 触发器拒绝新成员账号，验证 500、不暴露触发器/SQLite 文本、账号未落库、服务健康；认证专项正常账号创建、登录与隔离回归继续通过。
+- 本批验证：完整 `npm test` 414/414；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `7a8118c` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
