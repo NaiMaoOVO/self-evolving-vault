@@ -1168,3 +1168,10 @@ sensitivity: 内部
 - 回归覆盖：从含旧索引的数据库启动并验证迁移；`EXPLAIN QUERY PLAN` 确认两种统计查询命中各自的范围索引，游戏筛选查询无临时排序。
 - 本批验证：完整 `npm test` 461/461；`npm run check`、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `a5b32de` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百五十二）
+
+- 修复共享 single-flight 缓存的过期请求竞争：只有仍登记在缓存中的那一代 Promise 才能写入成功结果或清理失败项；容量淘汰后的旧请求仍可返回给原调用方，但不会复活缓存、覆盖新请求或删除新请求。
+- 回归覆盖：容量为 1 时旧请求完成后条目数仍受限；同 key 的旧成功与旧失败均不能污染后续新请求；仍只调用一次当前 producer。
+- 本批验证：完整 `npm test` 464/464；`npm run check`、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `01ee265` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
