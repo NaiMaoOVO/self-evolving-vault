@@ -1038,3 +1038,10 @@ sensitivity: 内部
 - 回归覆盖：新增两个带尾随点的本机来源拒绝用例；标准公网 HTTPS 来源仍由此前用例覆盖。
 - 本批验证：完整 `npm test` 437/437；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。
 - 同步状态：源码提交 `d45a39a` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百三十五）
+
+- 远程 OCR 部署预检：仅接受 HTTP/HTTPS URL；公网 HTTP 必须显式设置 `OCR_ALLOW_INSECURE_REMOTE=true`，环回 HTTP 与 HTTPS 可用。
+- 运行时边界对齐：就绪检查和实际 OCR 请求共用 URL 校验，避免启用不安全开关后把 `ftp://` 误报为可用服务。
+- 本批验证：新增预检配置用例和服务 `/ready` 回归用例；完整 `npm test` 439/439，`npm run check`、`npm run build:public`、`npm run check:public`、构建文件无差异检查和 `git diff --check` 均通过。未执行真实远端 OCR 或线上部署。
+- 同步状态：源码提交 `766e9b6` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
