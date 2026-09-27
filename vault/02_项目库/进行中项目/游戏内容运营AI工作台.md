@@ -1248,3 +1248,10 @@ sensitivity: 内部
 - 回归覆盖：运行时将模型超时设为 600 秒，确认服务器入站超时仍是 60/10 秒；旧实现复现为 605/60 秒。
 - 本批验证：完整 `npm test` 481/481；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `349f03c` 已推送到 GameOps `main`；本条已随 Obsidian 提交 `56c5781` 推送到 `main`。
+
+## 2026-09-27 优化记录（一百六十三）
+
+- 多服务入站请求防护：热点、评论服务此前随 `UPSTREAM_TIMEOUT_MS` 延长客户端收包期限；OCR 服务也将入站请求体/请求头限制绑定到远端识别超时。现在热点、评论与 LLM 固定为请求体 60 秒/请求头 10 秒，OCR 固定为请求体 120 秒/请求头 10 秒（为较大图片上传保留时间）；各上游调用仍受其独立超时控制。
+- 回归覆盖：运行时探针把各服务上游超时设为 600 秒，逐个读取真实 HTTP Server 配置，确认入站限制不变；历史配置对热点、评论、OCR 探针均失败。
+- 本批验证：完整 `npm test` 484/484；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `6344983` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
