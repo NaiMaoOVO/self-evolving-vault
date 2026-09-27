@@ -1011,3 +1011,10 @@ sensitivity: 内部
 - 回归覆盖：示例句与常见占位值均被拒绝；长度不在 12-200 的值也被拒绝；诊断不回显口令。
 - 本批验证：完整 `npm test` 436/436；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。
 - 同步状态：源码提交 `6a3b222` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百三十一）
+
+- GitHub 持续集成：新增 push/PR 检查，在 Node 24 上执行语法检查、完整测试、public 构建、指纹校验，并要求构建不改写已提交 public 文件。
+- 安全边界：workflow 仅有 `contents: read`，不部署、不读取 secrets；checkout/setup-node 均固定到官方不可变提交。
+- 本批验证：本机 YAML 语法解析通过；按 workflow 顺序执行 `npm run check`、完整 `npm test` 436/436、`npm run build:public`、`npm run check:public`、`git diff --exit-code -- public` 和 `git diff --check` 均通过。GitHub 远端 Actions 运行结果尚未读取（当前环境无 `gh` CLI）。
+- 同步状态：源码提交 `eda7730` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
