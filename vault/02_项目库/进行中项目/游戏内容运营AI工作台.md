@@ -1024,3 +1024,10 @@ sensitivity: 内部
 - CI 凭据收敛：checkout 显式设置 `persist-credentials: false`；该测试/构建工作流不执行 Git 写操作，无需把仓库令牌保留在 checkout 中。
 - 本批验证：workflow YAML 语法解析与 `git diff --check` 通过。应用代码未改动；完整回归最近一次为 436/436，CI 远端运行结果仍待可读渠道确认。
 - 同步状态：源码提交 `7fd1b71` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百三十三）
+
+- PM2 子进程环境补齐：显式把 LLM Key/模式、远程 OCR Key、平台提供器令牌、B站 Cookie/API URL、晨报计划与游戏范围、热点来源和归档限流配置传给实际消费它们的 worker，避免线上静默退回规则模式或默认计划。
+- 最小权限：B站 Cookie 只进热点/评论服务；LLM Key 只进 LLM；OCR Key 只进 OCR；抖音/小红书提供器令牌只进热点。测试仅校验布尔匹配，不输出凭据。
+- 本批验证：完整 `npm test` 437/437；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未运行真实 PM2 worker 做部署端到端验收。
+- 同步状态：源码提交 `f7a4f87` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
