@@ -1226,4 +1226,11 @@ sensitivity: 内部
 - 热点提供器容错：归一化外部平台数据时跳过 `null`、数组等无效行，不再因一条坏记录丢弃整份结果；超出 JavaScript 日期范围的时间戳降级为空时间，不再让 `toISOString()` 抛错中断整个列表。
 - 回归用例混合无效行、超范围时间戳与有效热点，确认坏数据被隔离且有效结果仍返回。
 - 本批验证：完整 `npm test` 476/476；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `79ee062` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `79ee062` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `1dba86d` 推送到 `main`。
+
+## 2026-09-27 优化记录（一百六十）
+
+- 外部热点提供器响应上限：请求时长有限但此前 JSON 响应体无大小上限，异常提供器可能造成不必要的内存占用。现在通过流式读取最多接收 2 MiB，超限即取消上游流并返回稳定错误；合法流式 JSON 仍正常归一化。
+- 回归覆盖：超限 3 MiB 响应在解析前被拒绝，合法原生 `Response` 流成功解析；旧的坏行/无效时间戳隔离仍通过。
+- 本批验证：完整 `npm test` 478/478；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `392308f` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
