@@ -786,3 +786,10 @@ sensitivity: 内部
 - 回归覆盖：用 SQLite `BEFORE DELETE` 触发器模拟三类删除失败，逐项断言 500、安全错误文案、记录仍存在，并在每次失败后确认 `/health` 仍可用。用例先在旧实现上复现了连接重置，再于修复后通过。
 - 本批验证：完整 `npm test` 395/395；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。`npm run launcher:check` 仍报告用户级安装的桌面启动器运行时过期；因安装器会改动 `~/Applications`、`~/Library/Application Support` 并注册 `gameops://`，尚未获得本轮安装授权，未执行。未做浏览器端到端验收。
 - 同步状态：源码提交 `7664682` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十九）
+
+- 项目档案写入错误分类：`PUT /profile` 此前将 SQLite 写入错误和请求校验错误放进同一个捕获分支，数据库故障会误报 400 并把底层错误文本回给浏览器。现在输入仍按 400 处理，存储失败返回不含内部细节的通用 500 提示。
+- 回归覆盖：用数据库触发器拒绝项目档案写入，先验证旧实现返回 400，再验证修复后返回预期 500 JSON、响应中不含数据库错误内容，且健康检查仍成功。
+- 本批验证：完整 `npm test` 396/396；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `c20951e` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
