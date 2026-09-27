@@ -800,3 +800,10 @@ sensitivity: 内部
 - 回归覆盖：在隔离临时库中重命名档案表，验证两个读取接口都返回 500，错误体不含内部表名/SQLite 信息，并且服务健康检查持续成功。用例先在旧实现上复现 socket hang up，再于修复后通过。
 - 本批验证：完整 `npm test` 397/397；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `7f9108e` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零一）
+
+- 风险工单创建存储异常：幂等创建过去在数据库插入失败后查询幂等记录；若查询无结果（或查询本身失败），异常会逃出请求回调并终止服务。现在先校验文本字段，再分别保护幂等查询/插入/结果确认；确认不了时返回通用 500，不伪报成功也不泄露数据库错误。
+- 回归覆盖：用 `BEFORE INSERT` 触发器拒绝带幂等键的工单创建，确认返回 500、响应无内部错误、无记录残留且服务健康；原有非字符串文本校验仍返回 400。
+- 本批验证：完整 `npm test` 398/398；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `31b0d40` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
