@@ -1432,3 +1432,9 @@ sensitivity: 内部
 - 回归覆盖：用例先在旧模板下失败，改为安全默认值与部署说明后通过。
 - 本批验证：Nginx 配置专项 7/7；完整 `npm test` 503/503；`npm run check`、`npm run check:public`、`git diff --check` 通过。`nginx -t` 因当前环境未安装 Nginx 未运行。
 - 同步状态：源码提交 `3d04ff1` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百九十）
+
+- HTTP 到 HTTPS 重定向回归保护：HTTP 示例虽然保留了 API 反代 location，但依赖 server 级 `return 301 https://$host$request_uri` 使所有请求先升级到 HTTPS。新增合同测试，确保该跳转在 80 端口配置层级生效且早于 location；避免删改后 HTTP 绕过 HTTPS 模板的 Basic Auth。
+- 本批验证：Nginx 配置专项 8/8；完整 `npm test` 504/504；`npm run check`、`git diff --check` 通过。
+- 同步状态：源码测试提交 `365856b` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。Nginx 实际语法检查仍受当前环境未安装 Nginx 限制。
