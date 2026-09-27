@@ -1366,3 +1366,10 @@ sensitivity: 内部
 - 故障注入：先启动隔离 archive 服务创建真实 schema，预置七类旧数据，并用 SQLite trigger 令第三张表更新失败；验证旧逻辑会留下前两表已迁移的部分状态，修复后七表仍全部属于 `default`。
 - 本批验证：完整 `npm test` 496/496；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `1ebbc5a` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
+
+## 2026-09-28 优化记录（一百八十）
+
+- 管理员账号配置保护：若 `ARCHIVE_ADMIN_USERNAME` 对应已有 `member`，服务此前会静默把它当作管理员 ID，却仍保留成员角色，导致账号管理不可用并可能把旧数据迁给该成员。现改为启动时明确失败，不自动提升角色；README 说明修复选择。
+- 回归覆盖：先创建普通成员，再以该用户名启动认证初始化，旧逻辑下测试失败、修复后拒绝启动且不改角色。
+- 本批验证：完整 `npm test` 497/497；专项认证测试通过；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `c5ca344` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
