@@ -1274,4 +1274,4 @@ sensitivity: 内部
 
 - 登录限流合同测试：存档服务已有独立登录速率限制，但缺少针对真实 `/auth/login` HTTP 路由的回归覆盖。新增隔离服务测试，以配置上限 2 次验证前两次错误凭据返回 401、第三次返回 429，并带有效 `Retry-After`；未改变生产限流策略。
 - 验证：新增专项测试通过；完整 `npm test` 488/488；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `43f0e99` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `43f0e99` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `d1b8aac` 推送到 `main`。
