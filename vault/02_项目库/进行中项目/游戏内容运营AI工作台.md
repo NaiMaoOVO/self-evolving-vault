@@ -1122,3 +1122,10 @@ sensitivity: 内部
 - 回归覆盖：6 个服务的越界端口拒绝；无效归档端口不创建 DB；启动器用自定义 `OCR_PORT` 拉起并监测 OCR 服务。
 - 本批验证：端口专项 8/8；完整 `npm test` 455/455；`npm run check`、public 构建及一致性、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `a10f53c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百四十六）
+
+- 小红书桥接子进程超时改为安全整数解析，限制 1000–2147483647 毫秒；`Infinity`、`NaN`、负数及超范围配置在桥接服务启动前拒绝，避免 Node 定时器溢出后几乎立即杀死子进程。
+- 部署预检也会报告该配置项；示例环境文件补充默认值 125000 毫秒。
+- 本批验证：专项 2/2；完整 `npm test` 456/456；`npm run check`、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `3ebdb76` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
