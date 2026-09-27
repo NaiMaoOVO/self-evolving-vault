@@ -1454,3 +1454,10 @@ sensitivity: 内部
 - 回归覆盖：探针仅在四项核心读取均返回 5xx 时调用；覆盖存储未就绪、存储可用、局部失败、全网络离线、AI 洞察重试与旧快照保留。
 - 本批验证：完整 `npm test` 510/510；`npm run check`、`npm run check:public`、`git diff --check` 均通过。浏览器实机复验受 Mac 锁屏限制，未完成。
 - 同步状态：源码提交 `9929bc7` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。Launcher 用户级运行目录仍等待明确授权，未修改。
+
+## 2026-09-28 优化记录（一百九十三）
+
+- 账号会话响应校验：登录与会话刷新此前会把 HTTP 200 的空 JSON、错误结构或缺 CSRF 响应应用为当前会话，可能清掉已验证账号或留下无法写入的不完整登录态。现要求认证响应包含有效用户 ID、用户名、角色与 CSRF token；仅接受明确的认证关闭响应，异常刷新保留上次验证状态，异常登录不广播账号变化。
+- 回归覆盖：测试无效 JSON、空对象、无用户、缺 CSRF、有效认证关闭响应、无效登录成功响应及标准 401；无效响应不得覆盖账号、CSRF 或触发跨标签同步。
+- 本批验证：会话专项 15/15；完整 `npm test` 513/513；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `acf23ec` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
