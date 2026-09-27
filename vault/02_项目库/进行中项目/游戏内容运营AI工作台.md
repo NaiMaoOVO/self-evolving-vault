@@ -654,3 +654,9 @@ sensitivity: 内部
 - 回归覆盖：项目槽位 key 和 `localStorage.clear()` 事件会刷新；无关 key 被忽略。
 - 本批验证：槽位定向测试 5/5，完整 `npm test` 375/375；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `6414950` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十）
+
+- 运维文档纠偏：本机 `HANDOFF.md` 原记录“2026-09-01 已同步”已过期，现更新为 2026-09-27 只读检查结果，准确列出 5 个过期运行时文件、重装目标目录与需授权的安装步骤。
+- 验证：重新运行 `npm run launcher:check`，输出与手册列出的 5 个文件一致并以非零状态提示需要同步；未执行安装器。`HANDOFF.md` 被项目 `.gitignore` 排除，因此保留为本机说明，不强行加入源码提交。
+- 同步状态：本条 Obsidian 项目笔记更新；未产生新的 GameOps 源码提交。
