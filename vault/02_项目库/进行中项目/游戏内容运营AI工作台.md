@@ -1331,3 +1331,10 @@ sensitivity: 内部
 - 回归覆盖：新增 workflow 合同测试，验证自动触发唯一性、手动流程触发器及 Actions 固定版本/凭据策略；旧配置下失败，调整后通过。
 - 本批验证：完整测试套件 494/494；`npm run check`、`npm run check:public`、`git diff --check` 均通过。本地验证配置合同，不代表已观察到 GitHub 云端运行结果。
 - 同步状态：源码提交 `48cb223` 已推送到 GameOps `main`；本条记录待推送 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百七十五）
+
+- 创作者账号 ID 归一：此前将所有 `accountId` 转小写，大小写敏感的 opaque ID 可能误指向同一档案。现在仅去除首尾及内部空白、保留大小写；平台与展示名仍按原规则归一。
+- 回归覆盖：相同 ID 的首尾空格仍映射同一档案；只在大小写上不同的 ID 保持不同身份。旧实现下新断言失败，修复后通过。
+- 本批验证：完整测试套件 494/494；创作者专项 20/20；公共构建已刷新，`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `45b2cdf` 已推送到 GameOps `main`；本条记录待推送 Obsidian `main`。
