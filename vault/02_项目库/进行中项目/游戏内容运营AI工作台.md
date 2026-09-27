@@ -1051,4 +1051,4 @@ sensitivity: 内部
 - OCR 占位域名判断改为解析主机名后精确匹配 `example.com` 及其子域，忽略主机名大小写和尾随 DNS 点；不再因 URL 路径包含 `example.com` 或真实域名 `notexample.com` 误报。
 - 回归覆盖：占位主机及尾随点形式拒绝；`notexample.com`、合法域名的路径包含示例字符串、`example.com.evil.test` 均正常接受。
 - 本批验证：部署检查专项 9/9；完整 `npm test` 439/439；语法检查、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
-- 同步状态：源码提交 `91a757c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `91a757c` 已推送到 GameOps `main`；本条记录已推送到 Obsidian `main`（提交 `5d5e9aa`）。
