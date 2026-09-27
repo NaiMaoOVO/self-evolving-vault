@@ -640,3 +640,10 @@ sensitivity: 内部
 - 回归覆盖：覆盖取消、确认后替换，以及确认期间另一标签页更新三种路径。
 - 本批验证：槽位定向测试 3/3，完整 `npm test` 373/373；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `ee9e1bc` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（七十八）
+
+- 项目槽位载入一致性：槽位载入现在复用项目快照结构预检，拒绝含损坏创作者/热点条目的状态，并在恢复前说明未应用任何项目内容；空槽位提示保持不变。
+- 回归覆盖：模拟已保存槽位包含 `streamers: [null]`，验证恢复函数未执行且原槽位不变。
+- 本批验证：槽位定向测试 4/4，完整 `npm test` 374/374；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `7d60ab9` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
