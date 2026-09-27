@@ -1281,4 +1281,4 @@ sensitivity: 内部
 - 登录请求体上限：认证登录此前复用存档 API 的通用 5 MiB JSON 上限，少量登录字段也可触发大体积请求的缓冲与解析。现只为 `/auth/login` 设 4 KiB 上限，其他存档 API 保持原有 5 MiB 上限，超限返回 413 并标明上限。
 - 回归覆盖：约 5 KiB 登录请求在旧逻辑返回 401（进入认证），修复后返回 413；随后正常大小的失败登录及超过配置尝试数后的 429/`Retry-After` 仍符合预期。
 - 本批验证：完整 `npm test` 488/488；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `54166f6` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `54166f6` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `c2fa614` 推送到 `main`。
