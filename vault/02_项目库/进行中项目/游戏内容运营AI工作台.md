@@ -681,3 +681,10 @@ sensitivity: 内部
 - 回归覆盖：覆盖已有槽位与保存到空槽两种竞争场景；两个用例均先复现静默覆盖，再验证更新后能保留新数据。
 - 本批验证：完整 `npm test` 383/383；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `2d391b4` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十四）
+
+- 启动数据清理隔离：项目快照与项目槽位现在分别清理、分别处理异常。损坏的快照不会再中断有效槽位中的敏感字段清理；损坏的槽位也不会阻断项目快照清理。
+- 回归覆盖：同时构造损坏项目快照与包含旧密码字段的有效槽位，确认损坏快照原文保留、槽位独立完成清理。
+- 本批验证：完整 `npm test` 383/383；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `fbd792c` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
