@@ -1519,4 +1519,4 @@ sensitivity: 内部
 - 备份进程只继承归档数据库、备份目录、保留份数与临时目录配置；备份脚本从 `.env` 只加载三个归档备份配置，不把 LLM 等无关密钥放进子进程环境。运行时清单同步加入调度器及其依赖。
 - 验证：备份/调度器专项测试 20/20；完整 `npm test` 531/531；`npm run check`、`npm run check:public`、`git diff --check` 通过。真实备份子进程已生成并通过校验的文件；未进行用户级 Launcher 安装或浏览器 UI 验收。
 - 边界：自动备份仍存于同一设备/存储环境，不是异地灾备；用户级 Launcher runtime 仍待明确授权更新。
-- 同步状态：源码提交 `4b4dce1` 已推送到 GameOps `main`；本条记录及优化记录（二百）待推送到 Obsidian `main`。
+- 同步状态：源码提交 `4b4dce1` 已推送到 GameOps `main`；本条记录及优化记录（二百）随 Obsidian 提交 `b8b808c` 推送到 `main`。
