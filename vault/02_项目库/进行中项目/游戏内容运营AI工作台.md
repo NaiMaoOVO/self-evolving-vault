@@ -1045,3 +1045,10 @@ sensitivity: 内部
 - 运行时边界对齐：就绪检查和实际 OCR 请求共用 URL 校验，避免启用不安全开关后把 `ftp://` 误报为可用服务。
 - 本批验证：新增预检配置用例和服务 `/ready` 回归用例；完整 `npm test` 439/439，`npm run check`、`npm run build:public`、`npm run check:public`、构建文件无差异检查和 `git diff --check` 均通过。未执行真实远端 OCR 或线上部署。
 - 同步状态：源码提交 `766e9b6` 已推送到 GameOps `main`；本条记录已推送到 Obsidian `main`（提交 `d10f823`）。
+
+## 2026-09-27 优化记录（一百三十六）
+
+- OCR 占位域名判断改为解析主机名后精确匹配 `example.com` 及其子域，忽略主机名大小写和尾随 DNS 点；不再因 URL 路径包含 `example.com` 或真实域名 `notexample.com` 误报。
+- 回归覆盖：占位主机及尾随点形式拒绝；`notexample.com`、合法域名的路径包含示例字符串、`example.com.evil.test` 均正常接受。
+- 本批验证：部署检查专项 9/9；完整 `npm test` 439/439；语法检查、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `91a757c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
