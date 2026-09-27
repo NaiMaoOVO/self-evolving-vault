@@ -905,3 +905,10 @@ sensitivity: 内部
 - 回归覆盖：先登录获取有效会话，再于隔离认证库重命名用户表，验证 `/auth/session` 返回安全 500、无 SQLite/表名信息，且 `/health` 仍为 200；用例先在旧实现上复现 `socket hang up`。
 - 本批验证：完整 `npm test` 412/412；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。既有登录、CSRF、管理员权限及账号隔离用例通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `4a6f90a` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十六）
+
+- 管理员用户列表读取保护：`GET /auth/users` 查询失败过去会从请求处理器逸出并重置连接。现在管理员列表读取错误返回固定 500，不泄露数据库信息；会话认证与管理权限判断仍在原位。
+- 回归覆盖：使用有效管理员会话，临时改名用户表中的非认证时间字段以只破坏列表查询，验证固定 500、服务健康；恢复 schema 后确认同一会话仍有效，未影响后续会话故障用例。
+- 本批验证：完整 `npm test` 413/413；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。管理员权限、CSRF 与账号隔离回归通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `b0c4f36` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
