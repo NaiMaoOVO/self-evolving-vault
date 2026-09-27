@@ -926,3 +926,10 @@ sensitivity: 内部
 - 回归覆盖：SQLite 触发器拒绝有效管理员会话写入，确认安全 500；移除触发器后同一凭据登录成功。认证集成测试进程单独提高限流阈值以隔离多个登录故障用例，生产默认限流不变。
 - 本批验证：完整 `npm test` 415/415；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `d2e0d41` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十九）
+
+- 账号私有响应禁用缓存：归档服务所有 JSON 响应现在都设置 `Cache-Control: no-store`，避免认证状态、待办、项目档案、创作者库等私有内容留在浏览器或中间层缓存；业务响应数据不变。
+- 回归覆盖：使用已认证会话检查 `/auth/session`、`/daily-todos`、`/creator-library` 与 `/profile` 均返回 `no-store`。
+- 本批验证：完整 `npm test` 416/416；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `13debcb` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
