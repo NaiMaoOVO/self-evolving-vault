@@ -1511,4 +1511,12 @@ sensitivity: 内部
 - 重启命令退出状态：新控制进程若以信号（如 `SIGTERM`）退出，Node 的退出码为 `null`；此前 `code || 0` 会把它转换成成功。现保留正常数字退出码，并把信号终止映射成失败码 1。
 - 回归覆盖：正常退出码 0/非零保持原值，`code=null + signal` 必须返回失败。
 - 本批验证：控制器/运行时清单专项 10/10；完整测试套件 525/525；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
-- 同步状态：源码提交 `b3601e6` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `b3601e6` 已推送到 GameOps `main`；本条记录随优化记录（二百零一）推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（二百零一）
+
+- 归档自动备份：归档服务启动约 10 秒后检查当天（Asia/Shanghai）是否已有通过 SHA-256 与 SQLite 完整性校验的备份；缺失时异步调用现有备份脚本，失败后每小时重试，继续沿用 7 份轮换。`ARCHIVE_AUTO_BACKUP_ENABLED=0` 可关闭；Node 测试环境默认不启动，显式设为 `1` 才启用。
+- 备份进程只继承归档数据库、备份目录、保留份数与临时目录配置；备份脚本从 `.env` 只加载三个归档备份配置，不把 LLM 等无关密钥放进子进程环境。运行时清单同步加入调度器及其依赖。
+- 验证：备份/调度器专项测试 20/20；完整 `npm test` 531/531；`npm run check`、`npm run check:public`、`git diff --check` 通过。真实备份子进程已生成并通过校验的文件；未进行用户级 Launcher 安装或浏览器 UI 验收。
+- 边界：自动备份仍存于同一设备/存储环境，不是异地灾备；用户级 Launcher runtime 仍待明确授权更新。
+- 同步状态：源码提交 `4b4dce1` 已推送到 GameOps `main`；本条记录及优化记录（二百）待推送到 Obsidian `main`。
