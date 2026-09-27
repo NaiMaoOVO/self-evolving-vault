@@ -1504,4 +1504,11 @@ sensitivity: 内部
 - 回归覆盖：预建目录符号链接必须在 chmod/写入前拒绝；状态文件符号链接读写均拒绝且目标内容不变；超限状态文件在解析前拒绝。真实控制器启动/退出也验证了状态读写和清理流程。
 - 本批验证：控制器专项与运行时清单 8/8；本地控制器 HTTP 集成及端口校验 2/2；完整测试套件 524/524；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 运行时限制：项目内 Launcher 清单包含状态安全代码；用户级 Launcher 仍未更新，等待明确授权。
-- 同步状态：源码提交 `e8d7377` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `e8d7377` 已推送到 GameOps `main`；本条记录已随 Obsidian 提交 `5f2a93f` 推送到 `main`。
+
+## 2026-09-28 优化记录（二百）
+
+- 重启命令退出状态：新控制进程若以信号（如 `SIGTERM`）退出，Node 的退出码为 `null`；此前 `code || 0` 会把它转换成成功。现保留正常数字退出码，并把信号终止映射成失败码 1。
+- 回归覆盖：正常退出码 0/非零保持原值，`code=null + signal` 必须返回失败。
+- 本批验证：控制器/运行时清单专项 10/10；完整测试套件 525/525；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `b3601e6` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
