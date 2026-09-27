@@ -870,3 +870,10 @@ sensitivity: 内部
 - 回归覆盖：在隔离临时数据库中重命名待办表，旧实现返回 400（并泄漏表错误），修复后返回预期 500，响应不含 SQLite/表名，且 `/health` 仍为 200。
 - 本批验证：完整 `npm test` 407/407；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `154c6c2` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十一）
+
+- 风险工单列表存储故障分类：`GET /risk-events` 此前把 SQLite 查询失败误报为 400，并将数据库异常文本回给调用方。现在统一返回安全 500 提示；工单列表筛选与正常读取逻辑不变。
+- 回归覆盖：在隔离临时数据库中重命名风险表，确认旧实现返回 400；修复后返回固定 500、不含表名或 SQLite 错误，且 `/health` 仍为 200。
+- 本批验证：完整 `npm test` 408/408；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `98523d4` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
