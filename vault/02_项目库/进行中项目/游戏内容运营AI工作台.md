@@ -633,3 +633,10 @@ sensitivity: 内部
 - 回归覆盖：创作者和热点数组包含 `null` 时，均验证恢复函数不会被调用，页面状态保持未应用。
 - 本批验证：定向测试 11/11，完整 `npm test` 370/370；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `48ca9e2` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（七十七）
+
+- 项目槽位覆盖保护：保存到已有槽位前要求明确确认；用户取消时不写入。确认框期间若任一标签页更新了槽位列表，会检测到快照变化并取消旧页面覆盖。
+- 回归覆盖：覆盖取消、确认后替换，以及确认期间另一标签页更新三种路径。
+- 本批验证：槽位定向测试 3/3，完整 `npm test` 373/373；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `ee9e1bc` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
