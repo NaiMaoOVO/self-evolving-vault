@@ -1359,3 +1359,10 @@ sensitivity: 内部
 - 回归覆盖：模拟大小检查读到 1 字节、实际文件已增长到 1 MiB 的竞态，确认读取严格停在 513 字节并报超限；原有备份/恢复用例通过。
 - 本批验证：完整 `npm test` 495/495；备份专项 14/14；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `a78f942` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
+
+## 2026-09-28 优化记录（一百七十九）
+
+- 首次启用账号的旧数据迁移：原本逐表把 `default` 归属转给管理员，各语句独立提交；中途失败会形成局部迁移。现将 7 张数据表的归属更新放入单个 `BEGIN IMMEDIATE` 事务，任一表失败即整体回滚。
+- 故障注入：先启动隔离 archive 服务创建真实 schema，预置七类旧数据，并用 SQLite trigger 令第三张表更新失败；验证旧逻辑会留下前两表已迁移的部分状态，修复后七表仍全部属于 `default`。
+- 本批验证：完整 `npm test` 496/496；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `1ebbc5a` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
