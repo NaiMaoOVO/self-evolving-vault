@@ -940,3 +940,10 @@ sensitivity: 内部
 - 回归覆盖：通过 SQLite 触发器模拟一次删除失败，验证会话仍有效、响应不设置清除 cookie；解除故障后重试返回成功、清除 cookie，旧会话随即无效。
 - 本批验证：完整 `npm test` 417/417；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `9a51ecf` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十一）
+
+- 前端登录态抗瞬时故障：`/auth/session` 返回 500 或网络请求失败时，不再把当前已确认账号误判为未登录，也不清掉 CSRF 状态；只有明确 401 才清理账号并展示需要登录。
+- 回归覆盖：在已登录会话下分别模拟 500、fetch 拒绝，确认用户与 CSRF 保留；模拟 401，确认用户与 CSRF 被清理。
+- 本批验证：完整 `npm test` 420/420；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `6ab6b30` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
