@@ -997,3 +997,10 @@ sensitivity: 内部
 - 回归覆盖：分别验证认证关闭、无效用户名、超长口令、关闭 Secure Cookie 会被拒绝；有效 HTTPS 与认证配置通过，短口令错误不回显口令内容。
 - 本批验证：完整 `npm test` 436/436；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未在本机运行 PM2 服务端到端验收。
 - 同步状态：源码提交 `fbe5ae1` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十九）
+
+- PM2 最小权限回归：扩展部署配置测试，确认管理员口令和认证开关只注入 archive 应用，不进入热点、评论、OCR 或 LLM 的进程环境。
+- 凭据处理：测试只比较配置值是否匹配的布尔结果，并断言测试口令不出现在任何标准输出中。
+- 本批验证：完整 `npm test` 436/436；`npm run check` 和 `git diff --check` 通过。
+- 同步状态：源码提交 `3a144d8` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
