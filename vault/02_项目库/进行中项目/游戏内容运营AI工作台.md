@@ -1569,3 +1569,9 @@ sensitivity: 内部
 - 回归覆盖：archive 真实 HTTP 冒烟进程收到 `SIGTERM` 后应以正常退出码关闭；旧代码以 `signal: SIGTERM` 直接中止，修复后通过。
 - 本批验证：archive 启动/退出专项通过；完整 `npm test` 537/537；`npm run check`、`npm run check:public`、`git diff --check` 全通过。
 - 同步状态：源码提交 `4c0586d` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（二百零九）
+
+- 归档恢复目标符号链接回归：恢复流程已有实现会拒绝数据库路径为符号链接，但缺少直接测试。新增真实 SQLite 数据库与备份用例，验证恢复遇到目标数据库符号链接时明确失败，不替换链接、不修改链接目标，也不生成恢复前副本。
+- 验证：符号链接恢复专项 2/2；完整 `npm test` 538/538；`npm run check`、`npm run check:public`、`git diff --check` 均通过。未进行浏览器实机交互验收。
+- 同步状态：源码提交 `29789cb` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
