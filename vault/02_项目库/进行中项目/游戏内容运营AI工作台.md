@@ -1129,3 +1129,10 @@ sensitivity: 内部
 - 部署预检也会报告该配置项；示例环境文件补充默认值 125000 毫秒。
 - 本批验证：专项 2/2；完整 `npm test` 456/456；`npm run check`、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `3ebdb76` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百四十七）
+
+- 重启脚本统一校验 `CONTROLLER_PORT`，与本地启动器共用 1–65535 安全边界；错误端口不再被静默替换为默认值。
+- 将重启入口置于 `require.main` 守卫后，使配置可被无副作用地检查；新增导入级回归测试，确认非法端口不会触发服务重启。
+- 本批验证：专项 1/1；完整 `npm test` 457/457；`npm run check`、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `e69687e` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
