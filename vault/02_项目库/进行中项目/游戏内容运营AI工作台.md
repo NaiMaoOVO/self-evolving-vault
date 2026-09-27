@@ -975,3 +975,11 @@ sensitivity: 内部
 - 凭据保护回归：用无效管理员口令哨兵验证部署错误输出不包含口令；占位域名提示保持单行，避免泄露无关环境细节。
 - 本批验证：完整 `npm test` 432/432；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。`npm run deploy:check` 在当前环境按预期因未设置正式 `ALLOWED_ORIGIN` 退出；未部署、未代填域名。
 - 同步状态：源码提交 `1f3ebe7` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十六）
+
+- 线上来源白名单校验：`ALLOWED_ORIGIN` 现在逐项要求规范 HTTPS origin，拒绝 malformed URL、HTTP、路径、localhost 和 IPv4/IPv6 回环地址；仍支持逗号分隔的多个 HTTPS origin。
+- 占位域名判定收紧：仅拦截 `example.com` 与其子域，不再误拒绝名称中包含该字符串的其他域名。
+- 回归覆盖：格式错误、HTTP、本机地址、IPv6 回环、附带路径与混合不安全列表均被拒绝；多域名 HTTPS 列表和 `notexample.com` 可通过。
+- 本批验证：完整 `npm test` 433/433；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。正式 `ALLOWED_ORIGIN` 仍需部署者填写真实站点，未部署。
+- 同步状态：源码提交 `0eb1c04` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
