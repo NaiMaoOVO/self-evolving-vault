@@ -793,3 +793,10 @@ sensitivity: 内部
 - 回归覆盖：用数据库触发器拒绝项目档案写入，先验证旧实现返回 400，再验证修复后返回预期 500 JSON、响应中不含数据库错误内容，且健康检查仍成功。
 - 本批验证：完整 `npm test` 396/396；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `c20951e` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百）
+
+- 项目档案读取故障隔离：`GET /profiles` 与 `GET /profile` 之前直接查询 SQLite，底层表不可用时异常会逃出请求回调并终止存档服务。现在两路由返回统一的 500 恢复提示，不泄露 SQLite 细节；缺少 `game` 参数依旧返回 400。
+- 回归覆盖：在隔离临时库中重命名档案表，验证两个读取接口都返回 500，错误体不含内部表名/SQLite 信息，并且服务健康检查持续成功。用例先在旧实现上复现 socket hang up，再于修复后通过。
+- 本批验证：完整 `npm test` 397/397；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `7f9108e` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
