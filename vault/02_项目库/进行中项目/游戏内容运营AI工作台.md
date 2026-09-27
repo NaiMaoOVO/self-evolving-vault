@@ -716,3 +716,10 @@ sensitivity: 内部
 - 回归覆盖：构造“内容本身是有效 JSON，但 SSE 缺少 `[DONE]`”的上游响应；先复现旧逻辑错误发出 `done`，再验证修复后只发出 `error`。正常结束标记的既有流式用例继续通过。
 - 本批验证：LLM 流式专项 12/12、完整 `npm test` 386/386；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `37b2388` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十九）
+
+- AI 任务必需字段校验：即便上游返回合法 JSON 对象，`{}` 也曾被作为成功结果返回并缓存。现在评论分析/日报必须带非空 `summary`，版本包装必须带非空 `announcement`；缺失时 JSON 返回通用 502、SSE 发出错误事件，不写入缓存。
+- 回归覆盖：三类任务分别用空对象覆盖 JSON 与 SSE 路径；额外重复一次相同失败请求，确认再次访问上游而不是命中错误缓存。同步更新日报成功响应的测试夹具。
+- 本批验证：完整 `npm test` 387/387；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `fbdd633` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
