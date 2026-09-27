@@ -1387,3 +1387,9 @@ sensitivity: 内部
 - 回归覆盖：`ARCHIVE_AUTH_ENABLED=0` 且管理员用户名为 `admin@example.com` 时，旧逻辑抛出校验错误；调整后成功创建本地模式认证对象。
 - 本批验证：完整 `npm test` 499/499；`npm run check`、`git diff --check` 均通过。
 - 同步状态：源码提交 `ab7d196` 已推送到 GameOps `main`；本条记录随 Obsidian 更新推送到 `main`。
+
+## 2026-09-28 优化记录（一百八十三）
+
+- 线上 API 访问门禁与健康检查：HTTPS Nginx 模板原有服务器级 Basic Auth，但缺少回归保护；新增配置合同测试，确认所有 5 个代理服务仍受该门禁保护且路由没有关闭认证。部署文档同步要求自定义反代配置等效认证，并让健康检查命令交互提示密码，避免执行模板命令时意外收到 401 或把口令写入命令历史。
+- 本批验证：Nginx 配置专项 5/5；完整 `npm test` 500/500；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `1376145` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
