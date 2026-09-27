@@ -898,3 +898,10 @@ sensitivity: 内部
 - 回归覆盖：临时重命名快照表验证统计接口返回固定 500、不泄漏数据库细节；重命名晨报表验证运行记录接口同样受控；两类故障期间健康检查均保持 200。快照非法 kind 仍返回 400。
 - 本批验证：完整 `npm test` 411/411；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `41093a6` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十五）
+
+- 登录会话读取故障保护：归档服务在进入任一受保护路由前都会查询会话；认证表故障过去会让请求连接重置。现在会话验证异常返回固定 500，不泄漏数据库信息，也不会伪装为未登录；服务继续响应健康检查。
+- 回归覆盖：先登录获取有效会话，再于隔离认证库重命名用户表，验证 `/auth/session` 返回安全 500、无 SQLite/表名信息，且 `/health` 仍为 200；用例先在旧实现上复现 `socket hang up`。
+- 本批验证：完整 `npm test` 412/412；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。既有登录、CSRF、管理员权限及账号隔离用例通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `4a6f90a` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
