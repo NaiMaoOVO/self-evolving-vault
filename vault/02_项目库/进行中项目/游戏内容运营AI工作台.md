@@ -647,3 +647,10 @@ sensitivity: 内部
 - 回归覆盖：模拟已保存槽位包含 `streamers: [null]`，验证恢复函数未执行且原槽位不变。
 - 本批验证：槽位定向测试 4/4，完整 `npm test` 374/374；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `7d60ab9` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（七十九）
+
+- 多标签页状态同步：项目槽位订阅浏览器 `storage` 事件；同源标签页修改槽位或清空本机存储时，当前页自动刷新槽位名称与占用状态，避免列表继续显示旧数据。
+- 回归覆盖：项目槽位 key 和 `localStorage.clear()` 事件会刷新；无关 key 被忽略。
+- 本批验证：槽位定向测试 5/5，完整 `npm test` 375/375；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `6414950` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
