@@ -821,3 +821,10 @@ sensitivity: 内部
 - 回归覆盖：以 SQLite 插入触发器模拟待办存储故障，确认 500、无 SQLite 错误泄漏、无记录残留且服务健康；待办正常幂等重试、枚举和既有输入验证回归通过。
 - 本批验证：完整 `npm test` 400/400；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `d24ebfc` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零四）
+
+- 每日待办更新错误分类：`PUT /daily-todos/:id` 此前将 SQLite 查询/更新异常当作字段校验失败，返回 400 并可能暴露数据库错误。现在解析与业务字段错误仍返回 400，查找/更新失败返回安全 500；更新成功后若无法重新读取，会明确说明数据已更新但暂不可见。
+- 回归覆盖：用 `BEFORE UPDATE` 触发器拒绝状态更新，确认接口 500、不泄露内部错误、原待办仍为 open 且服务健康；原有非字符串字段和幂等创建验证继续通过。
+- 本批验证：完整 `npm test` 401/401；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `f9732fa` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
