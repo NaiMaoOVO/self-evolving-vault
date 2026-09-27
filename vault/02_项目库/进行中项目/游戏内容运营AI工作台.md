@@ -1179,7 +1179,7 @@ sensitivity: 内部
 ## 2026-09-27 优化记录（一百五十三）
 
 - 前端安全回归：审计简报存档字段到 HTML 的渲染路径，确认 `dataIssues` 在最终输出阶段已有 `escapeHtml`；未发现可利用的 XSS 路径。新增恶意存档字段用例，锁定其只能作为文本显示。
-- 备份留存 fail-fast：`ARCHIVE_BACKUP_KEEP` 严格接受 1–100 的整数，拒绝 `1junk`、0、101、小数、`NaN` 和 `Infinity`，并在创建备份/清理旧副本前退出，避免配置误解析为 1 后静默删减恢复点。
+- 备份留存 fail-fast：`ARCHIVE_BACKUP_KEEP` 严格接受 1–100 的整数，拒绝 `1junk`、0、101、小数、`NaN` 和 `Infinity`，并在创建备份/清理旧副本前退出，避免配置误解析为 1 后静默删减恢复点；边界测试确认 1 与 100 可用。
 - 文档同步：README 明确无效保留份数配置会在备份与清理前被拒绝。
 - 本批验证：完整 `npm test` 466/466；备份专项 11/11；`npm run check`、public 构建及一致性、public 无差异检查和 `git diff --check` 均通过。
-- 同步状态：源码提交 `746d3ca`、`4df8c06` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `746d3ca`、`4df8c06`、`824b11e` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
