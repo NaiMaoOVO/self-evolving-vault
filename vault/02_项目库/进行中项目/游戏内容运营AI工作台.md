@@ -807,3 +807,10 @@ sensitivity: 内部
 - 回归覆盖：用 `BEFORE INSERT` 触发器拒绝带幂等键的工单创建，确认返回 500、响应无内部错误、无记录残留且服务健康；原有非字符串文本校验仍返回 400。
 - 本批验证：完整 `npm test` 398/398；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `31b0d40` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零二）
+
+- 发布台账创建故障保护：幂等键查询失败或 SQLite 插入失败此前可能从请求回调逸出；创建字段 `url`/关联话题的文本校验也混在写入分支中。现在校验错误按 400 返回，幂等查询、插入及插入结果确认失败按通用 500 返回；确认存在同幂等键记录时仍返回已有记录，写入后暂时无法读取时明确告知结果。
+- 回归覆盖：以非字符串 URL 验证输入仍是 400；用 SQLite 触发器拒绝发布记录写入，确认 500 不暴露内部错误、没有残留记录且服务健康；既有幂等重试回归仍通过。
+- 本批验证：完整 `npm test` 399/399；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `caee2fd` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
