@@ -730,3 +730,10 @@ sensitivity: 内部
 - 回归覆盖：拒绝自然语言日期、无效闰日、非字符串日期和超长标题；逐项确认服务仍可健康响应；接受有效日期和既有 ISO 时间戳，并验证非法更新保留旧值。
 - 本批验证：完整 `npm test` 388/388；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `4504822` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十一）
+
+- 存档文本字段类型校验：共享的 `textValue` 现在只在字段缺省时回退默认/旧值；显式提交数字、对象或其他非字符串类型会返回 400，不再以 200 静默忽略。覆盖发布台账与每日待办的更新接口。
+- 回归覆盖：非法标题/链接类型均返回 400；读取记录确认原值未被误改，字段缺省的部分更新仍由既有用例覆盖。
+- 本批验证：完整 `npm test` 390/390；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `5b90486` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
