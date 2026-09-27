@@ -667,3 +667,10 @@ sensitivity: 内部
 - 回归覆盖：旧页面不能覆盖新快照；载入最新快照后可继续保存；在实际写入前发生更新也会拦截；启动时无法读取基线则采取失败关闭。
 - 本批验证：新增回归后完整 `npm test` 380/380；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收；`localStorage` 仍是本机存储，并非事务型跨设备同步。
 - 同步状态：源码提交 `1e82829` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十二）
+
+- 启动隐私清理的并发保护：清除项目快照/项目槽位中的旧敏感字段前，重新核对原始存储值；清洗过程中若另一标签页已提交新值，则跳过旧值写回，保护较新的项目数据。
+- 回归覆盖：分别模拟清理项目快照和槽位时另一标签页更新，验证新值保留且清理流程不执行覆盖写入；既有损坏数据保护用例仍通过。
+- 本批验证：完整 `npm test` 381/381；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `635a715` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
