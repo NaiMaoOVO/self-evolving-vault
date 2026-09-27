@@ -863,3 +863,10 @@ sensitivity: 内部
 - 回归覆盖：在隔离临时数据库中重命名个人库表，验证旧实现先复现 `socket hang up`；修复后接口返回预期 500，随后 `/health` 仍为 200。
 - 本批验证：完整 `npm test` 406/406；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `7ff1b98` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十）
+
+- 每日待办列表存储故障分类：`GET /daily-todos` 此前把 SQLite 查询失败返回为 400，并把底层数据库错误带给前端。现在返回固定的安全 500 提示；常规待办列表/筛选行为不变。
+- 回归覆盖：在隔离临时数据库中重命名待办表，旧实现返回 400（并泄漏表错误），修复后返回预期 500，响应不含 SQLite/表名，且 `/health` 仍为 200。
+- 本批验证：完整 `npm test` 407/407；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `154c6c2` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
