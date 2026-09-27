@@ -983,3 +983,10 @@ sensitivity: 内部
 - 回归覆盖：格式错误、HTTP、本机地址、IPv6 回环、附带路径与混合不安全列表均被拒绝；多域名 HTTPS 列表和 `notexample.com` 可通过。
 - 本批验证：完整 `npm test` 433/433；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。正式 `ALLOWED_ORIGIN` 仍需部署者填写真实站点，未部署。
 - 同步状态：源码提交 `0eb1c04` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十七）
+
+- PM2 认证配置传递：archive 服务的 ecosystem `env` 显式携带认证开关、管理员用户名/口令、Secure Cookie 和会话时长；否则部署检查虽读到并验证 `.env`，archive 应用清单本身没有这些条目。
+- 回归覆盖：从隔离子进程加载 ecosystem 配置，仅核对口令是否匹配的布尔值（不打印口令），并验证认证开关、用户名、安全 Cookie 与会话时长均注入 archive 进程配置。
+- 本批验证：完整 `npm test` 434/434；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未在本机重启 PM2 实例做运行时验收。
+- 同步状态：源码提交 `1cb795a` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
