@@ -1018,3 +1018,9 @@ sensitivity: 内部
 - 安全边界：workflow 仅有 `contents: read`，不部署、不读取 secrets；checkout/setup-node 均固定到官方不可变提交。
 - 本批验证：本机 YAML 语法解析通过；按 workflow 顺序执行 `npm run check`、完整 `npm test` 436/436、`npm run build:public`、`npm run check:public`、`git diff --exit-code -- public` 和 `git diff --check` 均通过。GitHub 远端 Actions 运行结果尚未读取（当前环境无 `gh` CLI）。
 - 同步状态：源码提交 `eda7730` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百三十二）
+
+- CI 凭据收敛：checkout 显式设置 `persist-credentials: false`；该测试/构建工作流不执行 Git 写操作，无需把仓库令牌保留在 checkout 中。
+- 本批验证：workflow YAML 语法解析与 `git diff --check` 通过。应用代码未改动；完整回归最近一次为 436/436，CI 远端运行结果仍待可读渠道确认。
+- 同步状态：源码提交 `7fd1b71` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
