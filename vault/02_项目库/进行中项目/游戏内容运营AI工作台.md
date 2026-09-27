@@ -1136,3 +1136,11 @@ sensitivity: 内部
 - 将重启入口置于 `require.main` 守卫后，使配置可被无副作用地检查；新增导入级回归测试，确认非法端口不会触发服务重启。
 - 本批验证：专项 1/1；完整 `npm test` 457/457；`npm run check`、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `e69687e` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百四十八）
+
+- 限流配置统一 fail-fast：热点、评论、OCR、LLM、归档服务对限流次数采用严格正整数解析；`RATE_LIMIT_WINDOW_MS` 统一限制为 1000–2147483647 毫秒，避免 `0`、小数、`NaN` 或超大值被静默替换成默认策略。
+- 部署预检与本机启动采用相同边界，并明确报告配置项；归档服务的普通请求限流和登录限流均在打开 SQLite 前验证。
+- 回归覆盖：部署预检拒绝非法值并接受 1000ms 边界；各服务在监听/打开数据库前拒绝非法限流配置。
+- 本批验证：完整 `npm test` 457/457；`npm run check`、public 构建与一致性检查、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `732c047` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
