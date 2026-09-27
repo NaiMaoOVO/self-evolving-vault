@@ -1183,3 +1183,10 @@ sensitivity: 内部
 - 文档同步：README 明确无效保留份数配置会在备份与清理前被拒绝。
 - 本批验证：完整 `npm test` 466/466；备份专项 11/11；`npm run check`、public 构建及一致性、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `746d3ca`、`4df8c06`、`824b11e` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百五十四）
+
+- 部署预检补齐备份策略：`deploy:check` 与实际备份脚本共用 `ARCHIVE_BACKUP_KEEP` 校验器；无效值在部署检查阶段即失败，避免上线后才在定时备份时暴露配置问题。
+- 回归覆盖：预检拒绝 `1junk`、0、101、小数、`NaN`、`Infinity`；1 和 100 的边界通过；备份脚本继续复用同一校验结果。
+- 本批验证：完整 `npm test` 467/467；`npm run check`、public 构建及一致性、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `c9b7219` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
