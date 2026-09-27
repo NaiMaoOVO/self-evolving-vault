@@ -954,3 +954,10 @@ sensitivity: 内部
 - 回归覆盖：退出完成后释放迟到的已认证响应、让较旧并发刷新晚于新刷新返回，以及服务模式切换后释放旧模式响应，三种情况下旧账号都不能被重新应用；401 仍明确清理用户和 CSRF。
 - 本批验证：完整 `npm test` 423/423；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `d14a30c` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百二十三）
+
+- 登录/登出响应上下文保护：认证变更请求现在绑定当前登录上下文；请求期间切换服务或开始另一项认证变更后，旧响应不会覆盖新服务的身份状态，并会显示可重试提示。
+- 回归覆盖：模拟旧服务的登录和登出请求在切换到线上模式后才返回，确认账号与 CSRF 保持新模式的空状态；正常成功登录、登出仍正确应用会话。
+- 本批验证：完整 `npm test` 426/426；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `f5d8aeb` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
