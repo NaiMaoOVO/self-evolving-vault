@@ -828,3 +828,10 @@ sensitivity: 内部
 - 回归覆盖：用 `BEFORE UPDATE` 触发器拒绝状态更新，确认接口 500、不泄露内部错误、原待办仍为 open 且服务健康；原有非字符串字段和幂等创建验证继续通过。
 - 本批验证：完整 `npm test` 401/401；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `f9732fa` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零五）
+
+- 风险工单更新故障分类：更新路由此前未保护初始数据库读取，写入异常又被当成字段错误返回 400；读写故障可能泄露内部细节或终止服务。现在数据库读取、更新和更新后回读分别返回受控 500；文本/枚举校验错误仍是 400。
+- 回归覆盖：用 `BEFORE UPDATE` 触发器拒绝工单状态变更，确认 500、不泄露数据库错误、原状态仍为 open 且健康检查成功；旧实现实际误报 400。
+- 本批验证：完整 `npm test` 402/402；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `cf52f0a` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
