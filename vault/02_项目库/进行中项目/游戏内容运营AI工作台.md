@@ -814,3 +814,10 @@ sensitivity: 内部
 - 回归覆盖：以非字符串 URL 验证输入仍是 400；用 SQLite 触发器拒绝发布记录写入，确认 500 不暴露内部错误、没有残留记录且服务健康；既有幂等重试回归仍通过。
 - 本批验证：完整 `npm test` 399/399；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `caee2fd` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零三）
+
+- 每日待办创建故障分类：待办 POST 过去会把幂等查找/SQLite 写入错误交给输入校验总捕获，向界面返回 400 和数据库细节。现将来源字段校验移到写入前，并保护幂等查找、写入结果确认及新建后读取；存储异常返回安全 500，无法确认结果时不猜测成功。
+- 回归覆盖：以 SQLite 插入触发器模拟待办存储故障，确认 500、无 SQLite 错误泄漏、无记录残留且服务健康；待办正常幂等重试、枚举和既有输入验证回归通过。
+- 本批验证：完整 `npm test` 400/400；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `d24ebfc` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
