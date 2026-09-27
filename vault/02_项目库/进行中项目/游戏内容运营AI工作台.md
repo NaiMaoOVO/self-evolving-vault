@@ -597,3 +597,10 @@ sensitivity: 内部
 - 回归覆盖：模拟确认后另一标签页修复并更新个人库，验证旧快照恢复被拒绝、更新数据未被覆盖且损坏状态刷新。
 - 本批验证：完整 `npm test` 357/357；`npm run check`、`npm run check:public` 与 `git diff --check` 通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `abe25d3` 已推送到 GameOps `main`；用户已将 GitHub Connector 授权范围改为所有仓库。本记录仅更新此项目笔记。
+
+## 2026-09-27 优化记录（七十二）
+
+- 创作者云同步并发保护：开始同步时固定本机数据快照；远端读取期间若本机数据变化，则取消旧快照上传；远端写入期间若本机数据变化，则拒绝把旧同步结果写回本机，并提示保留本机新内容后再次同步。
+- 回归覆盖：分别模拟远端 GET 和 PUT 等待期间另一标签页更新档案，验证 GET 阶段不上传旧数据、PUT 阶段不覆盖本机更新；底层存储写入器也验证快照不匹配会拒绝写入。
+- 本批验证：完整 `npm test` 360/360；`npm run check`、`npm run build:public`、`npm run check:public` 与 `git diff --check` 通过。未进行浏览器端到端验收。
+- 同步状态：源码提交 `cf6cadb` 已推送到 GameOps `main`；本记录只写入本 Obsidian 项目笔记。
