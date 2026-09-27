@@ -1105,3 +1105,11 @@ sensitivity: 内部
 - 回归覆盖：坏配置在部署预检及 OCR/LLM 服务监听前均被拒绝；关闭缓存配置通过。
 - 本批验证：专项 3/3；完整 `npm test` 453/453；`npm run check`、改动库语法检查、public 构建及一致性检查、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `a8df6ff` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百四十四）
+
+- 平台请求时限：`PLATFORM_PROVIDER_TIMEOUT_MS` 现在要求 1000–2147483647 毫秒的安全整数；`Infinity` 等无效值会在部署预检和热点服务启动时被拒绝，不再拖到实际抓取时报错。
+- 管理员会话时长：部署预检和本机 archive 服务统一校验 1–744 小时，与认证模块原有 31 天上限一致。
+- 回归覆盖：越界/非有限值在预检和服务监听前拒绝；缓存关闭、最短提供器超时和最长会话边界通过。
+- 本批验证：专项 3/3；完整 `npm test` 453/453；`npm run check`、public 构建与一致性、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `3fe26e7` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
