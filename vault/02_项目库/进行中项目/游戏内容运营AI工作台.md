@@ -1097,3 +1097,11 @@ sensitivity: 内部
 - 回归覆盖：非法数值在部署预检和两个服务监听前均被拒绝；`UPSTREAM_RETRIES=0`、`CACHE_TTL_MS=0` 可通过。
 - 本批验证：专项 51/51；完整 `npm test` 452/452；`npm run check`、改动库语法检查、public 构建及一致性检查、public 无差异检查和 `git diff --check` 均通过。
 - 同步状态：源码提交 `dd61a44` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百四十三）
+
+- OCR/LLM 资源配置 fail-fast：请求超时、OCR 就绪检查时限、并发上限和 LLM 缓存 TTL 均改为安全整数解析；负超时、`NaN`、`Infinity` 等值在启动前拒绝。
+- 缓存行为：`LLM_CACHE_TTL_MS=0` 现在可明确关闭缓存；有效配置在部署预检和服务本机启动中采用一致边界。
+- 回归覆盖：坏配置在部署预检及 OCR/LLM 服务监听前均被拒绝；关闭缓存配置通过。
+- 本批验证：专项 3/3；完整 `npm test` 453/453；`npm run check`、改动库语法检查、public 构建及一致性检查、public 无差异检查和 `git diff --check` 均通过。
+- 同步状态：源码提交 `a8df6ff` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
