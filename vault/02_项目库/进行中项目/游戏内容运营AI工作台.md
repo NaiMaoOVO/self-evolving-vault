@@ -765,3 +765,10 @@ sensitivity: 内部
 - 回归覆盖：用延迟请求模拟反馈快照先失败、热点快照后成功；确认重试状态仍显示，并验证按钮重发反馈快照而非热点快照。
 - 本批验证：完整 `npm test` 394/394；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `7c81b96` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十六）
+
+- 快照明确拒绝反馈：后台存档收到 HTTP 400/422 时，过去会显示“状态未知”并将同一无效数据放入重试队列。现在明确显示本次未保存，要求修正后重新生成；其他待重试快照仍保留，超时/断连继续按结果不确定处理。
+- 回归覆盖：模拟失败快照重试收到 HTTP 400，确认提示“本次数据未保存”且不再重复展示该项重试按钮；并保留并发快照失败队列的覆盖。
+- 本批验证：完整 `npm test` 394/394；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `21cd18f` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
