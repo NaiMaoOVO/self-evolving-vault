@@ -688,3 +688,10 @@ sensitivity: 内部
 - 回归覆盖：同时构造损坏项目快照与包含旧密码字段的有效槽位，确认损坏快照原文保留、槽位独立完成清理。
 - 本批验证：完整 `npm test` 383/383；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `fbd792c` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十五）
+
+- LLM 请求体类型校验：`/generate` 在读取任务字段前强制校验顶层是 JSON 对象；此前合法 JSON `null` 会抛出未捕获异常并终止 LLM 服务，现在 `null` 和数组均返回 400，服务继续运行。
+- 回归覆盖：契约测试发送 `null`、数组、非法 JSON、未知任务和样本不足请求，并验证限流响应仍正常。
+- 本批验证：完整 `npm test` 383/383；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `4b5f569` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
