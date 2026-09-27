@@ -1562,3 +1562,10 @@ sensitivity: 内部
 - 回归覆盖：认证集成测试将备份目录设置为普通文件并显式启用调度，管理员查询必须仍返回 `pending`；旧逻辑会立即运行目录校验并返回 `failed`，修复后通过。
 - 本批验证：认证专项 11/11；完整 `npm test` 537/537；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `ce54b6b` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（二百零八）
+
+- archive 服务退出清理：自动备份调度器原有 `stop()` 可取消定时器并终止正在运行的备份子进程，但服务未监听 `SIGINT/SIGTERM` 调用它，重启时可能遗留备份进程。现服务捕获两类信号，停止调度并关闭 HTTP 接收，3 秒后强制清理遗留连接。
+- 回归覆盖：archive 真实 HTTP 冒烟进程收到 `SIGTERM` 后应以正常退出码关闭；旧代码以 `signal: SIGTERM` 直接中止，修复后通过。
+- 本批验证：archive 启动/退出专项通过；完整 `npm test` 537/537；`npm run check`、`npm run check:public`、`git diff --check` 全通过。
+- 同步状态：源码提交 `4c0586d` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
