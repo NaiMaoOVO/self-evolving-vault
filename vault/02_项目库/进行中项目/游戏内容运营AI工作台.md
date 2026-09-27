@@ -758,3 +758,10 @@ sensitivity: 内部
 - 回归覆盖：真实 HTTP 服务测试验证数字和未知来源值返回 400；验证省略值默认保存为 sample、显式 real 保留为 real，服务仍可继续响应。
 - 本批验证：完整 `npm test` 393/393；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `c45e640` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（九十五）
+
+- 并行后台快照重试：多个自动存档请求重叠时，较晚成功响应此前会隐藏较早失败的提示；重试也可能重发最新尝试而非失败快照。现在失败快照按幂等键保存在待重试队列，后续成功不会清除其他失败项，重试逐项使用原始数据；切换账号会清空旧账号队列。
+- 回归覆盖：用延迟请求模拟反馈快照先失败、热点快照后成功；确认重试状态仍显示，并验证按钮重发反馈快照而非热点快照。
+- 本批验证：完整 `npm test` 394/394；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `7c81b96` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
