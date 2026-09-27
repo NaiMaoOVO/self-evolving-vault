@@ -849,3 +849,10 @@ sensitivity: 内部
 - 回归覆盖：以 `BEFORE INSERT` 触发器拒绝快照写入，确认 500、响应不含内部错误、无快照残留且服务健康。
 - 本批验证：完整 `npm test` 404/404；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `2341489` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百零八）
+
+- KOL/KOC 个人库同步错误分类：`PUT /creator-library` 此前把远端 SQLite 查询/保存失败与档案格式错误共用一个捕获分支，数据库错误会返回 400 并暴露底层文本。现在无效个人库仍返回 400，远端读取/保存失败返回安全 500；冲突和损坏保护语义不变。
+- 回归覆盖：用数据库触发器拒绝远端库写入，确认 500、不泄露内部错误、健康检查成功，并验证失败前后的远端 `library` 与 `updated_at` 完全一致；既有登录、CSRF、冲突、无效档案回归通过。
+- 本批验证：完整 `npm test` 405/405；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `61a2aee` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
