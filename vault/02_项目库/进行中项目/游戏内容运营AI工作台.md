@@ -1468,3 +1468,10 @@ sensitivity: 内部
 - 回归覆盖：普通 API 401 清账号并通知；旧请求 401 不得清新账号；退出 401 清理，退出 500 保留登录与 CSRF 状态。
 - 本批验证：会话专项 18/18；完整 `npm test` 516/516；`npm run check`、`npm run check:public`、`git diff --check` 均通过。验证覆盖客户端状态机，浏览器实机交互仍受当前 Mac 锁屏限制。
 - 同步状态：源码提交 `77d0eda` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百九十五）
+
+- 会话到期校验：SQLite 中 `expires_at` 损坏时，`Date.parse()` 返回 `NaN`，旧比较会把该会话当作有效；此外过期会话的清理删除失败会抛出 500。现要求到期时间必须可解析且晚于当前时间，删除只作为 best-effort 清理，清理失败仍拒绝会话并返回未认证状态。
+- 回归覆盖：向真实隔离 archive 服务写入无效时间戳后必须返回 401；注入 SQLite 删除触发器阻止清理时，过期会话仍返回 401。
+- 本批验证：完整 `npm test` 518/518；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `786fbb7` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
