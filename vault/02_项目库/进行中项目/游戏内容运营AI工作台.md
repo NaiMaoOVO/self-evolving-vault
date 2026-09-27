@@ -1198,3 +1198,10 @@ sensitivity: 内部
 - 回归覆盖：用临时 mcporter 进程模拟 stderr 回显假签名 token，验证 HTTP 502 响应不含 token；错误分类单测验证不会反射提供器详情。
 - 本批验证：完整 `npm test` 469/469；`npm run check`、`npm run check:public` 与 `git diff --check` 均通过。
 - 同步状态：源码提交 `e56bccd` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百五十六）
+
+- LLM 网关日志脱敏：上游 HTTP 错误正文不再写入服务日志，保留受控错误类型、错误码与 HTTP 状态，避免可配置上游回显 `Authorization` 假 Key 时把凭据写入 stderr/PM2 日志。
+- 浏览器错误继续使用稳定业务提示；日志回归覆盖普通 JSON 与 SSE 错误处理路径，并确认本地假上游确实收到 Bearer 假 Key、但日志不包含该 Key。
+- 本批验证：LLM 专项 13/13；完整 `npm test` 469/469；`npm run check`、`npm run check:public` 与 `git diff --check` 均通过。
+- 同步状态：源码提交 `547afd8` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
