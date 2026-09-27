@@ -891,3 +891,10 @@ sensitivity: 内部
 - 回归覆盖：先验证非法 kind 保持 400，再于隔离临时库重命名快照表，验证两路由返回固定 500、不含 SQLite/表名且服务健康检查仍为 200。
 - 本批验证：完整 `npm test` 410/410；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `ee857ad` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（一百一十四）
+
+- 仪表盘只读存储故障隔离：`GET /stats` 与 `GET /morning-runs` 此前会把查询异常返回为 400 并回传 SQLite 文本。现在统一返回安全 500 提示；正常统计和晨报历史查询保持原样。
+- 回归覆盖：临时重命名快照表验证统计接口返回固定 500、不泄漏数据库细节；重命名晨报表验证运行记录接口同样受控；两类故障期间健康检查均保持 200。快照非法 kind 仍返回 400。
+- 本批验证：完整 `npm test` 411/411；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `41093a6` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
