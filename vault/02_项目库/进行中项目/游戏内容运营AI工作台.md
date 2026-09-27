@@ -1234,3 +1234,10 @@ sensitivity: 内部
 - 回归覆盖：超限 3 MiB 响应在解析前被拒绝，合法原生 `Response` 流成功解析；旧的坏行/无效时间戳隔离仍通过。
 - 本批验证：完整 `npm test` 478/478；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `392308f` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-27 优化记录（一百六十一）
+
+- Nginx 代理 IP 信任链校正：两个部署模板在 `include proxy_params` 后再次设置 `X-Forwarded-For`；若发行版 include 同时设置该头，Nginx 会把重复配置都发给上游，应用取首个地址时可能采用客户端伪造值。改为显式发送唯一的 XFF（`$remote_addr`），并显式保留 Host、X-Real-IP、X-Forwarded-Proto。
+- 回归覆盖：两个模板的全部五个 API location 均必须只有一条可信 XFF，且不再依赖发行版 `proxy_params`；测试先在旧配置失败，修复后通过。
+- 本批验证：完整 `npm test` 480/480；`npm run check`、`npm run check:public` 和 `git diff --check` 均通过。未安装 Nginx，未执行实际 `nginx -t`。
+- 同步状态：源码提交 `9ed1f86` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
