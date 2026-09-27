@@ -1548,3 +1548,10 @@ sensitivity: 内部
 - 回归覆盖：新增真实备份恢复测试，旧实现会成功替换并留下悬空 `-wal` 链接；修复后明确失败，原数据库内容与链接均保留，且未生成部分安全副本。
 - 本批验证：恢复专项 4/4；完整 `npm test` 536/536；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `b9909c2` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（二百零六）
+
+- 项目总览状态刷新延迟：此前先等待 AI 健康检查（最多 2.4 秒），再启动 OCR、热点、评论与归档备份探测，独立检查被串行拖慢。现将 AI、其他本地服务和备份状态并发检查，并在最终渲染时读取 AI 的已验证状态，避免显示旧状态。
+- 回归覆盖：使用延迟中的 AI 健康响应验证其他探测会立即开始，最终 AI 卡片仍展示本次检查得到的模型状态；旧逻辑下测试失败，修复后通过。
+- 本批验证：完整 `npm test` 537/537；`npm run build:public`、`npm run check:public`、`npm run check`、`git diff --check` 均通过。
+- 同步状态：源码提交 `47e42ff` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
