@@ -1555,3 +1555,10 @@ sensitivity: 内部
 - 回归覆盖：使用延迟中的 AI 健康响应验证其他探测会立即开始，最终 AI 卡片仍展示本次检查得到的模型状态；旧逻辑下测试失败，修复后通过。
 - 本批验证：完整 `npm test` 537/537；`npm run build:public`、`npm run check:public`、`npm run check`、`git diff --check` 均通过。
 - 同步状态：源码提交 `47e42ff` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（二百零七）
+
+- 备份状态读取隔离：管理员状态接口此前会同步调用备份调度器 `check()`；当备份目录含有当日恢复点时，HTTP 读取会同步执行 SHA-256 与 SQLite 完整性校验，可能阻塞 archive 服务。现接口只返回调度器缓存状态，完整校验仍由启动后的后台调度与定时重试执行；调度执行错误也不会被只读页面请求触发。
+- 回归覆盖：认证集成测试将备份目录设置为普通文件并显式启用调度，管理员查询必须仍返回 `pending`；旧逻辑会立即运行目录校验并返回 `failed`，修复后通过。
+- 本批验证：认证专项 11/11；完整 `npm test` 537/537；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `ce54b6b` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
