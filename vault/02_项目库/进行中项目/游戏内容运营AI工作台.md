@@ -695,3 +695,10 @@ sensitivity: 内部
 - 回归覆盖：契约测试发送 `null`、数组、非法 JSON、未知任务和样本不足请求，并验证限流响应仍正常。
 - 本批验证：完整 `npm test` 383/383；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
 - 同步状态：源码提交 `4b5f569` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
+
+## 2026-09-27 优化记录（八十六）
+
+- LLM 上游响应限额：非流式成功/错误响应和 SSE 响应统一限制为 1 MiB；超限时中止上游读取，浏览器侧只收到通用错误，避免兼容服务异常响应无限占用本机内存。
+- 回归覆盖：用超过 1 MiB 的有效 JSON 结果分别测试非流式与 SSE，确认非流式返回通用 502、SSE 发出 error 而不发 done。
+- 本批验证：完整 `npm test` 384/384；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。未做浏览器端到端验收。
+- 同步状态：源码提交 `27d3f23` 已推送到 GameOps `main`；本条为 Obsidian 项目笔记更新。
