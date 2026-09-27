@@ -1475,3 +1475,10 @@ sensitivity: 内部
 - 回归覆盖：向真实隔离 archive 服务写入无效时间戳后必须返回 401；注入 SQLite 删除触发器阻止清理时，过期会话仍返回 401。
 - 本批验证：完整 `npm test` 518/518；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
 - 同步状态：源码提交 `786fbb7` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-28 优化记录（一百九十六）
+
+- 存档备份轮换时保护新副本：旧逻辑按文件名时间排序，目录中出现未来时间戳文件时，保留数量为 1 可能删掉本次已校验的新备份、留下坏文件。现固定保留本次副本，并仅按旧副本文件修改时间选择清理对象；保留数量日志也包含新副本。
+- 回归覆盖：以 `9999` 年命名的损坏旧文件模拟时钟偏差/导入异常；修复前用例失败，修复后必须只剩本次通过 checksum 与 SQLite 完整性校验的副本。
+- 本批验证：备份专项 15/15；完整 `npm test` 519/519；`npm run check`、`npm run check:public`、`git diff --check` 均通过。
+- 同步状态：源码提交 `4f89f04` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
