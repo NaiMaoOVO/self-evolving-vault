@@ -1673,4 +1673,13 @@ sensitivity: 内部
 - Launcher 安全重启兜底：控制器健康在线但无法验证进程归属时，重启脚本明确拒绝重复启动并提示检查 `/status`；不尝试终止未知进程，也不再让用户只看到 `EADDRINUSE`。
 - 验证：新增重启脚本回归用例；定向冲突测试通过；完整 `npm test` 568/568；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 通过。
 - Launcher：已更新用户级 runtime 并保留运行配置，`npm run launcher:check` 通过；经安装 runtime 的安全重启脚本恢复控制器及 6 个服务，健康接口正常、存档 `ready`。本次跳过 LaunchServices 重新登记，故 Finder/`open -a` 启动仍未验证。
-- 同步状态：源码提交 `c29a013` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `c29a013` 已推送到 GameOps `main`；本记录已随 Obsidian 提交 `8c1df4a` 推送到 `main`。
+
+## 2026-09-29 优化记录（二百二十四）
+
+- 项目槽位恢复同步每日工作台：从本机槽位或项目快照恢复后，在输入与分析状态都复原完成时更新每日工作台的项目/版本主题提示，并刷新活动中的行动队列，避免页面仍显示旧项目、实际新待办却归属新项目。
+- 回归覆盖：恢复“绝区零”及新版本主题后，断言项目上下文与待办队列刷新都读取恢复后的值；旧实现下测试失败。
+- 验证：槽位专项 8/8；完整 `npm test` 569/569；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 和 `git diff --check` 通过。
+- Edge 只读验收：刷新后每日工作台显示“已连接”，行动队列汇总 0 条；平台表格分别标明 B 站真实热点与小红书样例存档，没有把样例伪装成实时数据。未改动或覆盖个人项目槽位。
+- Launcher runtime 已同步且检查一致；控制器及 6 个服务仍在线，存档 ready。无需重启后端。
+- 同步状态：源码提交 `0a5eaba` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
