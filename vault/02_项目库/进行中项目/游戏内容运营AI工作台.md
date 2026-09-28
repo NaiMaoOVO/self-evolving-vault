@@ -1682,4 +1682,12 @@ sensitivity: 内部
 - 验证：槽位专项 8/8；完整 `npm test` 569/569；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 和 `git diff --check` 通过。
 - Edge 只读验收：刷新后每日工作台显示“已连接”，行动队列汇总 0 条；平台表格分别标明 B 站真实热点与小红书样例存档，没有把样例伪装成实时数据。未改动或覆盖个人项目槽位。
 - Launcher runtime 已同步且检查一致；控制器及 6 个服务仍在线，存档 ready。无需重启后端。
-- 同步状态：源码提交 `0a5eaba` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `0a5eaba` 已推送到 GameOps `main`；本记录已随 Obsidian 提交 `192fcc5` 推送到 `main`。
+
+## 2026-09-29 优化记录（二百二十五）
+
+- 趋势图稀疏数据空态：单日存档不再被绘制成横跨整张图的 100% 色块，改为提示“仅有 1 天数据，积累更多存档后再看趋势”；图表 aria-label 也同步说明当前不足以判断趋势。多日数据图与无数据提示保持原行为。
+- 回归覆盖：用单个热点日期验证不会生成 `.trend-bar`、用户可见空态与屏幕阅读器说明一致；旧实现下测试失败。
+- 验证：图表专项 2/2；完整 `npm test` 570/570；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 和 `git diff --check` 通过。
+- Edge 刷新后每日工作台保持已连接；图表辅助名称报告仅有 1 天数据。Launcher runtime 已同步，未重启未变更的后端服务。
+- 同步状态：源码提交 `786bda5` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
