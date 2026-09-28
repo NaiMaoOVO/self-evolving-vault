@@ -1665,4 +1665,12 @@ sensitivity: 内部
 - 达人 Brief 补足明确输入：生成建议时带上填写的目标游戏与目标受众，不更改现有评分口径。
 - 验证：KOL/KOC 专项 23/23；幂等接口与晨报调度专项通过；完整 `npm test` 567/567；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 和 `git diff --check` 通过。Edge 页面确认 KOL/KOC 工作台可加载；当前没有可推进达人，生成卡片由专项测试验证。
 - Launcher：runtime 安装完成并与源码一致。直接重启命令因 8793 控制器端口仍占用而返回 `EADDRINUSE`；只读状态确认现有控制器健康，6 个服务均运行、归档存储 ready，因此未重复重启。LaunchServices 注册仍未验证。
-- 同步状态：源码提交 `2f5cc29` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `2f5cc29` 已推送到 GameOps `main`；本记录已随 Obsidian 提交 `438aabc` 推送到 `main`。
+
+## 2026-09-29 优化记录（二百二十三）
+
+- 幂等键冲突提示可读化：存档接口仍以 HTTP 409 拒绝“同一幂等键写入不同内容”，`error` 改为可直接展示的中文恢复建议，并用独立 `code: idempotency_key_reused` 保留机器识别字段，避免界面把内部错误码直接显示给用户。
+- Launcher 安全重启兜底：控制器健康在线但无法验证进程归属时，重启脚本明确拒绝重复启动并提示检查 `/status`；不尝试终止未知进程，也不再让用户只看到 `EADDRINUSE`。
+- 验证：新增重启脚本回归用例；定向冲突测试通过；完整 `npm test` 568/568；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 通过。
+- Launcher：已更新用户级 runtime 并保留运行配置，`npm run launcher:check` 通过；经安装 runtime 的安全重启脚本恢复控制器及 6 个服务，健康接口正常、存档 `ready`。本次跳过 LaunchServices 重新登记，故 Finder/`open -a` 启动仍未验证。
+- 同步状态：源码提交 `c29a013` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
