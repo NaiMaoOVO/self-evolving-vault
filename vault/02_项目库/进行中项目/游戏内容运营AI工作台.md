@@ -3,7 +3,7 @@ title: 游戏内容运营AI工作台
 type: project
 status: active
 created: 2026-08-23
-updated: 2026-09-27
+updated: 2026-09-29
 source: 多轮开发会话（2026-08-23 全天）
 confidence: high
 sensitivity: 内部
@@ -1602,3 +1602,11 @@ sensitivity: 内部
 - 回归覆盖：注入一次并发追加写入，旧实现会继续恢复并替换数据库；新实现报“来源在复制期间发生变化”，原库保留外部写入，部分安全副本和暂存文件均清理。
 - 验证：归档调度/恢复专项 28/28；完整 `npm test` 541/541；`npm run check`、`npm run check:public`、`git diff --check` 均通过。未进行浏览器实机交互验收。
 - 同步状态：源码提交 `944f160` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百一十四）
+
+- 修复 macOS Launcher 安装包：安装器此前以精简 `Info.plist` 覆盖 `osacompile` 生成的 AppleScript applet 元数据，并在修改后留下无效签名。现通过 PlistBuddy 保留原始 applet 配置、补充 `gameops://` URL Scheme，随后对完整 bundle ad-hoc 签名并严格验证，成功后才替换已安装版本。经授权更新并重启本机 Launcher，runtime `.env` 保留；控制器及六个服务健康接口均返回 HTTP 200。
+- AI 洞察契约收紧：结果渲染将 watchouts 上限统一为 2 条，避免前端实际展示数超过提示约定；新增三条输入只展示两条的回归测试。
+- 归档恢复测试隔离：恢复安全检查此前使用默认端口 8796，碰到在线 Launcher 时会把真实服务误判为测试目标。测试现在使用专属端口 19724；服务保持在线时仍能完整验证恢复保护逻辑。
+- 验证：完整 `npm test` 544/544；`npm run check`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 均通过；7 个本机服务健康接口均为 HTTP 200。未进行浏览器实机交互验收。
+- 同步状态：源码提交 `2b40d22` 已推送到 GameOps `main`；本条记录随当前批次同步至 Obsidian `main`。
