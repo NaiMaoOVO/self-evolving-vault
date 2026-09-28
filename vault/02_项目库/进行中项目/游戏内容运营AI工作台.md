@@ -1714,3 +1714,10 @@ sensitivity: 内部
 - 回归覆盖：先确认旧实现可复现（写入异常后仍报告 local），再验证失败写入与跨标签模式变化都保持端点和模式一致。
 - 验证：完整 `npm test` 572/572；服务模式定向 2/2；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 通过。
 - 同步状态：源码提交 `f177535` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百二十九）
+
+- 清除站点数据后的跨标签复位：监听 `localStorage.clear()` 产生的 `storage` 事件（`key === null`），将当前页临时服务模式恢复为环境默认值，避免沿用已经被清除的旧模式。
+- 回归覆盖：先复现线上模式下清空 storage 后当前页仍读到 online，再验证端点回到本地默认；服务模式专项 20/20。
+- 验证：完整 `npm test` 573/573；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 通过。
+- 同步状态：源码提交 `9d2efa4` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
