@@ -1617,3 +1617,10 @@ sensitivity: 内部
 - 创作者来源标记随项目档案和本机快照保存/恢复；旧档案或旧快照缺少来源字段时按“未核验”展示，不会误标为真实数据；恢复快照会重置来源，避免沿用上一次状态。
 - 验证：针对性测试 34/34；完整 `npm test` 549/549；`npm run build:public`、`npm run check:public`、`npm run check`、`npm run launcher:check`、`git diff --check` 均通过。Edge 实测：当前项目鸣潮的创作者筛选默认空白；载入 10 条示例后来源警示正确；刷新后回到空白状态。
 - 同步状态：源码提交 `3bd9ed5` 已推送到 GameOps `main`；本条记录随 Obsidian `main` 推送。
+
+## 2026-09-29 优化记录（二百一十六）
+
+- KOL/KOC 名单编辑后，旧评分对应的单条入库、批量入库、加入今日待办与效果回填均停用；只有重新生成筛选表后才恢复。freshness 检查也放在写入入口，避免仅依赖按钮禁用。
+- 完整运营方案生成时，只有名单仍匹配已分析输入才复用历史效果回填行；名单已改动则基于当前输入重新分析，防止旧达人数据进入新报告。
+- 验证：创作者专项 16/16；完整 `npm test` 552/552；`npm run build:public`、`npm run check:public`、`npm run check`、`npm run launcher:check`、`git diff --check` 均通过。Edge 实测：改名单后旧结果操作按钮全部禁用；重新筛选后按新输入显示未核验提示并恢复操作。刷新后恢复到鸣潮空名单。
+- 同步状态：源码提交 `7cd7d63` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
