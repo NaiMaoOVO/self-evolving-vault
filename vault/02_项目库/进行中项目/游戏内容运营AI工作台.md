@@ -1610,3 +1610,10 @@ sensitivity: 内部
 - 归档恢复测试隔离：恢复安全检查此前使用默认端口 8796，碰到在线 Launcher 时会把真实服务误判为测试目标。测试现在使用专属端口 19724；服务保持在线时仍能完整验证恢复保护逻辑。
 - 验证：完整 `npm test` 544/544；`npm run check`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 均通过；7 个本机服务健康接口均为 HTTP 200。未进行浏览器实机交互验收。
 - 同步状态：源码提交 `2b40d22` 已推送到 GameOps `main`；本条记录随当前批次同步至 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百一十五）
+
+- KOL/KOC 示例名单改为显式载入，默认空名单并跟随当前项目；示例数据载入后始终提示“仅供功能演示，不代表真实合作数据”。编辑名单会将来源降为未核验，表格导入标记为已导入。
+- 创作者来源标记随项目档案和本机快照保存/恢复；旧档案或旧快照缺少来源字段时按“未核验”展示，不会误标为真实数据；恢复快照会重置来源，避免沿用上一次状态。
+- 验证：针对性测试 34/34；完整 `npm test` 549/549；`npm run build:public`、`npm run check:public`、`npm run check`、`npm run launcher:check`、`git diff --check` 均通过。Edge 实测：当前项目鸣潮的创作者筛选默认空白；载入 10 条示例后来源警示正确；刷新后回到空白状态。
+- 同步状态：源码提交 `3bd9ed5` 已推送到 GameOps `main`；本条记录随 Obsidian `main` 推送。
