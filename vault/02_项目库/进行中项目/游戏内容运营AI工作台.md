@@ -1655,3 +1655,14 @@ sensitivity: 内部
 - 本批验证：创作者专项 18/18；每日队列跨项目缓存专项 1/1；完整 `npm test` 554/554；`npm run build:public`、`npm run check:public`、`npm run check`、`npm run launcher:check`、`git diff --check` 均通过。Launcher runtime 与源码一致，控制器及 6 个服务在线，归档存储 ready。
 - Launcher 安装备注：授权更新时 `lsregister` 因 Spotlight 返回 `-10822`；跳过 LaunchServices 登记后 runtime 与 app bundle 文件更新成功，并通过已安装 runtime 的重启脚本恢复 6 个服务。直接 `open -a` 仍返回 `-10827`，因此 macOS 应用注册/启动尚未验证成功；浏览器中的服务健康与数据接口已恢复。
 - 同步状态：源码提交 `f6f77c7` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百二十二）
+
+- 创作者档案身份升级：当旧档案只有主页 URL、后续补充账号 ID 并改名时，按主页别名找回并迁移原档案；若主键与主页别名并存，则合并合作历史，避免重复档案或历史断链。
+- 合作复盘保存：仅选择“推荐再次合作/不建议合作”也会生成合作历史；默认“待观察”不会单独制造空记录，保存提示按实际是否记录复盘显示。
+- 存档写入幂等保护：快照、待办、发布台账和风险工单保存规范化请求的 SHA-256 指纹；同一幂等键重放不同内容返回 409，而相同内容仍安全重试。指纹不回传 API；未编辑的旧记录会补齐指纹，已编辑旧记录保持兼容。
+- 晨报调度容错：单项目领取运行记录失败会被隔离，不阻止其他项目继续；运行状态写失败和定时任务意外异常均被捕获并记录，避免未处理 Promise 影响服务进程。
+- 达人 Brief 补足明确输入：生成建议时带上填写的目标游戏与目标受众，不更改现有评分口径。
+- 验证：KOL/KOC 专项 23/23；幂等接口与晨报调度专项通过；完整 `npm test` 567/567；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 和 `git diff --check` 通过。Edge 页面确认 KOL/KOC 工作台可加载；当前没有可推进达人，生成卡片由专项测试验证。
+- Launcher：runtime 安装完成并与源码一致。直接重启命令因 8793 控制器端口仍占用而返回 `EADDRINUSE`；只读状态确认现有控制器健康，6 个服务均运行、归档存储 ready，因此未重复重启。LaunchServices 注册仍未验证。
+- 同步状态：源码提交 `2f5cc29` 已推送到 GameOps `main`；本条记录待推送到 Obsidian `main`。
