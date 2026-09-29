@@ -1913,3 +1913,8 @@ sensitivity: 内部
 - 真实冲突验收：Launcher 已占用 8793 时从源码目录运行 `node start-demo.js`，只返回明确冲突提示；之后六个受管服务仍在线、归档 `/ready` 仍正常，没有启动或接管子服务。
 - 验证：重启/运行清单专项 10/10；完整 `npm test` 604/604；`npm run check`、`npm run check:public`、`git diff --check` 通过。安装器已将修复同步至用户级 runtime；`launcher:check` 一致，控制器、全部六个受管服务及归档 `/ready` 均健康。
 - 同步状态：源码提交 `eca5738` 已推送到 GameOps `main`；本记录及真实冲突验收已同步到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百五十九）
+
+- 生产部署门禁复核：`npm run deploy:check` 当前按设计拒绝通过，要求配置真实 HTTPS `ALLOWED_ORIGIN`。没有猜测域名或改写部署配置；本机工作台仍正常，`npm run check:public` 单独验证通过。
+- 后续若进入公网部署，需要用户提供准确站点域名及部署范围；未获此信息前不触碰生产配置或发布服务。
