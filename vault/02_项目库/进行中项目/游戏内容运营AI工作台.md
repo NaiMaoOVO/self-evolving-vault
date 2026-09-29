@@ -1855,3 +1855,9 @@ sensitivity: 内部
 - 回归先在本机 OpenAI 兼容假上游上复现错误 request path，修复后确认收到 `/v1/chat/completions?tenant=studio`；另覆盖账号密码、fragment、HTTPS 规则及部署门禁，版本 query 仍可通过。
 - 验证：上游 URL 定向 11/11；LLM 上游服务级定向 2/2；部署门禁专项 1/1；完整 `npm test` 601/601；`npm run check`、`npm run check:public`、`git diff --check` 通过。浏览器 UI 验收仍因 macOS 锁屏未完成。
 - 同步状态：修复提交 `2ef9891` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百五十）
+
+- 扩展线上多账号隔离端到端回归：以管理员和成员两个真实登录会话验证项目档案、创作者库、快照、发布记录与风险工单各自只读到本人数据；跨账号删除发布/风险记录返回 404；成员写入管理员同名项目档案不会覆盖管理员数据。
+- 验证：`tests/archive-auth.test.js` 11/11；完整 `npm test` 601/601；`npm run check`、`npm run check:public`、`git diff --check` 通过。本次仅强化隔离测试，不改变认证或数据行为。
+- 同步状态：测试提交 `4d37ac6` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
