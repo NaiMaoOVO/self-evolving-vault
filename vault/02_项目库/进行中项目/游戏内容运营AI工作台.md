@@ -1905,4 +1905,10 @@ sensitivity: 内部
 
 - 消除小红书接入文档的重启歧义：将临时环境变量的 `npm run restart` 命令标注为仅适用于源码目录控制进程；Launcher 模式需编辑用户级 runtime `.env` 并从页面重启，避免重复启动控制器。
 - 验证：运行清单/重启文档专项 9/9；`npm run check`、`git diff --check` 通过。真实运行拒绝验证见记录二百五十五。
-- 同步状态：文档提交 `54a1725` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+- 同步状态：文档提交 `54a1725` 已推送到 GameOps `main`；本记录已随 Obsidian 提交 `42f5707` 推送到 `main`。
+
+## 2026-09-29 优化记录（二百五十八）
+
+- 修复本地控制器启动竞态：原来控制器端口的异步监听尚未确认成功，主流程就开始检查/拉起子服务；当 Launcher 快照已占用控制端口时，源码目录可能先启动部分服务再以 `EADDRINUSE` 退出。现在仅在控制端口成功绑定并写入实例状态后才启动子服务；端口冲突时给出 Launcher 相关提示并提前退出。
+- 验证：重启/运行清单专项 10/10；完整 `npm test` 604/604；`npm run check`、`npm run check:public`、`git diff --check` 通过。安装器已将修复同步至用户级 runtime；`launcher:check` 一致，控制器、全部六个受管服务及归档 `/ready` 均健康。
+- 同步状态：源码提交 `eca5738` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
