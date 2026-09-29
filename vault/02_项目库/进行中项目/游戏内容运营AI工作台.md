@@ -1799,3 +1799,10 @@ sensitivity: 内部
 - 回归覆盖：验证连续保存只留一个计时器、账号切换后旧计时不写入新账号、访客与本机文件模式不上传；旧同步隔离测试的 harness 同步注入取消依赖。
 - 验证：完整 `npm test` 590/590；随后创作者库专项 11/11；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。此为自动化与本机静态验证，未用真实线上登录账号做跨浏览器端到端验收。
 - 同步状态：源码提交 `45caa78`、`5b87f6c` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十二）
+
+- 创作者库断网恢复：同步遇到网络类连接错误时仅为当前已登录账号留下内存重试标记；浏览器触发 `online` 后经 500ms 防抖重试。账号/服务模式切换清除标记，访客和 `file://` 页面不上传，HTTP/数据校验错误不会借网络事件循环重试。状态文案区分连接中断、本机服务停机与数据未受影响。
+- 回归覆盖：模拟账号 A 的重试标记在账号 B 登录后被清除；同账号在线恢复触发一次同步；本机文件页不重试；网络错误会留下标记，非网络错误不会；退出/账号切换取消标记，原有本地保护和 409 同步路径仍通过。
+- 验证：完整 `npm test` 592/592；创作者库/可访问性/项目一致性定向 187/187；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。未做真实线上浏览器断网/登录 E2E。
+- 同步状态：源码提交 `2f77185` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
