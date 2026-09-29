@@ -1791,3 +1791,10 @@ sensitivity: 内部
 - 回归先用冻结服务时钟复现两次写入版本相同、陈旧写入被接受；修复后第二次标记递增，旧标记请求返回 409，最新个人库保持完整。
 - 验证：创作者库定向测试 6/6；完整 `npm test` 589/589；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。runtime 已同步并重启，控制器六项服务运行、存档 ready。
 - 同步状态：源码提交 `80fc152` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十一）
+
+- 创作者个人库线上同步：登录线上账号后，档案编辑在本地保存成功后进入 500ms 防抖队列，连续修改合并为一次云端同步；访客和 `file://` 本机模式不自动上传。账号切换、手动同步会取消待执行计时，云端合并写回不会递归触发自动同步；保留原有手动同步作为恢复入口。
+- 回归覆盖：验证连续保存只留一个计时器、账号切换后旧计时不写入新账号、访客与本机文件模式不上传；旧同步隔离测试的 harness 同步注入取消依赖。
+- 验证：完整 `npm test` 590/590；随后创作者库专项 11/11；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。此为自动化与本机静态验证，未用真实线上登录账号做跨浏览器端到端验收。
+- 同步状态：源码提交 `45caa78` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
