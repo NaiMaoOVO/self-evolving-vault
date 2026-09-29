@@ -1728,3 +1728,10 @@ sensitivity: 内部
 - 回归覆盖：验证旧 online 事件晚于用户选择 local、以及 storage 清除后旧模式事件晚到，两种情况下模式与请求端点都保持当前状态。
 - 验证：完整 `npm test` 575/575；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 通过。
 - 同步状态：源码提交 `c9f8dec` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百三十一）
+
+- 每日待办午夜边界：创建待办时主动刷新上海业务日期；如果默认截止日仍是昨天，会在提交前更新为今天，避免午夜后五分钟内新增任务立刻显示逾期。用户手动设定的截止日期仍由现有刷新逻辑保留。
+- 回归覆盖：模拟日期已跨到 9 月 29 日、五分钟定时器尚未触发且输入仍是 9 月 28 日；新增待办的请求体现已使用 9 月 29 日。旧实现下用例失败。
+- 验证：完整 `npm test` 576/576；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 通过。
+- 同步状态：源码提交 `7ddcac7` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
