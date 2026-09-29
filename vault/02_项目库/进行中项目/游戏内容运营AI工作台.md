@@ -1806,3 +1806,10 @@ sensitivity: 内部
 - 回归覆盖：模拟账号 A 的重试标记在账号 B 登录后被清除；同账号在线恢复触发一次同步；本机文件页不重试；网络错误会留下标记，非网络错误不会；退出/账号切换取消标记，原有本地保护和 409 同步路径仍通过。
 - 验证：完整 `npm test` 592/592；创作者库/可访问性/项目一致性定向 187/187；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。未做真实线上浏览器断网/登录 E2E。
 - 同步状态：源码提交 `2f77185` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十三）
+
+- 创作者库无变化写入：同步接口先校验 `base_updated_at`，再对递归排序后的 JSON 做结构比较；内容相同即返回当前版本、不执行数据库写入或推进 `updated_at`，实际内容变化仍沿用原乐观锁与严格递增版本。
+- 回归覆盖：同内容但对象键顺序不同仍被视作无变化；版本过期的同内容请求仍返回 409，不能绕过并发保护；版本匹配的无变化请求返回原 token，读回数据不变。
+- 验证：创作者库服务 7/7；完整 `npm test` 593/593；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。runtime 与源码一致；安全重启因无法核验旧控制器进程归属而拒绝操作，未强杀进程；只读 `/status` 确认控制器及六项服务运行、`/ready` 为 ready。线上认证当前仍为关闭状态。
+- 同步状态：源码提交 `ef749fe` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
