@@ -1721,3 +1721,10 @@ sensitivity: 内部
 - 回归覆盖：先复现线上模式下清空 storage 后当前页仍读到 online，再验证端点回到本地默认；服务模式专项 20/20。
 - 验证：完整 `npm test` 573/573；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 通过。
 - 同步状态：源码提交 `9d2efa4` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百三十）
+
+- 跨标签服务模式竞态：延迟到达的旧 `storage` 事件不再覆盖本机当前已持久化的模式，也不能在 `localStorage.clear()` 后重建旧模式；优先读取当前存储值，只有读取失败时才使用事件值兜底。
+- 回归覆盖：验证旧 online 事件晚于用户选择 local、以及 storage 清除后旧模式事件晚到，两种情况下模式与请求端点都保持当前状态。
+- 验证：完整 `npm test` 575/575；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 通过。
+- 同步状态：源码提交 `c9f8dec` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
