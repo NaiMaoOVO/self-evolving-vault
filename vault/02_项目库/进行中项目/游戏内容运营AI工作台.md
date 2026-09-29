@@ -1910,5 +1910,6 @@ sensitivity: 内部
 ## 2026-09-29 优化记录（二百五十八）
 
 - 修复本地控制器启动竞态：原来控制器端口的异步监听尚未确认成功，主流程就开始检查/拉起子服务；当 Launcher 快照已占用控制端口时，源码目录可能先启动部分服务再以 `EADDRINUSE` 退出。现在仅在控制端口成功绑定并写入实例状态后才启动子服务；端口冲突时给出 Launcher 相关提示并提前退出。
+- 真实冲突验收：Launcher 已占用 8793 时从源码目录运行 `node start-demo.js`，只返回明确冲突提示；之后六个受管服务仍在线、归档 `/ready` 仍正常，没有启动或接管子服务。
 - 验证：重启/运行清单专项 10/10；完整 `npm test` 604/604；`npm run check`、`npm run check:public`、`git diff --check` 通过。安装器已将修复同步至用户级 runtime；`launcher:check` 一致，控制器、全部六个受管服务及归档 `/ready` 均健康。
-- 同步状态：源码提交 `eca5738` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+- 同步状态：源码提交 `eca5738` 已推送到 GameOps `main`；本记录及真实冲突验收已同步到 Obsidian `main`。
