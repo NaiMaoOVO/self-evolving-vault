@@ -1776,3 +1776,11 @@ sensitivity: 内部
 - 验证：完整 `npm test` 587/587；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 与 `git diff --check` 通过。Launcher runtime 已更新并与源码一致；安全重启后控制器报告六项服务运行，热点、评论、OCR、LLM 与存档健康检查通过。
 - 边界：为规避已知 LaunchServices 扫描错误，安装跳过了注册步骤，因此系统协议注册状态仍未验证。项目/创作者档案及晨报记录的自然键冲突策略另待确认，不在本次猜测合并。
 - 同步状态：源码提交 `92f0a5d` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百三十九）
+
+- 管理员接管旧匿名数据前增加自然键冲突预检，覆盖项目档案、创作者库和晨报记录；在同一 SQLite 写事务内检查，发现冲突时报告表名与数量并回滚，避免只暴露 SQLite 唯一约束异常。
+- 回归覆盖：三个表同时出现旧匿名/管理员自然键冲突时，启动明确返回 `OWNER_MIGRATION_CONFLICT`，两侧数据仍各自保留；旧幂等键冲突与事务失败回滚测试继续通过。
+- 验证：完整 `npm test` 588/588；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。Launcher runtime 已同步并重启；控制器、六项服务健康，存档 ready。
+- 当前线上写入边界：运行服务返回 `auth_required:false`，尚未创建管理员账号；未擅自开启线上认证。启用前仍需确认个人本机模式或线上登录及管理员密码处理方式。
+- 同步状态：源码提交 `d38a74b` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
