@@ -1848,3 +1848,10 @@ sensitivity: 内部
 - 创作者个人库 HTML 注入回归防护：安全审计检查了个人库、合作历史、简报、AI 输出、热点详情和工作队列等动态渲染边界，未确认现有可利用注入；新增真实执行 `renderCreatorLibrary()` 的回归测试，将达人名称、平台、档案 key、备注、合作项目和复盘结果替换为恶意 HTML，确认输出只保留转义文本，不生成 `img`、`script` 或 `svg` 标签。
 - 验证：创作者库专项 14/14；完整 `npm test` 598/598；`npm run check`、`npm run check:public`、`git diff --check` 通过。只新增测试，无运行时代码变化；浏览器交互仍受 macOS 锁屏限制，未做真实 DOM 浏览器验收。
 - 同步状态：测试提交 `1fa8e32` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十九）
+
+- LLM 上游地址拼接与部署校验：原实现直接把 `/chat/completions` 追加在原始字符串后，`LLM_BASE_URL` 带版本 query 时会请求错误路径（例如 `/v1?tenant=studio/chat/completions`）。现在通过 URL pathname 拼接 endpoint、保留 provider query，并拒绝内嵌账号密码和 fragment；`/ready` 与部署检查共用同一校验。
+- 回归先在本机 OpenAI 兼容假上游上复现错误 request path，修复后确认收到 `/v1/chat/completions?tenant=studio`；另覆盖账号密码、fragment、HTTPS 规则及部署门禁，版本 query 仍可通过。
+- 验证：上游 URL 定向 11/11；LLM 上游服务级定向 2/2；部署门禁专项 1/1；完整 `npm test` 601/601；`npm run check`、`npm run check:public`、`git diff --check` 通过。浏览器 UI 验收仍因 macOS 锁屏未完成。
+- 同步状态：修复提交 `2ef9891` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
