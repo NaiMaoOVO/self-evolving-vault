@@ -1768,3 +1768,11 @@ sensitivity: 内部
 - Launcher 自检准确性：源文件缺失即使 runtime 仍有副本也会失败；检查已安装 app 配置中的 Node 路径是否存在且可执行，避免 Node 版本管理器升级清理旧路径后仍错误报绿。检查逻辑可隔离测试，提示不回显本机绝对路径。
 - 本批验证：`npm test` 586/586；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。更新前 `npm run launcher:check` 检出 runtime 的 `llm-server.js`、`scripts/backup-archive.js` 与源码不一致；待按既有授权安装后再次验证。
 - 同步状态：源码提交 `6d46136` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百三十八）
+
+- 管理员接管旧匿名数据时处理幂等键冲突：若 `default` 与管理员账号已有相同 `request_id`，迁移前仅重映射旧匿名行的键，保留管理员原键、两边业务数据和请求指纹，避免唯一约束使整个迁移回滚。
+- 回归覆盖：快照、发布、风险工单、每日待办四类记录均构造同键冲突；验证管理员幂等键不变，旧行指纹与记录完整保留且获得确定性迁移键。
+- 验证：完整 `npm test` 587/587；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check` 与 `git diff --check` 通过。Launcher runtime 已更新并与源码一致；安全重启后控制器报告六项服务运行，热点、评论、OCR、LLM 与存档健康检查通过。
+- 边界：为规避已知 LaunchServices 扫描错误，安装跳过了注册步骤，因此系统协议注册状态仍未验证。项目/创作者档案及晨报记录的自然键冲突策略另待确认，不在本次猜测合并。
+- 同步状态：源码提交 `92f0a5d` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
