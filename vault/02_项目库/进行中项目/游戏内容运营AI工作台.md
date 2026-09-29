@@ -1813,3 +1813,10 @@ sensitivity: 内部
 - 回归覆盖：同内容但对象键顺序不同仍被视作无变化；版本过期的同内容请求仍返回 409，不能绕过并发保护；版本匹配的无变化请求返回原 token，读回数据不变。
 - 验证：创作者库服务 7/7；完整 `npm test` 593/593；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。runtime 与源码一致；安全重启因无法核验旧控制器进程归属而拒绝操作，未强杀进程；只读 `/status` 确认控制器及六项服务运行、`/ready` 为 ready。线上认证当前仍为关闭状态。
 - 同步状态：源码提交 `ef749fe` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十四）
+
+- 创作者库跨标签页/浏览器数据新鲜度：线上登录用户每次从其他模块重新进入 KOL/KOC 合作筛选时刷新并合并云端档案；留在当前模块重复点击不重复请求，访客和 `file://` 本机模式保持本地，不触发远端同步。
+- 回归覆盖：验证首次进入与离开后重返各触发一次同步，重复选择当前视图不重复同步；未登录和本机文件模式均不触发同步。
+- 验证：新增导航行为测试通过；完整 `npm test` 594/594；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。未使用真实线上账号做跨浏览器端到端验证。
+- 同步状态：源码提交 `22dcfbb` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
