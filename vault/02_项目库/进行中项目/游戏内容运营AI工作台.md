@@ -1892,10 +1892,17 @@ sensitivity: 内部
 
 - 修复跨运行目录的控制器重启冲突：从源码目录重启由用户级 runtime 启动的控制器时，实例 ID 因根路径不同而不匹配；旧逻辑误以为控制器不在线，启动第二个实例后得到 `EADDRINUSE`。现在只要目标端口已有健康的 GameOps 控制器而归属无法验证，就明确拒绝重复启动，并提示使用当前 Launcher 入口。
 - 回归分别覆盖同目录实例和不同目录实例；验证：重启专项 2/2、完整 `npm test` 602/602、`npm run check`、`npm run check:public`、`git diff --check` 通过。修复已同步进 Launcher runtime；重启后控制器与归档 ready，所有受管服务健康。
+- 真实运行复核：从源码目录对正在运行的用户级快照执行 `npm run restart`，现在明确拒绝并提示使用 Launcher 入口；控制器 `/health` 与归档 `/ready` 仍正常，未创建重复实例。
 - 同步状态：源码提交 `b3f1ae3` 已推送到 GameOps `main`；本记录已随 Obsidian 提交 `f717c79` 推送到 `main`。
 
 ## 2026-09-29 优化记录（二百五十六）
 
 - 补齐 Launcher 重启运维说明：README 区分源码目录控制器与 `Application Support/GameOpsLauncher/runtime` 快照控制器；快照模式应使用页面“重启本地服务”或 `gameops://restart`，避免照抄源码目录命令后误认为服务已重启。
 - 验证：重启/运行清单与文档专项 11/11；`npm run check`、`git diff --check` 通过。此次为文档和文档回归测试，无运行时代码变更。
-- 同步状态：文档提交 `de027cc` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+- 同步状态：文档提交 `de027cc` 已推送到 GameOps `main`；本记录已随 Obsidian 提交 `2217f02` 推送到 `main`。
+
+## 2026-09-29 优化记录（二百五十七）
+
+- 消除小红书接入文档的重启歧义：将临时环境变量的 `npm run restart` 命令标注为仅适用于源码目录控制进程；Launcher 模式需编辑用户级 runtime `.env` 并从页面重启，避免重复启动控制器。
+- 验证：运行清单/重启文档专项 9/9；`npm run check`、`git diff --check` 通过。真实运行拒绝验证见记录二百五十五。
+- 同步状态：文档提交 `54a1725` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
