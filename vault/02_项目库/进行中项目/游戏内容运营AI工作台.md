@@ -1757,3 +1757,14 @@ sensitivity: 内部
 - 验证：实测成本、估算成本与零成本均覆盖 CPM 和性价比分；界面评分口径已同步说明。
 - 本批完整验证：`npm test` 582/582；`npm run check`、`npm run build:public`、`npm run check:public`、`git diff --check` 均通过。未进行真实浏览器交互验收。
 - 同步状态：源码提交与 GitHub 推送、Obsidian 记录提交与推送待完成。
+
+## 2026-09-29 优化记录（二百三十六）
+
+- 今日简报读取竞态：简报启动的队列请求被手动刷新抢占时，现在继续等待最新一轮请求结束，再采集简报数据，避免把仍在加载中的旧快照误报为待办、风险和发布回流全部不可用。
+- 回归覆盖：一个用例控制简报读取被刷新替代，断言最新请求结束前不采集；另一个直接验证等待器会跟随更新后的请求 Promise。
+
+## 2026-09-29 优化记录（二百三十七）
+
+- Launcher 自检准确性：源文件缺失即使 runtime 仍有副本也会失败；检查已安装 app 配置中的 Node 路径是否存在且可执行，避免 Node 版本管理器升级清理旧路径后仍错误报绿。检查逻辑可隔离测试，提示不回显本机绝对路径。
+- 本批验证：`npm test` 586/586；`npm run check`、`npm run build:public`、`npm run check:public` 和 `git diff --check` 均通过。更新前 `npm run launcher:check` 检出 runtime 的 `llm-server.js`、`scripts/backup-archive.js` 与源码不一致；待按既有授权安装后再次验证。
+- 同步状态：源码提交 `6d46136` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
