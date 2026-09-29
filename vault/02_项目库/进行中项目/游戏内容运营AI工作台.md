@@ -1784,3 +1784,10 @@ sensitivity: 内部
 - 验证：完整 `npm test` 588/588；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。Launcher runtime 已同步并重启；控制器、六项服务健康，存档 ready。
 - 当前线上写入边界：运行服务返回 `auth_required:false`，尚未创建管理员账号；未擅自开启线上认证。启用前仍需确认个人本机模式或线上登录及管理员密码处理方式。
 - 同步状态：源码提交 `d38a74b` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十）
+
+- 创作者库并发写入标记改为严格递增：若系统时钟仍停留在已有 `updated_at` 的毫秒内，下一次成功写入使用前值 +1ms，防止两个标签页复用同一乐观锁版本，让旧快照覆盖新资料。
+- 回归先用冻结服务时钟复现两次写入版本相同、陈旧写入被接受；修复后第二次标记递增，旧标记请求返回 409，最新个人库保持完整。
+- 验证：创作者库定向测试 6/6；完整 `npm test` 589/589；`npm run check`、`npm run build:public`、`npm run check:public`、`npm run launcher:check`、`git diff --check` 通过。runtime 已同步并重启，控制器六项服务运行、存档 ready。
+- 同步状态：源码提交 `80fc152` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
