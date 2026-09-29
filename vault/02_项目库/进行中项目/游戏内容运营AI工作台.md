@@ -1881,3 +1881,15 @@ sensitivity: 内部
 - 加固多人线上写入隔离回归：在管理员/成员双会话的真实 HTTP 测试中，新增跨账号修改发布记录与风险工单必须返回 404 的检查；成员提交伪造的管理员 `owner_key` 时，验证成员自己的创作者库写入成功、管理员库不被污染。
 - 验证：完整 `npm test` 601/601；新增断言后的归档认证专项 11/11；`npm run check`、`npm run check:public`、`git diff --check` 通过。仅新增回归测试，不改变运行时代码。
 - 同步状态：测试提交 `1aae059` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百五十四）
+
+- Launcher 运行快照恢复：检查发现 `llm-server.js`、`archive-server.js`、`lib/platform-provider.js` 与用户级运行副本不同步；此前存档服务健康但快照可能在重启后回退。按授权重装并保留运行目录 `.env`（权限仍为 `600`），通过正式 `gameops://restart` 重启本地服务。
+- 验证：`npm run launcher:check` 报告源码与运行快照一致；控制器、热点、评论、OCR、LLM、小红书桥接健康检查通过，归档 `/ready` 返回 `ready:true`。由于 Mac 锁屏，浏览器页面验收未完成。
+- 同步状态：运行环境与源码提交 `1aae059` 对齐；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百五十五）
+
+- 修复跨运行目录的控制器重启冲突：从源码目录重启由用户级 runtime 启动的控制器时，实例 ID 因根路径不同而不匹配；旧逻辑误以为控制器不在线，启动第二个实例后得到 `EADDRINUSE`。现在只要目标端口已有健康的 GameOps 控制器而归属无法验证，就明确拒绝重复启动，并提示使用当前 Launcher 入口。
+- 回归分别覆盖同目录实例和不同目录实例；验证：重启专项 2/2、完整 `npm test` 602/602、`npm run check`、`npm run check:public`、`git diff --check` 通过。修复已同步进 Launcher runtime；重启后控制器与归档 ready，所有受管服务健康。
+- 同步状态：源码提交 `b3f1ae3` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
