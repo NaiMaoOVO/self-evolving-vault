@@ -1842,3 +1842,9 @@ sensitivity: 内部
 - 回归覆盖：根目录、用户主目录、其上级均返回部署失败和可读原因；专用临时子目录通过。
 - 验证：部署检查专项 3/3；完整 `npm test` 597/597；`npm run check`、public 构建/校验、`git diff --check` 通过。
 - 同步状态：源码提交 `1ccf6d3` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
+
+## 2026-09-29 优化记录（二百四十八）
+
+- 创作者个人库 HTML 注入回归防护：安全审计检查了个人库、合作历史、简报、AI 输出、热点详情和工作队列等动态渲染边界，未确认现有可利用注入；新增真实执行 `renderCreatorLibrary()` 的回归测试，将达人名称、平台、档案 key、备注、合作项目和复盘结果替换为恶意 HTML，确认输出只保留转义文本，不生成 `img`、`script` 或 `svg` 标签。
+- 验证：创作者库专项 14/14；完整 `npm test` 598/598；`npm run check`、`npm run check:public`、`git diff --check` 通过。只新增测试，无运行时代码变化；浏览器交互仍受 macOS 锁屏限制，未做真实 DOM 浏览器验收。
+- 同步状态：测试提交 `1fa8e32` 已推送到 GameOps `main`；本记录待推送到 Obsidian `main`。
